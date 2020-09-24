@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { CalculatorsModule } from './calculators/calculators.module';
 import { HomePageModule } from './home-page/home-page.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +17,7 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     AboutUsComponent,
     CarouselComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +26,10 @@ import { HomeComponent } from './home/home.component';
     HomePageModule,
     HighchartsChartModule,
     FormsModule,
-    CalculatorsModule
+    CalculatorsModule,
+    UserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
