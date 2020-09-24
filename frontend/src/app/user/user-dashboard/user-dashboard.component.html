@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#myNav"
+        aria-controls="myNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNav">
+        <div class="container-fluid">
+          <div class="row align-item-center">
+            <!-- side nav  -->
+
+            <div class="sidebar col-lg-3 col-md-4 fixed-top">
+              <a
+                href="#"
+                class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border"
+                ><img
+                  src="../../../assets/images/logo2.png"
+                  alt="Logo"
+                  class="logo"
+                />Financing Dreams</a
+              >
+              <div class="bottom-border pb-3">
+                <img
+                  src="../../../assets/images/AdminIcon.png"
+                  alt="Profile-Pic"
+                  width="50"
+                  class="rounded-circle mr-3 ml-3"
+                />
+                <a href="#" class="text-white">User Username</a>
+              </div>
+              <ul class="navbar-nav flex-column mt-4">
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white p-3 mb-2 current"
+                    ><i class="fa fa-home text-light fa-lg mr-3"></i
+                    >Dashboard</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"
+                    ><i class="fa fa-user text-light fa-lg mr-3"></i>Profile</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link"
+                    ><i class="fa fa-id-card text-light fa-lg mr-3"></i>View
+                    Applications</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- top Nav -->
+            <div
+              class="col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-3 top-navbar"
+            >
+              <div class="row align-item-center">
+                <div class="col-md-8">
+                  <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
+                </div>
+                <div class="col-md-2 ml-auto signOut">
+                  <a
+                    routerLink="/adminLogin"
+                    routerLinkActive="router-link-active"
+                    class="fa fa-sign-out text-danger fa-lg"
+                    >Sign out</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End of Navbar -->
+  </body>
+</html>
