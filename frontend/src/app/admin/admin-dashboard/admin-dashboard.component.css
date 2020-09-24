@@ -1,0 +1,50 @@
+
+.logo{
+  width: 30%;
+  height: 80px;
+}
+
+.sidebar{
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9));
+  box-shadow: 5px 7px 20px #888888;
+}
+
+.bottom-border{
+  border-bottom: 1px groove white;
+}
+
+.sidebar-link{
+  transition: all .4s;
+}
+
+.sidebar-link:hover{
+  background-color: #a7ad9f;
+  border-radius: 5px;
+}
+.current{
+  background-color: tomato;
+  border-radius: 7px;
+  box-shadow: 2px 5px 10px #222222;
+}
+.current{
+  transition: all .3s;
+}
+.current:hover{
+  background-color: rgb(194, 44, 18);
+  border-radius: 7px;
+  box-shadow: 2px 5px 20px #111111;
+  transform: translateY(-1px);
+}
+@media(max-width:768px){
+  .sidebar{
+    position: static;
+    height: auto;
+  }
+  .top-navbar{
+    position: static;
+  }
+  .top-navbar .signOut{
+    text-align: right;
+  }
+}
