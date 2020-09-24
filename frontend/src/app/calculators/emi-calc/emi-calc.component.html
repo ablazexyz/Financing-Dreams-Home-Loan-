@@ -1,0 +1,59 @@
+<div class="row featurette">
+
+   <div class="col-md-8">
+      <div class="card" id="info_card1" style="margin: auto;">
+         <div class="card-body">
+            <h3 style="text-align: center;">Monthly EMI Amount: {{emi.toFixed(0)}} </h3>
+         </div>
+      </div>
+
+      <highcharts-chart id="container" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
+         [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="true"
+         style="width: 100%; height: 400px; display: block;">
+      </highcharts-chart>
+
+      <div class="card" id="info_card" style="margin: auto;">
+         <div class="card-body">
+            <h3 style="text-align: center;">Total Payable Amount: {{(interest+principal).toFixed(0)}}</h3>
+         </div>
+      </div>
+
+
+   </div>
+
+
+
+
+   <div class="col-md-4">
+
+      <div class="card text-white bg-info">
+         <form>
+            <div class="card-header" style="text-align: center;">EMI Calcuator</div>
+
+            <div class="card-body">
+               <div class="form-group">
+                  <label for="loan_amount">Loan Amount</label>
+                  <input type="number" class="form-control" id="loan_amount" [(ngModel)]="principal"
+                     [ngModelOptions]="{standalone: true}" placeholder="Enter loan amount:">
+               </div>
+
+               <div class="form-group">
+                  <label for="tenure">Enter Rate of Interest </label>
+                  <input type="number" class="form-control" id="interest" [(ngModel)]="roi"
+                     [ngModelOptions]="{standalone: true}" placeholder="Enter Interest:">
+               </div>
+
+               <div class="form-group">
+                  <label for="tenure">Enter Tenure (In Yrs) </label>
+                  <input type="number" class="form-control" id="tenure" [(ngModel)]="tenure"
+                     [ngModelOptions]="{standalone: true}" placeholder="Enter Interest:">
+               </div>
+               <button type="submit" class="btn btn-primary" (click)="updateChart()">Calculate EMI</button>
+            </div>
+         </form>
+
+      </div>
+
+   </div>
+
+</div>
