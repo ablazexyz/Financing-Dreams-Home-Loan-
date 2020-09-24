@@ -1,11 +1,11 @@
 .image-container{
-  background: url(../../../assets/images/adminLogin.png) center no-repeat;
+  background: url(../../../assets/images/2.jpg) center no-repeat;
   background-size: cover;
   height: 100vh;
 
 }
 .form-container{
-  background-color: rgb(1, 158, 163);
+  background-color: rgb(240, 245, 247);
   display: flex;
   justify-content: center;
 }
@@ -25,7 +25,7 @@
 .form-box .form-input input{
   width: 100%;
   height: 40px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border: none;
   border-radius: 5px;
   outline: none;
