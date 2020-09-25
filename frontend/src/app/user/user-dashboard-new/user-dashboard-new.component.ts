@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user-dashboard-new',
+  selector: 'user-dashboard-new',
   templateUrl: './user-dashboard-new.component.html',
-  styleUrls: ['./user-dashboard-new.component.css']
+  styleUrls: ['./user-dashboard-new.component.css'],
 })
 export class UserDashboardNewComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

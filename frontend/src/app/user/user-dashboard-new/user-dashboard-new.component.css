@@ -1,0 +1,21 @@
+.headings {
+  text-align: center;
+  /* margin-top: 10px; */
+  font-style: italic;
+}
+
+@media screen and (max-width: 600px) {
+  #account-details {
+    display: none;
+  }
+  th,
+  td {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  #account-details-small-screen {
+    display: none;
+  }
+}
