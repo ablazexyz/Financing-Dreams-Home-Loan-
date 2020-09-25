@@ -1,9 +1,11 @@
-<div class="row featurette">
+<div class="row featurette" id="EMI_Div">
 
    <div class="col-md-8">
+
       <div class="card" id="info_card1" style="margin: auto;">
          <div class="card-body">
-            <h3 style="text-align: center;">Monthly EMI Amount: {{emi.toFixed(0)}} </h3>
+            <h4 style="text-align: center;">Monthly EMI Amount </h4>
+            <h3 style="text-align: center;"> &#x20b9; {{emi.toFixed(0)}} </h3>
          </div>
       </div>
 
@@ -14,7 +16,8 @@
 
       <div class="card" id="info_card" style="margin: auto;">
          <div class="card-body">
-            <h3 style="text-align: center;">Total Payable Amount: {{(interest+principal).toFixed(0)}}</h3>
+            <h4 style="text-align: center;">Total Payable Amount </h4>
+            <h3 style="text-align: center;"> &#x20b9; {{(this.principal+this.interest).toFixed(0)}} </h3>
          </div>
       </div>
 
@@ -24,7 +27,7 @@
 
 
 
-   <div class="col-md-4">
+   <div class="col-md-3" id="emi_calc">
 
       <div class="card text-white bg-info">
          <form>
@@ -55,5 +58,7 @@
       </div>
 
    </div>
+
+   <div class="col-md-1"></div>
 
 </div>
