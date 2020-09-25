@@ -1,10 +1,10 @@
-import { LoginComponent } from './user/login/login.component';
-import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
-import { HomeComponent } from './home/home.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { LoginComponent } from './user/login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/userLogin', pathMatch: 'full'},
@@ -19,7 +19,7 @@ const routes: Routes = [
   declarations: [
   ],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   exports: [
     RouterModule
