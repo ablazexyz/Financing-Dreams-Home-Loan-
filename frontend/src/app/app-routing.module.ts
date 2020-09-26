@@ -1,3 +1,4 @@
+import { RegisterComponent } from './user/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,12 +8,13 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { LoginComponent } from './user/login/login.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/userLogin', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'adminLogin', component: AdminLoginComponent},
   {path: 'adminDashboard', component: AdminDashboardComponent},
   {path: 'home', component: HomeComponent},
   {path: 'user', component: UserDashboardComponent},
-  {path: 'userLogin', component: LoginComponent}
+  {path: 'userLogin', component: LoginComponent},
+  {path: 'userRegister', component: RegisterComponent}
 ];
 
 @NgModule({
@@ -26,4 +28,4 @@ const routes: Routes = [
   ]
 })
 export class AppRoutingModule { }
-export const routingComponents = [AdminDashboardComponent, AdminLoginComponent];
+export const routingComponents = [AdminDashboardComponent, AdminLoginComponent, HomeComponent, LoginComponent, RegisterComponent];

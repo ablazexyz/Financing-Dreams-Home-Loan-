@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -7,8 +8,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   template: `
      <div class="container-fluid">
     <div class="row">
+
       <div class="col-lg-6 col-md-6 form-container">
+
+
+
         <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+
+
+
           <div class="logo">
             <img src="../../../assets/images/logo2.png" alt="Logo">
           </div>
@@ -28,9 +36,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn" [disabled]="userLogin.invalid">Login</button>
+              <button type="submit" class="btn btn-success mx-3" [disabled]="userLogin.invalid">Login</button>
+              <span>     OR     </span>
+              <button class="btn btn-dark mx-3" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
             </div>
           </form>
+          <div class="mt-4">
+            Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active" >Register</a>
+          </div>
+
         </div>
       </div>
       <div class="col-lg-6 col-md-6 d-none d-md-block image-container">
@@ -94,14 +108,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   width: 150px;
   height: 40px;
   border-right: 5px;
-  background-color: rgb(255, 217, 0);
   font-weight: bold;
   transition: 0.5s;
-}
-.form-box button[type="submit"]:hover{
-  box-shadow: 0px,9px,10px -2px rgba(0,0,0,0.55);
-  -webkit-box-shadow: 0px,9px,10px -2px rgba(0, 0, 0, 0.55);
-  -moz-box-shadow: 0px,9px,10px -2px rgba(0,0,0,0.55);
 }
 
     `

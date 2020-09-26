@@ -1,0 +1,66 @@
+<div class="reg-form">
+  <h3 id="reg-form-header">Register</h3>
+  <form [formGroup]="userRegister" (submit)=RegisterUser()>
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input
+        type="text"
+        name="first_name"
+        id="first_name"
+        class="form-control"
+        placeholder="Enter your first name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name</label>
+      <input
+        type="text"
+        name="last_name"
+        id="last_name"
+        class="form-control"
+        placeholder="Enter your last name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Phone Number</label>
+      <input
+        type="tel"
+        name="phone_number"
+        id="phone_number"
+        class="form-control"
+        placeholder="Enter your phone number"
+      />
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select name="gender" id="gender" class="form-control">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input
+        type="text"
+        name="nationality"
+        id="nationality"
+        class="form-control"
+        placeholder="Enter your nationality"
+      />
+    </div>
+    <div class="form-group">
+      <label for="dob">Date of birth</label>
+      <input
+        type="date"
+        name="dob"
+        id="dob"
+        class="form-control"
+        placeholder="Choose your date of birth"
+      />
+    </div>
+    <div class="form-group" id="register-button">
+      <input type="submit" value="Register" class="btn btn-primary" />
+    </div>
+  </form>
+</div>

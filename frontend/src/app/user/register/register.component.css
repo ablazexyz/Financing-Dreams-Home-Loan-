@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.reg-form {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+#reg-form-header {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+#register-button {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .reg-form {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .reg-form {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+}
