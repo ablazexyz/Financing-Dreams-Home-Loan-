@@ -1,3 +1,4 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -36,9 +37,9 @@ import { RouterModule } from '@angular/router';
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-success mx-3" [disabled]="userLogin.invalid">Login</button>
-              <span>     OR     </span>
-              <button class="btn btn-dark mx-3" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
+              <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLogin.invalid">Login</button>
+              <span> OR </span>
+              <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
             </div>
           </form>
           <div class="mt-4">
@@ -118,7 +119,9 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   userLogin: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  login: any;
+  auth: any;
+  constructor(private fb: FormBuilder, private service: UserService) { }
 
   ngOnInit(): void {
     this.userLogin = this.fb.group({
@@ -128,8 +131,20 @@ export class LoginComponent implements OnInit {
   }
 
   authenticateUser(): void{
-    console.log(this.userLogin.get('password').value);
-    console.log(this.userLogin.controls.username.value);
+    this.login = Object.assign({}, this.userLogin.value);
+    // console.log(this.userLogin.controls.username.value);
+    this.service.loginUser(this.login).subscribe(data => {
+      // console.log(data);
+      this.auth = Object.assign({}, data[0]);
+
+      if (this.auth.password === this.userLogin.controls.password.value){
+        alert('Login Successful');
+        console.log(this.auth);
+      }
+      else{
+        alert('Invalid Credentials');
+      }
+    });
   }
 
 }

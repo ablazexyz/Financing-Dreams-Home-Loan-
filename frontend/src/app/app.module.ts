@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
+import { UserService } from './user/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,9 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     CalculatorsModule,
     UserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
