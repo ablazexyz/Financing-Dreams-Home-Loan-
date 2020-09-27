@@ -5,8 +5,6 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import { ApplicationDetailsComponent } from './application-details/application-details.component';
 
 import { UserDashboardNewComponent } from './user-dashboard-new/user-dashboard-new.component';
 
@@ -15,8 +13,6 @@ import { UserDashboardNewComponent } from './user-dashboard-new/user-dashboard-n
     UserDashboardComponent,
     LoginComponent,
     RegisterComponent,
-    CustomerDetailsComponent,
-    ApplicationDetailsComponent,
     UserDashboardNewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
