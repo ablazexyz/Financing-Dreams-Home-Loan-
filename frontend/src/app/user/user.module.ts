@@ -8,10 +8,18 @@ import { RegisterComponent } from './register/register.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 
+import { UserDashboardNewComponent } from './user-dashboard-new/user-dashboard-new.component';
 
 @NgModule({
-  declarations: [UserDashboardComponent, LoginComponent, RegisterComponent, CustomerDetailsComponent, ApplicationDetailsComponent],
+  declarations: [
+    UserDashboardComponent,
+    LoginComponent,
+    RegisterComponent,
+    CustomerDetailsComponent,
+    ApplicationDetailsComponent,
+    UserDashboardNewComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [UserDashboardComponent],
+  exports: [UserDashboardComponent, UserDashboardNewComponent],
 })
 export class UserModule {}
