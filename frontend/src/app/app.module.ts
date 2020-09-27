@@ -1,3 +1,4 @@
+import { AdminService } from './admin/admin.service';
 import { UserModule } from './user/user.module';
 import { CalculatorsModule } from './calculators/calculators.module';
 import { HomePageModule } from './home-page/home-page.module';
@@ -32,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, AdminService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

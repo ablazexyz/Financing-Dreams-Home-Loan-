@@ -1,5 +1,7 @@
+import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -10,8 +12,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdminLoginComponent implements OnInit {
 
   adminLogin: FormGroup;
+  admin: any;
+  login: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service: AdminService) { }
 
   ngOnInit(): void {
     this.adminLogin = this.fb.group({
@@ -20,7 +24,20 @@ export class AdminLoginComponent implements OnInit {
     });
   }
   authenticateAdmin(): void{
-    console.log(this.adminLogin.get('password').value);
-    console.log(this.adminLogin.controls.username.value);
+    // console.log(this.adminLogin.get('password').value);
+    // console.log(this.adminLogin.controls.username.value);
+    this.login = Object.assign({}, this.adminLogin.value);
+
+    this.service.authenticateAdmin(this.adminLogin).subscribe( data => {
+      this.admin = Object.assign({}, data[0]);
+      console.log(this.admin);
+      if (this.admin.valueOf.length === 0){
+        alert('Invalid Credentials');
+      }
+      else{
+       alert('Login Success');
+      }
+    });
+
   }
 }
