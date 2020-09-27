@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { LoginComponent } from './user/login/login.component';
+import { UserDashboardNewComponent } from './user/user-dashboard-new/user-dashboard-new.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'user', component: UserDashboardComponent},
   {path: 'userLogin', component: LoginComponent},
-  {path: 'userRegister', component: RegisterComponent}
+  {path: 'userRegister', component: RegisterComponent},
+  {path: 'userDashboard', component: UserDashboardNewComponent}
 ];
 
 @NgModule({

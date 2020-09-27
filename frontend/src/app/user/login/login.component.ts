@@ -1,7 +1,7 @@
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -38,7 +38,7 @@ import { RouterModule } from '@angular/router';
 
             <div class="text-center">
               <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLogin.invalid">Login</button>
-              <span> OR </span>
+              <span>OR</span>
               <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
             </div>
           </form>
@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit {
   userLogin: FormGroup;
   login: any;
   auth: any;
-  constructor(private fb: FormBuilder, private service: UserService) { }
+  constructor(private fb: FormBuilder, private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userLogin = this.fb.group({
@@ -138,8 +138,9 @@ export class LoginComponent implements OnInit {
       this.auth = Object.assign({}, data[0]);
 
       if (this.auth.password === this.userLogin.controls.password.value){
-        alert('Login Successful');
+        // alert('Login Successful');
         console.log(this.auth);
+        this.router.navigateByUrl('/userDashboard');
       }
       else{
         alert('Invalid Credentials');
