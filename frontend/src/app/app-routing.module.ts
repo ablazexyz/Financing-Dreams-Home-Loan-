@@ -1,3 +1,5 @@
+import { ViewApplicationDetailsComponent } from './user/user-dashboard-new/view-application-details/view-application-details.component';
+import { ViewCustomerDetailsComponent } from './user/user-dashboard-new/view-customer-details/view-customer-details.component';
 import { RegisterComponent } from './user/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ApplicationDetailsComponent } from './user/user-dashboard-new/application-details/application-details.component';
@@ -26,6 +28,11 @@ const routes: Routes = [
       { path: 'userHome', component: UserDashboardHomeComponent },
       { path: 'customerDetails', component: CustDetailsComponent },
       { path: 'applicationDetails', component: ApplicationDetailsComponent },
+      { path: 'viewCustomerDetails', component: ViewCustomerDetailsComponent },
+      {
+        path: 'viewApplicationDetails',
+        component: ViewApplicationDetailsComponent,
+      },
     ],
   },
 ];

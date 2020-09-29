@@ -1,6 +1,10 @@
 <div class="application-details">
   <h3 class="application-details-header">Add Loan details</h3>
-  <form action="">
+  <form
+    action=""
+    [formGroup]="applicationDetailsForm"
+    (ngSubmit)="addApplicationDetails()"
+  >
     <div class="form-group">
       <label for="property_location">Property Location</label>
       <input
@@ -8,7 +12,24 @@
         name="property_location"
         id="property_location"
         class="form-control"
+        formControlName="property_location"
       />
+      <div
+        *ngIf="
+          applicationDetailsForm.controls.property_location.invalid &&
+          (applicationDetailsForm.controls.property_location.touched ||
+            applicationDetailsForm.controls.property_location.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div
+          *ngIf="
+            applicationDetailsForm.controls.property_location.errors.required
+          "
+        >
+          Property Location required
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="property_name">Property Name</label>
@@ -17,7 +38,23 @@
         name="property_name"
         id="property_name"
         class="form-control"
+        formControlName="property_name"
       />
+
+      <div
+        *ngIf="
+          applicationDetailsForm.controls.property_name.invalid &&
+          (applicationDetailsForm.controls.property_name.touched ||
+            applicationDetailsForm.controls.property_name.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div
+          *ngIf="applicationDetailsForm.controls.property_name.errors.required"
+        >
+          Property Name required
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="estimated_property_amt">Estimated Property Amount</label>
@@ -26,7 +63,35 @@
         name="estimated_property_amt"
         id="estimated_property_amt"
         class="form-control"
+        formControlName="estimated_property_amt"
       />
+
+      <div
+        *ngIf="
+          applicationDetailsForm.controls.estimated_property_amt.invalid &&
+          (applicationDetailsForm.controls.estimated_property_amt.touched ||
+            applicationDetailsForm.controls.estimated_property_amt.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div
+          *ngIf="
+            applicationDetailsForm.controls.estimated_property_amt.errors
+              .required
+          "
+        >
+          Property Amount info required
+        </div>
+
+        <div
+          *ngIf="
+            applicationDetailsForm.controls.estimated_property_amt.errors
+              .pattern
+          "
+        >
+          Only numeric digits allowed
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="loan_amount">Loan Amount</label>
@@ -35,7 +100,27 @@
         name="loan_amount"
         id="loan_amount"
         class="form-control"
+        formControlName="loan_amount"
       />
+
+      <div
+        *ngIf="
+          applicationDetailsForm.controls.loan_amount.invalid &&
+          (applicationDetailsForm.controls.loan_amount.touched ||
+            applicationDetailsForm.controls.loan_amount.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div
+          *ngIf="applicationDetailsForm.controls.loan_amount.errors.required"
+        >
+          Loan Amount info required
+        </div>
+
+        <div *ngIf="applicationDetailsForm.controls.loan_amount.errors.pattern">
+          Only numeric digits allowed
+        </div>
+      </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-6 col-6">
@@ -45,21 +130,80 @@
           name="interest_rate"
           id="interest_rate"
           class="form-control"
+          formControlName="interest_rate"
         />
+
+        <div
+          *ngIf="
+            applicationDetailsForm.controls.interest_rate.invalid &&
+            (applicationDetailsForm.controls.interest_rate.touched ||
+              applicationDetailsForm.controls.interest_rate.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div
+            *ngIf="
+              applicationDetailsForm.controls.interest_rate.errors.required
+            "
+          >
+            Interest rate info required
+          </div>
+
+          <div
+            *ngIf="applicationDetailsForm.controls.interest_rate.errors.pattern"
+          >
+            Only numeric digits allowed
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6 col-sm-6 col-6">
         <label for="tenure">Tenure</label>
-        <input type="text" name="tenure" id="tenure" class="form-control" />
+        <input
+          type="text"
+          name="tenure"
+          id="tenure"
+          class="form-control"
+          formControlName="tenure"
+        />
+
+        <div
+          *ngIf="
+            applicationDetailsForm.controls.tenure.invalid &&
+            (applicationDetailsForm.controls.tenure.touched ||
+              applicationDetailsForm.controls.tenure.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div *ngIf="applicationDetailsForm.controls.tenure.errors.required">
+            Tenure required
+          </div>
+
+          <div *ngIf="applicationDetailsForm.controls.tenure.errors.pattern">
+            Only numeric digits allowed
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-row application-docs">
       <div class="form-group col-md-4 col-sm-6">
         <label for="LOA">LOA</label>
-        <input type="file" class="form-control-file" id="LOA" name="LOA" />
+        <input
+          type="file"
+          class="form-control-file"
+          id="LOA"
+          name="LOA"
+          formControlName="LOA"
+        />
       </div>
       <div class="form-group col-md-4 col-sm-6">
         <label for="NOC">NOC from Builder</label>
-        <input type="file" class="form-control-file" id="NOC" name="NOC" />
+        <input
+          type="file"
+          class="form-control-file"
+          id="NOC"
+          name="NOC"
+          formControlName="NOC"
+        />
       </div>
       <div class="form-group col-md-4 col-sm-6">
         <label for="agreement_to_sale">Agreement to sale</label>
@@ -68,11 +212,17 @@
           class="form-control-file"
           id="agreement_to_sale"
           name="agreement_to_sale"
+          formControlName="agreement_to_sale"
         />
       </div>
     </div>
     <div class="form-group text-center mt-2">
-      <input type="submit" value="Submit" class="btn btn-primary" />
+      <input
+        type="submit"
+        value="Submit"
+        class="btn btn-primary"
+        [disabled]="applicationDetailsForm.invalid"
+      />
     </div>
   </form>
 </div>

@@ -10,6 +10,8 @@ import { UserDashboardNewComponent } from './user-dashboard-new/user-dashboard-n
 import { UserDashboardHomeComponent } from './user-dashboard-new/user-dashboard-home/user-dashboard-home.component';
 import { CustDetailsComponent } from './user-dashboard-new/cust-details/cust-details.component';
 import { ApplicationDetailsComponent } from './user-dashboard-new/application-details/application-details.component';
+import { ViewApplicationDetailsComponent } from './user-dashboard-new/view-application-details/view-application-details.component';
+import { ViewCustomerDetailsComponent } from './user-dashboard-new/view-customer-details/view-customer-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ApplicationDetailsComponent } from './user-dashboard-new/application-de
     UserDashboardHomeComponent,
     CustDetailsComponent,
     ApplicationDetailsComponent,
+    ViewApplicationDetailsComponent,
+    ViewCustomerDetailsComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, AppRoutingModule, FormsModule],
 
