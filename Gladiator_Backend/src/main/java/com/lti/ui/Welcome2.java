@@ -77,15 +77,20 @@ public class Welcome2 {
 			System.out.println("Enter Password: ");
 			String pass = sc.next();
 
-			Registration reg = service.findRegistrationDetailsbyEmail(email);
+			List<Registration> registrations = service.findAllRegistrations();
 
-			if (reg.getPassword().equals(pass) && reg.getEmailId().equals(email)) {
-				System.out.println("Login Successful");
-				login = true;
-			} else {
-				System.out.println("Incorrect Credentials");
+			for (Registration reg:registrations) {
+				
+				if (reg.getPassword().equals(pass) && reg.getEmailId().equals(email)) {
+					System.out.println("Login Successful");
+					login = true;
+				} else {
+					System.out.println("Incorrect Credentials");
+				}
+
+				
 			}
-
+			
 		}
 
 		else if (op == 3) {
@@ -96,269 +101,271 @@ public class Welcome2 {
 			System.out.println("Enter Password: ");
 			String pass = sc.next();
 
-			Admin adm = service.findAdminDetails(ademail);
-
-			if (adm.getAdpassword().equals(pass) && adm.getAdemail().equals(ademail)) {
-				System.out.println("Admin Login Successful");
-				adlogin = true;
-			} else {
-				System.out.println("Incorrect Credentials");
-			}
-		}
-
-		if (login) {
-
-			System.out.println("Please Select Option: ");
-			System.out.println("1. Apply For New Loan");
-			System.out.println("2. View all Current Applications");
-			se = sc.nextInt();
-
-		}
-
-		if (se == 1) {
-
-			Registration reg = service.findRegistrationDetailsbyEmail(email);
-			Customer_Details cd = reg.getCdetails();
-
-			if (cd == null) {
-				System.out.println("Please Enter Customer Details");
-
-				cd = new Customer_Details();
-
-				System.out.println("Enter AADHAR NO: ");
-				String aadhar = sc.next();
-
-				System.out.println("Enter Salary: ");
-				double salary = sc.nextDouble();
-
-				/*
-				System.out.println("Enter PAN NO: ");
-				String pan = sc.next();
-
-				System.out.println("Enter Employer Name: ");
-				String empname = sc.next();
-
-				System.out.println("Enter Employment Organization Type: ");
-				String org = sc.next();
-
-				System.out.println("Enter Retirement Age: ");
-				int ret = sc.nextInt();
-
-				 
+			List<Admin> admins = service.findAllAdmins();
+			
+			for(Admin adm: admins) {
 				
-				cd.setPan(pan);
-				cd.setEmpname(empname);
-				cd.setOrgtype(org);
-				cd.setRetireage(ret);
-				*/
-				
-				cd.setAadhar(aadhar);
-				cd.setSalary(salary);
-
-				reg.setCdetails(cd);
-
-				entityManager.getTransaction().begin();
-
-				reg = entityManager.merge(reg);
-				entityManager.getTransaction().commit();
-
-				System.out.println("Please Enter Loan Application Details");
-
-				Application appl = new Application();
-				appl.setLoanStatus("pending");
-
-				/*
-				System.out.println("Enter Property Location: ");
-				appl.setPropertyLocation(sc.next());
-
-				System.out.println("Enter Property Estimated Amount: ");
-				appl.setPropertyAmt(sc.nextDouble());
-				*/
-				
-				System.out.println("Enter Loan Amount : ");
-				appl.setLoanAmt(sc.nextDouble());
-
-				/*
-				System.out.println("Enter Property Location: ");
-				appl.setPropertyLocation(sc.next());
-
-				System.out.println("Enter Property Estimated Amount: ");
-				appl.setPropertyAmt(sc.nextDouble());
-				*/
-				
-				cd = service.findCustomerDetailsbyEmail(email);
-				
-
-				appl.setCdetails2(cd);
-				
-				if (cd.getApplications().isEmpty()) {
-
+				if (adm.getAdemail().equals(ademail) && adm.getAdpassword().equals(pass)) {
 					
-
-					cd.setApplications(new HashSet<Application>());
-					
+						System.out.println("Admin Login Successful");
+						adlogin = true;
 				}
-				
-				cd.addApplications(appl);
-				
-				
-				entityManager.getTransaction().begin();
-				entityManager.persist(appl);
-				entityManager.getTransaction().commit();
+				else {
+						System.out.println("Incorrect Credentials");
+					 }
+			}
+			
+		}
+
+	if(login)
+
+	{
+
+		System.out.println("Please Select Option: ");
+		System.out.println("1. Apply For New Loan");
+		System.out.println("2. View all Current Applications");
+		se = sc.nextInt();
+
+	}
+
+	if(se==1)
+	{
+
+		Registration reg = service.findRegistrationDetailsbyEmail(email);
+		Customer_Details cd = reg.getCdetails();
+
+		if (cd == null) {
+			System.out.println("Please Enter Customer Details");
+
+			cd = new Customer_Details();
+
+			System.out.println("Enter AADHAR NO: ");
+			String aadhar = sc.next();
+
+			System.out.println("Enter Salary: ");
+			double salary = sc.nextDouble();
+
+			/*
+			 * System.out.println("Enter PAN NO: "); String pan = sc.next();
+			 * 
+			 * System.out.println("Enter Employer Name: "); String empname = sc.next();
+			 * 
+			 * System.out.println("Enter Employment Organization Type: "); String org =
+			 * sc.next();
+			 * 
+			 * System.out.println("Enter Retirement Age: "); int ret = sc.nextInt();
+			 * 
+			 * 
+			 * 
+			 * cd.setPan(pan); cd.setEmpname(empname); cd.setOrgtype(org);
+			 * cd.setRetireage(ret);
+			 */
+
+			cd.setAadhar(aadhar);
+			cd.setSalary(salary);
+
+			reg.setCdetails(cd);
+
+			entityManager.getTransaction().begin();
+
+			reg = entityManager.merge(reg);
+			entityManager.getTransaction().commit();
+
+			System.out.println("Please Enter Loan Application Details");
+
+			Application appl = new Application();
+			appl.setLoanStatus("pending");
+
+			/*
+			 * System.out.println("Enter Property Location: ");
+			 * appl.setPropertyLocation(sc.next());
+			 * 
+			 * System.out.println("Enter Property Estimated Amount: ");
+			 * appl.setPropertyAmt(sc.nextDouble());
+			 */
+
+			System.out.println("Enter Loan Amount : ");
+			appl.setLoanAmt(sc.nextDouble());
+
+			/*
+			 * System.out.println("Enter Property Location: ");
+			 * appl.setPropertyLocation(sc.next());
+			 * 
+			 * System.out.println("Enter Property Estimated Amount: ");
+			 * appl.setPropertyAmt(sc.nextDouble());
+			 */
+
+			cd = service.findCustomerDetailsbyEmail(email);
+
+			appl.setCdetails2(cd);
+
+			if (cd.getApplications().isEmpty()) {
+
+				cd.setApplications(new HashSet<Application>());
 
 			}
 
-			else {
+			cd.addApplications(appl);
 
-				System.out.println("Please Enter Loan Application Details");
-
-				Application appl = new Application();
-
-				/*
-				System.out.println("Enter Property Location: ");
-				appl.setPropertyLocation(sc.next());
-
-				System.out.println("Enter Property Estimated Amount: ");
-				appl.setPropertyAmt(sc.nextDouble());
-				*/
-				
-				System.out.println("Enter Loan Amount : ");
-				appl.setLoanAmt(sc.nextDouble());
-
-				/*
-				System.out.println("Enter ROI : ");
-				appl.setRoi(sc.nextDouble());
-
-				System.out.println("Enter Tenure: ");
-				appl.setTenure(sc.nextInt());
-				*/
-				
-				cd = reg.getCdetails();
-
-				appl.setCdetails2(cd);
-
-				if (cd.getApplications().isEmpty()) {
-
-					cd.setApplications(new HashSet<Application>());
-				}
-				cd.addApplications(appl);
-
-				entityManager.getTransaction().begin();
-				entityManager.persist(appl);
-				entityManager.getTransaction().commit();
-
-			}
+			entityManager.getTransaction().begin();
+			entityManager.persist(appl);
+			entityManager.getTransaction().commit();
 
 		}
 
-		else if (se == 2) {
+		else {
 
-			List<Application> applist = service.findAllApplicationsbyEmail(email);
-			for (Application a : applist) {
+			System.out.println("Please Enter Loan Application Details");
 
-				System.out.println("Application Details: ");
-				System.out.println(a);
+			Application appl = new Application();
 
-				System.out.println("Customer Details");
-				System.out.println(a.getCdetails2());
-				System.out.println(a.getCdetails2().getRegistration());
+			/*
+			 * System.out.println("Enter Property Location: ");
+			 * appl.setPropertyLocation(sc.next());
+			 * 
+			 * System.out.println("Enter Property Estimated Amount: ");
+			 * appl.setPropertyAmt(sc.nextDouble());
+			 */
+
+			System.out.println("Enter Loan Amount : ");
+			appl.setLoanAmt(sc.nextDouble());
+
+			/*
+			 * System.out.println("Enter ROI : "); appl.setRoi(sc.nextDouble());
+			 * 
+			 * System.out.println("Enter Tenure: "); appl.setTenure(sc.nextInt());
+			 */
+
+			cd = reg.getCdetails();
+
+			appl.setCdetails2(cd);
+
+			if (cd.getApplications().isEmpty()) {
+
+				cd.setApplications(new HashSet<Application>());
 			}
+			cd.addApplications(appl);
 
-		}
+			entityManager.getTransaction().begin();
+			entityManager.persist(appl);
+			entityManager.getTransaction().commit();
 
-		if (adlogin) {
-
-			System.out.println("Welcome Admin ");
-			System.out.println("Please Select Option");
-			System.out.println("1. View All Applications");
-			System.out.println("2. Show All Registered Customer Details");
-			sa = sc.nextInt();
-		}
-
-		if (sa == 2) {
-
-			List<Customer_Details> cdlist = service.findAllCustomerDetails();
-			for (Customer_Details cd : cdlist) {
-
-				System.out.println(cd);
-			}
-		}
-
-		else if (sa == 1) {
-
-			List<Application> applist = service.findAllApplications();
-			for (Application a : applist) {
-
-				System.out.println(a);
-			}
-
-			System.out.println("Enter Application ID :");
-			int appId = sc.nextInt();
-
-			Application appl = entityManager.find(Application.class, appId);
-
-			System.out.println("Application Details");
-			System.out.println(appl.showApplication());
-
-			System.out.println("Enter 1 to Approve , Enter 2 to Reject");
-
-			int stat = sc.nextInt();
-
-			if (stat == 2) {
-
-				appl.setLoanStatus("Rejected");
-				System.out.println("Please Enter Remarks: ");
-				String remarks = sc.next();
-				appl.setLoanRemarks(remarks);
-
-				entityManager.getTransaction().begin();
-				entityManager.merge(appl);
-				entityManager.getTransaction().commit();
-			}
-
-			else if (stat == 1) {
-
-				appl.setLoanStatus("Approved");
-
-				Loan loan = new Loan();
-				loan.setApplication(appl);
-
-				List<Integer> cid_list = entityManager.createQuery("SELECT a.cust_id FROM Account a").getResultList();
-
-				Account ac1;
-				int cid = appl.getCdetails2().getCustomer_id();
-
-				if (cid_list.contains(cid)) {
-
-					Query query = entityManager.createQuery("SELECT a FROM Account a WHERE a.cust_id = :cid",
-							Account.class);
-					query.setParameter("cid", cid);
-
-					ac1 = (Account) query.getSingleResult();
-
-					double balance = ac1.getBalance();
-					balance += (loan.getApplication().getLoanAmt());
-					ac1.setBalance(balance);
-					loan.setAccount(ac1);
-
-				} else {
-
-					ac1 = new Account();
-
-					ac1.setBalance(loan.getApplication().getLoanAmt());
-					ac1.setCust_id(loan.getApplication().getCdetails2().getCustomer_id());
-					ac1.setLoans(new HashSet<Loan>());
-					ac1.addLoan(loan);
-					loan.setAccount(ac1);
-
-				}
-
-				entityManager.getTransaction().begin();
-				entityManager.persist(loan);
-				entityManager.getTransaction().commit();
-			}
 		}
 
 	}
+
+	else if(se==2)
+	{
+
+		List<Application> applist = service.findAllApplicationsbyEmail(email);
+		for (Application a : applist) {
+
+			System.out.println("Application Details: ");
+			System.out.println(a);
+
+			System.out.println("Customer Details");
+			System.out.println(a.getCdetails2());
+			System.out.println(a.getCdetails2().getRegistration());
+		}
+
+	}
+
+	if(adlogin)
+	{
+
+		System.out.println("Welcome Admin ");
+		System.out.println("Please Select Option");
+		System.out.println("1. View All Applications");
+		System.out.println("2. Show All Registered Customer Details");
+		sa = sc.nextInt();
+	}
+
+	if(sa==2)
+	{
+
+		List<Customer_Details> cdlist = service.findAllCustomerDetails();
+		for (Customer_Details cd : cdlist) {
+
+			System.out.println(cd);
+		}
+	}
+
+	else if(sa==1)
+	{
+
+		List<Application> applist = service.findAllApplications();
+		for (Application a : applist) {
+
+			System.out.println(a);
+		}
+
+		System.out.println("Enter Application ID :");
+		int appId = sc.nextInt();
+
+		Application appl = entityManager.find(Application.class, appId);
+
+		System.out.println("Application Details");
+		System.out.println(appl.showApplication());
+
+		System.out.println("Enter 1 to Approve , Enter 2 to Reject");
+
+		int stat = sc.nextInt();
+
+		if (stat == 2) {
+
+			appl.setLoanStatus("Rejected");
+			System.out.println("Please Enter Remarks: ");
+			String remarks = sc.next();
+			appl.setLoanRemarks(remarks);
+
+			entityManager.getTransaction().begin();
+			entityManager.merge(appl);
+			entityManager.getTransaction().commit();
+		}
+
+		else if (stat == 1) {
+
+			appl.setLoanStatus("Approved");
+
+			Loan loan = new Loan();
+			loan.setApplication(appl);
+
+			List<Integer> cid_list = entityManager.createQuery("SELECT a.cust_id FROM Account a").getResultList();
+
+			Account ac1;
+			int cid = appl.getCdetails2().getCustomer_id();
+
+			if (cid_list.contains(cid)) {
+
+				Query query = entityManager.createQuery("SELECT a FROM Account a WHERE a.cust_id = :cid",
+						Account.class);
+				query.setParameter("cid", cid);
+
+				ac1 = (Account) query.getSingleResult();
+
+				double balance = ac1.getBalance();
+				balance += (loan.getApplication().getLoanAmt());
+				ac1.setBalance(balance);
+				loan.setAccount(ac1);
+
+			} else {
+
+				ac1 = new Account();
+
+				ac1.setBalance(loan.getApplication().getLoanAmt());
+				ac1.setCust_id(loan.getApplication().getCdetails2().getCustomer_id());
+				ac1.setLoans(new HashSet<Loan>());
+				ac1.addLoan(loan);
+				loan.setAccount(ac1);
+
+			}
+
+			entityManager.getTransaction().begin();
+			entityManager.persist(loan);
+			entityManager.getTransaction().commit();
+		}
+	}
+
+}
 
 }
