@@ -23,6 +23,7 @@ const routes: Routes = [
     path: 'userDashboard',
     component: UserDashboardNewComponent,
     children: [
+      { path: '', redirectTo: 'userHome', pathMatch: 'full' },
       { path: 'userHome', component: UserDashboardHomeComponent },
       { path: 'customerDetails', component: CustDetailsComponent },
       { path: 'applicationDetails', component: ApplicationDetailsComponent },
