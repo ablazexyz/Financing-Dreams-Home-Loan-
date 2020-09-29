@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./application-details.component.css'],
 })
 export class ApplicationDetailsComponent implements OnInit {
-  constructor() {}
+  applicationDetailsForm: FormGroup;
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.applicationDetailsForm = this.fb.group({
+      property_location: ['', Validators.required],
+      property_name: ['', Validators.required],
+      estimated_property_amt: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
+      loan_amount: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      interest_rate: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
+      tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      LOA: [],
+      NOC: [],
+      agreement_to_sale: [],
+    });
+  }
+
+  addApplicationDetails(): void {}
 }

@@ -1,13 +1,68 @@
 <div class="cust-details">
   <h3 class="cust-details-header">Add details</h3>
-  <form action="">
+  <form
+    action=""
+    [formGroup]="customerDetailsForm"
+    (ngSubmit)="addCustomerDetails()"
+  >
     <div class="form-group">
       <label for="aadhaar">Aadhaar Number</label>
-      <input type="text" id="aadhaar" name="aadhaar" class="form-control" />
+      <input
+        type="text"
+        id="aadhaar"
+        name="aadhaar"
+        class="form-control"
+        formControlName="aadhaar"
+      />
+      <div
+        *ngIf="
+          customerDetailsForm.controls.aadhaar.invalid &&
+          (customerDetailsForm.controls.aadhaar.touched ||
+            customerDetailsForm.controls.aadhaar.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="customerDetailsForm.controls.aadhaar.errors.required">
+          Aadhaar is required
+        </div>
+        <div *ngIf="customerDetailsForm.controls.aadhaar.errors.minlength">
+          Aadhaar should be 12 digits long
+        </div>
+        <div *ngIf="customerDetailsForm.controls.aadhaar.errors.pattern">
+          Only numeric digits allowed
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="PAN">PAN</label>
-      <input type="text" id="PAN" name="PAN" class="form-control" />
+      <input
+        type="text"
+        id="PAN"
+        name="PAN"
+        class="form-control"
+        formControlName="PAN"
+      />
+      <div
+        *ngIf="
+          customerDetailsForm.controls.PAN.invalid &&
+          (customerDetailsForm.controls.PAN.touched ||
+            customerDetailsForm.controls.PAN.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="customerDetailsForm.controls.PAN.errors.required">
+          PAN Information is required
+        </div>
+        <div *ngIf="customerDetailsForm.controls.PAN.errors.minlength">
+          PAN number should be 10 digits long
+        </div>
+        <div *ngIf="customerDetailsForm.controls.PAN.errors.maxlength">
+          PAN number should be 10 digits long
+        </div>
+        <div *ngIf="customerDetailsForm.controls.PAN.errors.pattern">
+          Only letters and numbers allowed
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="monthly_sal">Monthly Salary</label>
@@ -16,7 +71,23 @@
         id="monthly_sal"
         name="monthly_sal"
         class="form-control"
+        formControlName="monthly_sal"
       />
+      <div
+        *ngIf="
+          customerDetailsForm.controls.monthly_sal.invalid &&
+          (customerDetailsForm.controls.monthly_sal.touched ||
+            customerDetailsForm.controls.monthly_sal.dirty)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="customerDetailsForm.controls.monthly_sal.errors.required">
+          Salary Information is required
+        </div>
+        <div *ngIf="customerDetailsForm.controls.monthly_sal.errors.pattern">
+          Only digits allowed
+        </div>
+      </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-12">
@@ -26,7 +97,24 @@
           id="type_of_employment"
           name="type_of_employment"
           class="form-control"
+          formControlName="type_of_employment"
         />
+        <div
+          *ngIf="
+            customerDetailsForm.controls.type_of_employment.invalid &&
+            (customerDetailsForm.controls.type_of_employment.touched ||
+              customerDetailsForm.controls.type_of_employment.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div
+            *ngIf="
+              customerDetailsForm.controls.type_of_employment.errors.required
+            "
+          >
+            Employment Information required
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6 col-sm-12">
         <label for="retirement_age">Retirement Age</label>
@@ -35,13 +123,46 @@
           id="retirement_age"
           name="retirement_age"
           class="form-control"
+          formControlName="retirement_age"
         />
+        <div
+          *ngIf="
+            customerDetailsForm.controls.retirement_age.invalid &&
+            (customerDetailsForm.controls.retirement_age.touched ||
+              customerDetailsForm.controls.retirement_age.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div
+            *ngIf="customerDetailsForm.controls.retirement_age.errors.required"
+          >
+            Retirement Age required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-12">
         <label for="org_type">Organisation Type</label>
-        <input type="text" id="org_type" name="org_type" class="form-control" />
+        <input
+          type="text"
+          id="org_type"
+          name="org_type"
+          class="form-control"
+          formControlName="org_type"
+        />
+        <div
+          *ngIf="
+            customerDetailsForm.controls.org_type.invalid &&
+            (customerDetailsForm.controls.org_type.touched ||
+              customerDetailsForm.controls.org_type.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div *ngIf="customerDetailsForm.controls.org_type.errors.required">
+            Organisation Type required
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6 col-sm-12">
         <label for="employer_name">Employer Name</label>
@@ -50,7 +171,23 @@
           id="employer_name"
           name="employer_name"
           class="form-control"
+          formControlName="employer_name"
         />
+
+        <div
+          *ngIf="
+            customerDetailsForm.controls.employer_name.invalid &&
+            (customerDetailsForm.controls.employer_name.touched ||
+              customerDetailsForm.controls.employer_name.dirty)
+          "
+          class="alert alert-danger mt-1"
+        >
+          <div
+            *ngIf="customerDetailsForm.controls.employer_name.errors.required"
+          >
+            Employer Name required
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-row">
@@ -61,6 +198,7 @@
           class="form-control-file"
           id="pan_card"
           name="pan_card"
+          formControlName="pan_card"
         />
       </div>
       <div class="form-group col-md-4 col-sm-6">
@@ -70,6 +208,7 @@
           class="form-control-file"
           id="voter_id"
           name="voter_id"
+          formControlName="voter_id"
         />
       </div>
       <div class="form-group col-md-4 col-sm-6">
@@ -79,6 +218,7 @@
           class="form-control-file"
           id="salary_slip"
           name="salary_slip"
+          formControlName="salary_slip"
         />
       </div>
     </div>
@@ -88,6 +228,7 @@
         value="Submit"
         class="btn btn-primary"
         routerLink="/userDashboard/applicationDetails"
+        [disabled]="customerDetailsForm.invalid"
       />
     </div>
   </form>
