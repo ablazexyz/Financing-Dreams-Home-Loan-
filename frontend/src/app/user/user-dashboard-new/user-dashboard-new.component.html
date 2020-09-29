@@ -25,14 +25,14 @@
         <a href="#" class="nav-link">Pending applications</a>
       </li>
     </ul>
-    <button class="btn btn-danger ml-auto">Sign Out</button>
+    <button class="btn btn-danger ml-auto" routerLink="/userLogin">Sign Out</button>
   </div>
 </nav>
 
 <div class="container">
   <main>
     <header class="headings">
-      <h2>Welcome Tim!</h2>
+      <h2>Welcome {{name}}</h2>
     </header>
     <router-outlet></router-outlet>
   </main>

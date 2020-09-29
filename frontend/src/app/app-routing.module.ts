@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'adminLogin', component: AdminLoginComponent },
   { path: 'adminDashboard', component: AdminDashboardComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'user', component: UserDashboardComponent },
+  // { path: 'user', component: UserDashboardComponent },
   { path: 'userLogin', component: LoginComponent },
   { path: 'userRegister', component: RegisterComponent },
   {

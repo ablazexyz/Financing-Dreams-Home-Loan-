@@ -3,29 +3,31 @@
     {
       "fname": "Dinesh",
       "lname": "Thakur",
-      "phoneNumber": "9009",
+      "email": "a@a.com",
+      "password": "a",
+      "phoneNumber": "2342342342",
       "gender": "male",
       "nationality": "Indian",
       "dob": "2020-09-08",
       "id": 1
     },
     {
-      "fname": "Blaze",
-      "lname": "Thakur",
-      "phoneNumber": "9009",
+      "firstName": "Axel",
+      "lastName": "Blaze",
+      "email": "b@b.com",
+      "password": "b",
+      "phoneNumber": "23234",
       "gender": "male",
       "nationality": "Indian",
-      "dob": "2020-09-16",
+      "dateOfBirth": "2020-09-17",
       "id": 2
-    },
+    }
+  ],
+  "admins": [
     {
-      "fname": "Axel",
-      "lname": "Thakur",
-      "phoneNumber": "9009",
-      "gender": "male",
-      "nationality": "Indian",
-      "dob": "2020-09-12",
-      "id": 3
+      "username": "admin",
+      "password": "admin",
+      "id": 1
     }
   ]
 }

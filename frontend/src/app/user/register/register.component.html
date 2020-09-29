@@ -1,25 +1,25 @@
 <div class="reg-form">
   <h3 id="reg-form-header">Register</h3>
-  <form [formGroup]="userRegister" (submit)=RegisterUser()>
+  <form [formGroup]="userRegisterDetails" (submit)=RegisterUser()>
     <div class="form-group">
-      <label for="first_name">First Name</label>
+      <label for="firstName">First Name</label>
       <input
         type="text"
-        name="first_name"
-        id="first_name"
+        name="firstName"
+        id="firstName"
         class="form-control"
-        formControlName="fname"
+        formControlName="firstName"
         placeholder="Enter your first name"
       />
     </div>
     <div class="form-group">
-      <label for="last_name">Last Name</label>
+      <label for="lastName">Last Name</label>
       <input
         type="text"
-        name="last_name"
-        id="last_name"
+        name="lastName"
+        id="lastName"
         class="form-control"
-        formControlName="lname"
+        formControlName="lastName"
         placeholder="Enter your last name"
       />
     </div>
@@ -46,7 +46,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="phone_number">Phone Number</label>
+      <label for="phoneNumber">Phone Number</label>
       <input
         type="tel"
         name="phoneNumber"
@@ -76,18 +76,18 @@
       />
     </div>
     <div class="form-group">
-      <label for="dob">Date of birth</label>
+      <label for="dateOfBirth">Date of birth</label>
       <input
         type="date"
-        name="dob"
-        id="dob"
+        name="dateOfBirth"
+        id="dateOfBirth"
         class="form-control"
-        formControlName="dob"
+        formControlName="dateOfBirth"
         placeholder="Choose your date of birth"
       />
     </div>
     <div class="form-group" id="register-button">
-      <button type="submit" class="btn btn-primary" [disabled]="userRegister.invalid">Register</button>
+      <button type="submit" class="btn btn-primary" [disabled]="userRegisterDetails.invalid">Register</button>
     </div>
   </form>
 </div>

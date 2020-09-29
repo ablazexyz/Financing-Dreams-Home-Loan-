@@ -1,7 +1,8 @@
+import { UserLogin } from './../userLogin';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -24,21 +25,21 @@ import { RouterModule } from '@angular/router';
           <div class="heading mb-4">
             <h3>User Login</h3>
           </div>
-          <form [formGroup]="userLogin" (submit)=authenticateUser()>
+          <form [formGroup]="userLoginDetails" (submit)=authenticateUser()>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-user fa-lg"></i></span>
-              <input type="text" id="username" name="username" formControlName="username" placeholder="Username" >
-              <div *ngIf="userLogin.controls.username.invalid && userLogin.controls.username.touched" class="mt-0 text-danger">Username field can't be empty</div>
+              <input type="text" id="username" name="email" formControlName="email" placeholder="Email" >
+              <div *ngIf="userLoginDetails.controls.email.invalid && userLoginDetails.controls.email.touched" class="mt-0 text-danger">Email field can't be empty</div>
             </div>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-lock fa-lg"></i></span>
               <input type="password" id="password" name="password" formControlName="password" placeholder="Password">
-              <div *ngIf="userLogin.controls.password.invalid && userLogin.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
+              <div *ngIf="userLoginDetails.controls.password.invalid && userLoginDetails.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLogin.invalid">Login</button>
-              <span> OR </span>
+              <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLoginDetails.invalid">Login</button>
+              <span>OR</span>
               <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
             </div>
           </form>
@@ -118,28 +119,33 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  userLogin: FormGroup;
+  userLoginDetails: FormGroup;
   login: any;
   auth: any;
-  constructor(private fb: FormBuilder, private service: UserService) { }
+  constructor(private fb: FormBuilder, private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userLogin = this.fb.group({
-      username: ['', Validators.required],
+    this.userLoginDetails = this.fb.group({
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   authenticateUser(): void{
-    this.login = Object.assign({}, this.userLogin.value);
+    // this.login = Object.assign({}, this.userLoginDetails.value);
     // console.log(this.userLogin.controls.username.value);
-    this.service.loginUser(this.login).subscribe(data => {
+
+    const loginDetails = new UserLogin(this.userLoginDetails.controls.email.value,
+                                       this.userLoginDetails.controls.password.value);
+
+    this.service.loginUser(loginDetails).subscribe(data => {
       // console.log(data);
       this.auth = Object.assign({}, data[0]);
 
-      if (this.auth.password === this.userLogin.controls.password.value){
-        alert('Login Successful');
+      if (Object.keys(data).length === 1){
         console.log(this.auth);
+        sessionStorage.setItem('name', this.auth.firstName);
+        this.router.navigateByUrl('/userDashboard');
       }
       else{
         alert('Invalid Credentials');

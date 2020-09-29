@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-dashboard-new.component.css'],
 })
 export class UserDashboardNewComponent implements OnInit {
-  constructor() {}
+  name: string;
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = sessionStorage.getItem('name');
+  }
 }
