@@ -18,6 +18,6 @@ export class UserService {
   }
 
   loginUser(user): Observable<object>{
-    return this.http.get('http://localhost:3000/users?email=' + user.username + '&password=' + user.password);
+    return this.http.get('http://localhost:3000/users?email=' + user.email + '&password=' + user.password);
   }
 }

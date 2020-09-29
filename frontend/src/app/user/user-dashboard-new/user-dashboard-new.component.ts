@@ -11,6 +11,6 @@ export class UserDashboardNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.name = sessionStorage.getItem(name);
+    this.name = sessionStorage.getItem('name');
   }
 }

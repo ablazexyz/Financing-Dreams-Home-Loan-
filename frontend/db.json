@@ -10,6 +10,17 @@
       "nationality": "Indian",
       "dob": "2020-09-08",
       "id": 1
+    },
+    {
+      "firstName": "Axel",
+      "lastName": "Blaze",
+      "email": "b@b.com",
+      "password": "b",
+      "phoneNumber": "23234",
+      "gender": "male",
+      "nationality": "Indian",
+      "dateOfBirth": "2020-09-17",
+      "id": 2
     }
   ],
   "admins": [

@@ -29,7 +29,7 @@ import { Router, RouterModule } from '@angular/router';
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-user fa-lg"></i></span>
               <input type="text" id="username" name="email" formControlName="email" placeholder="Email" >
-              <div *ngIf="userLoginDetails.controls.username.invalid && userLoginDetails.controls.username.touched" class="mt-0 text-danger">Email field can't be empty</div>
+              <div *ngIf="userLoginDetails.controls.email.invalid && userLoginDetails.controls.email.touched" class="mt-0 text-danger">Email field can't be empty</div>
             </div>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-lock fa-lg"></i></span>
@@ -144,7 +144,7 @@ export class LoginComponent implements OnInit {
 
       if (Object.keys(data).length === 1){
         console.log(this.auth);
-        sessionStorage.setItem(name, this.auth.fname);
+        sessionStorage.setItem('name', this.auth.firstName);
         this.router.navigateByUrl('/userDashboard');
       }
       else{
