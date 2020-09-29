@@ -1,3 +1,4 @@
+import { AdminLogin } from './../adminLogin';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,8 +14,7 @@ import { Router } from '@angular/router';
 export class AdminLoginComponent implements OnInit {
 
   adminLogin: FormGroup;
-  admin: any;
-  login: any;
+  adminDetails: AdminLogin;
 
   constructor(private fb: FormBuilder, private service: AdminService, private router: Router) { }
 
@@ -25,20 +25,24 @@ export class AdminLoginComponent implements OnInit {
     });
   }
   authenticateAdmin(): void{
+
     // console.log(this.adminLogin.get('password').value);
     // console.log(this.adminLogin.controls.username.value);
-    this.login = Object.assign({}, this.adminLogin.value);
+    // this.loginDetails = Object.assign({}, this.adminLogin.value);
     // console.log(this.login);
+    // console.log(Object.keys(data).length);
 
-    this.service.authenticateAdmin(this.login).subscribe( data => {
-      this.admin = Object.assign({}, data[0]);
-      // console.log(Object.keys(data).length);
+    const loginDetails = new AdminLogin(this.adminLogin.controls.username.value,
+                                      this.adminLogin.controls.password.value);
+
+    this.service.authenticateAdmin(loginDetails).subscribe( data => {
+      this.adminDetails = Object.assign({}, data[0]);
       if (Object.keys(data).length === 0){
         alert('Invalid Credentials');
       }
       else{
       //  alert('Login Success');
-       console.log(this.admin);
+       console.log(this.adminDetails);
        this.router.navigateByUrl('/adminDashboard');
       }
     });

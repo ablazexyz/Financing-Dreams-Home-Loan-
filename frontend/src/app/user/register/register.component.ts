@@ -1,5 +1,5 @@
+import { Register } from './../register';
 import { UserService } from './../user.service';
-import { Register } from './../register-model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,34 +10,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  userRegister: FormGroup;
+  userRegisterDetails: FormGroup;
   register: Register;
-  // auth: any;
+
   constructor(private fb: FormBuilder, private service: UserService) { }
 
   ngOnInit(): void {
-    this.userRegister = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+    this.userRegisterDetails = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       gender: ['', Validators.required],
       nationality: ['', Validators.required],
-      dob: ['', Validators.required]
+      dateOfBirth: ['', Validators.required]
     });
   }
 
   RegisterUser(): void {
 
     // console.log(this.userRegister.value);
-    this.register = Object.assign({}, this.userRegister.value);
+    // this.register = Object.assign({}, this.userRegister.value);
     // console.log(this.register);
+    // let copy =JSON.parse(JSON.stringify(myObject))     ---------  to copy nested object
 
-    this.service.registerUser(this.register).subscribe(data => {
+    const registerDetails = new Register(this.userRegisterDetails.controls.firstName.value,
+                                          this.userRegisterDetails.controls.lastName.value,
+                                          this.userRegisterDetails.controls.email.value,
+                                          this.userRegisterDetails.controls.password.value,
+                                          this.userRegisterDetails.controls.phoneNumber.value,
+                                          this.userRegisterDetails.controls.gender.value,
+                                          this.userRegisterDetails.controls.nationality.value,
+                                          this.userRegisterDetails.controls.dateOfBirth.value);
+
+    this.service.registerUser(registerDetails).subscribe(data => {
        console.log(data);
       //  this.auth = Object.assign({},data);
       //  console.log(this.auth.fname);
+       console.log('user Registered Successfully');
      });
   }
 
