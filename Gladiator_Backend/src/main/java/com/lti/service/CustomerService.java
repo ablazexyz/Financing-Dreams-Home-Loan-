@@ -26,4 +26,6 @@ public interface CustomerService {
 	//public List<Application> findAllApplications();
 	
 	public boolean verifyLogin(Login login) ;
+	
+	public boolean verifyAdLogin(Login login) ;
 }

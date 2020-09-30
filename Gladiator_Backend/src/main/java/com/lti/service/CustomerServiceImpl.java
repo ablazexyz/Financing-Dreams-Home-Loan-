@@ -68,7 +68,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	*/
 	
-	public boolean verifyLogin(Login login) {
+	public boolean verifyAdLogin(Login login) {
 		
 		try {
 			Admin adm = dao.getAdminDetailsbyEmail(login.getAdemail());
@@ -84,5 +84,19 @@ public class CustomerServiceImpl implements CustomerService{
 		
 	}
 	
-	
+	public boolean verifyLogin(Login login) {
+		
+		try {
+			Registration reg = dao.getRegistrationDetailsbyEmail(login.getAdemail());
+			if (reg.getPassword().equals(login.getAdpass())) {
+				return true;
+			}
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return false;
+		
+	}
 }
