@@ -1,3 +1,5 @@
+import { LoginService } from './login.service';
+import { Login } from './../../admin/Login';
 import { UserLogin } from '../userLogin';
 import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +17,10 @@ export class LoginComponent implements OnInit {
   login: any;
   auth: any;
   invalid = false;
-  constructor(private fb: FormBuilder, private service: UserService, private router: Router) {
+
+  logindetails: Login;
+
+  constructor(private fb: FormBuilder, private service: LoginService, private router: Router) {
     sessionStorage.removeItem('username');
   }
 
@@ -30,23 +35,34 @@ export class LoginComponent implements OnInit {
     // this.login = Object.assign({}, this.userLoginDetails.value);
     // console.log(this.userLogin.controls.username.value);
 
-    const loginDetails = new UserLogin(this.userLoginDetails.controls.emailId.value,
+    this.logindetails = new Login(this.userLoginDetails.controls.emailId.value,
                                        this.userLoginDetails.controls.password.value);
 
-    this.service.loginUser(loginDetails).subscribe(data => {
-      // console.log(data);
-      this.auth = Object.assign({}, data[0]);
+    this.service.loginUser(this.logindetails).subscribe(res => {
+      
+      if (res.status == 200) {
 
-      if (Object.keys(data).length === 1){
-        console.log(this.auth);
-        sessionStorage.setItem('username', this.auth.firstName);
+        console.log("SUCCESS",res.status)
+        sessionStorage.setItem('username', this.userLoginDetails.controls.emailId.value);
         this.router.navigate(['/userDashboard']);
       }
-      else{
-        this.invalid = true;
-        // alert('Invalid Credentials');
-      }
-    });
+    },
+      err => {
+        if (err.status == 200) {
+         
+          console.log("error false",err.status)
+          sessionStorage.setItem('username', this.userLoginDetails.controls.emailId.value);
+          this.router.navigate(['/userDashboard']);
+        }
+        else {
+          this.invalid = true;
+          console.log("error", err.status)
+          console.log("Invalid Credentials");
+        }
+
+      });
+
+     
   }
 
 }
