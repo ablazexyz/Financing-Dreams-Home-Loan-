@@ -1,7 +1,6 @@
 import { AppRoutingModule } from './../app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
@@ -15,7 +14,6 @@ import { ViewCustomerDetailsComponent } from './user-dashboard-new/view-customer
 
 @NgModule({
   declarations: [
-    UserDashboardComponent,
     LoginComponent,
     RegisterComponent,
     UserDashboardNewComponent,
@@ -27,6 +25,6 @@ import { ViewCustomerDetailsComponent } from './user-dashboard-new/view-customer
   ],
   imports: [CommonModule, ReactiveFormsModule, AppRoutingModule, FormsModule],
 
-  exports: [UserDashboardComponent, UserDashboardNewComponent],
+  exports: [ UserDashboardNewComponent],
 })
 export class UserModule {}
