@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashboardHomeComponent implements OnInit {
   accountExists: boolean = true;
-  constructor() {}
+  constructor(private router: Router) {
+    if (!sessionStorage.getItem('username')){
+      this.router.navigate(['/userLogin']);
+    }
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

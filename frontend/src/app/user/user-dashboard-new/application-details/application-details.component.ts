@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationDetailsComponent implements OnInit {
   applicationDetailsForm: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    if (!sessionStorage.getItem('username')){
+      this.router.navigate(['/userLogin']);
+    }
+  }
 
   ngOnInit(): void {
     this.applicationDetailsForm = this.fb.group({

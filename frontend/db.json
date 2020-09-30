@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "fname": "Dinesh",
-      "lname": "Thakur",
-      "email": "a@a.com",
+      "firstName": "Dinesh",
+      "lastName": "Thakur",
+      "emailId": "a@a.com",
       "password": "a",
       "phoneNumber": "2342342342",
       "gender": "male",
@@ -14,7 +14,7 @@
     {
       "firstName": "Axel",
       "lastName": "Blaze",
-      "email": "b@b.com",
+      "emailId": "b@b.com",
       "password": "b",
       "phoneNumber": "23234",
       "gender": "male",

@@ -28,13 +28,17 @@ import { Router, RouterModule } from '@angular/router';
           <form [formGroup]="userLoginDetails" (submit)=authenticateUser()>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-user fa-lg"></i></span>
-              <input type="text" id="username" name="email" formControlName="email" placeholder="Email" >
-              <div *ngIf="userLoginDetails.controls.email.invalid && userLoginDetails.controls.email.touched" class="mt-0 text-danger">Email field can't be empty</div>
+              <input type="text" id="username" name="emailId" formControlName="emailId" placeholder="Email" >
+              <div *ngIf="userLoginDetails.controls.emailId.invalid && userLoginDetails.controls.emailId.touched" class="mt-0 text-danger">Email field can't be empty</div>
             </div>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-lock fa-lg"></i></span>
               <input type="password" id="password" name="password" formControlName="password" placeholder="Password">
               <div *ngIf="userLoginDetails.controls.password.invalid && userLoginDetails.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
+            </div>
+
+            <div *ngIf="invalid" class="alert alert-danger">
+              <div class="text-danger">Invalid credentials.</div>
             </div>
 
             <div class="text-center">
@@ -122,11 +126,14 @@ export class LoginComponent implements OnInit {
   userLoginDetails: FormGroup;
   login: any;
   auth: any;
-  constructor(private fb: FormBuilder, private service: UserService, private router: Router) { }
+  invalid = false;
+  constructor(private fb: FormBuilder, private service: UserService, private router: Router) {
+    sessionStorage.removeItem('username');
+  }
 
   ngOnInit(): void {
     this.userLoginDetails = this.fb.group({
-      email: ['', Validators.required],
+      emailId: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -135,7 +142,7 @@ export class LoginComponent implements OnInit {
     // this.login = Object.assign({}, this.userLoginDetails.value);
     // console.log(this.userLogin.controls.username.value);
 
-    const loginDetails = new UserLogin(this.userLoginDetails.controls.email.value,
+    const loginDetails = new UserLogin(this.userLoginDetails.controls.emailId.value,
                                        this.userLoginDetails.controls.password.value);
 
     this.service.loginUser(loginDetails).subscribe(data => {
@@ -144,11 +151,12 @@ export class LoginComponent implements OnInit {
 
       if (Object.keys(data).length === 1){
         console.log(this.auth);
-        sessionStorage.setItem('name', this.auth.firstName);
-        this.router.navigateByUrl('/userDashboard');
+        sessionStorage.setItem('username', this.auth.firstName);
+        this.router.navigate(['/userDashboard']);
       }
       else{
-        alert('Invalid Credentials');
+        this.invalid = true;
+        // alert('Invalid Credentials');
       }
     });
   }
