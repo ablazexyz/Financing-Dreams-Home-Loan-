@@ -15,8 +15,13 @@ export class UserService {
     return this.http.post('http://localhost:3000/users', user);
   }
 
-  loginUser(user): Observable<object>{
-    return this.http.get('http://localhost:3000/users?emailId=' + user.emailId + '&password=' + user.password);
+  loginUser(user): Observable<object> {
+    return this.http.get(
+      'http://localhost:3000/users?emailId=' +
+        user.emailId +
+        '&password=' +
+        user.password
+    );
   }
 
   getApplicationsByCustomerId() {
@@ -30,6 +35,12 @@ export class UserService {
   ): Observable<ApplicationDetails> {
     return this.http.get<ApplicationDetails>(
       'http://localhost:3000/applications/?application_id=' + applicationId
+    );
+  }
+
+  isFirstTimeUser(email: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      'http://localhost:9091/HomeApp/users/isFirstTimeUser/' + email
     );
   }
 }
