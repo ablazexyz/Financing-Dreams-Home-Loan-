@@ -1,7 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Scope(scopeName = "prototype")
@@ -42,10 +44,11 @@ public class Registration implements Serializable{
 	private String nationality;
 	
 	@Column(name = "CUSTOMER_MOBILE")
-	private String mnumber;
+	private String phoneNumber;
 	
 	@Column(name = "CUSTOMER_DOB")
-	private LocalDateTime dob;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dob;
 	
 	
 
@@ -62,7 +65,7 @@ public class Registration implements Serializable{
 		this.emailId = emailId;
 		this.firstName = cname;
 		this.password = cpass;
-		this.mnumber = cnumber;
+		this.phoneNumber = cnumber;
 	}
 
 	public String getEmailId() {
@@ -114,19 +117,20 @@ public class Registration implements Serializable{
 		this.nationality = nationality;
 	}
 
-	public String getMnumber() {
-		return mnumber;
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setMnumber(String mnumber) {
-		this.mnumber = mnumber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public LocalDateTime getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDateTime dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -141,7 +145,7 @@ public class Registration implements Serializable{
 	@Override
 	public String toString() {
 		return "Registration [emailId=" + emailId + ", name=" + firstName + ", password=" + password + ", gender=" + gender
-				+ ", nationality=" + nationality + ", mnumber=" + mnumber + ", dob=" + dob + ", cdetails=" + cdetails
+				+ ", nationality=" + nationality + ", mnumber=" + phoneNumber + ", dob=" + dob + ", cdetails=" + cdetails
 				+ "]";
 	}
 	
