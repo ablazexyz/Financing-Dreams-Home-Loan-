@@ -8,9 +8,9 @@
     <persistence-unit name="JPA-PU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-            <property name="javax.persistence.jdbc.user" value="arpan" />
-            <property name="javax.persistence.jdbc.password" value="arpan" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:ORACLESE" />
+            <property name="javax.persistence.jdbc.user" value="Blaze" />
+            <property name="javax.persistence.jdbc.password" value="blaze" />
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
             <property name="hibernate.show_sql" value="true"/>
         </properties>
