@@ -1,0 +1,27 @@
+{
+  "customers": [
+    {
+      "customerId": 1,
+      "aadhaar": 123456789123,
+      "pan": "bhgft45sf6",
+      "monthly_sal": 34500,
+      "type_of_employment": "private",
+      "retirement_age": 60,
+      "organisation_type": "IT",
+      "employer_name": "LTI",
+      "pan_card": "",
+      "voter_id": "",
+      "salary_slip": "",
+      "registration_details": {
+        "email": "tans.c2@gmail.com",
+        "firstName": "Tanuj",
+        "lastName": "Chakraborty",
+        "phone_number": 8787775484,
+        "gender": "male",
+        "nationality": "Indian",
+        "dob": "02/05/1997",
+        "password": "12345"
+      }
+    }
+  ]
+}
