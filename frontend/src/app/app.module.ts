@@ -34,6 +34,7 @@ import { DatePipe } from '@angular/common';
     UserModule,
     HttpClientModule
   ],
+
   providers: [UserService, AdminService,DatePipe],
   bootstrap: [AppComponent],
 })
