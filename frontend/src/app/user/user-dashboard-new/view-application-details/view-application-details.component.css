@@ -1,0 +1,5 @@
+#view-application-details-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

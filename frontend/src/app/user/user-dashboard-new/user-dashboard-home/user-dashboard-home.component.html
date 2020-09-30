@@ -53,9 +53,12 @@
     <tbody>
       <tr class="d-flex" *ngFor="let application of applications">
         <td class="col-8">
-          <a href="#" style="text-decoration: underline">{{
-            application.application_id
-          }}</a>
+          <a
+            style="text-decoration: underline"
+            [routerLink]="['../viewApplicationDetails']"
+            [queryParams]="{ application_id: application.application_id }"
+            >{{ application.application_id }}</a
+          >
         </td>
         <td class="col-4">{{ application.loan_status }}</td>
       </tr>

@@ -34,4 +34,12 @@ export class UserService {
       'http://localhost:3000/applications/?customer_id=123'
     );
   }
+
+  getApplicationDetailById(
+    applicationId: number
+  ): Observable<ApplicationDetails> {
+    return this.http.get<ApplicationDetails>(
+      'http://localhost:3000/applications/?application_id=' + applicationId
+    );
+  }
 }

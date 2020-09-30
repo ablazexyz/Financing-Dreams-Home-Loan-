@@ -1,1 +1,67 @@
-<p>view-application-details works!</p>
+<header class="mb-4" id="view-application-details-header">
+  <h4>Details of application number {{ applicationId }}</h4>
+  <button class="btn btn-danger">Edit</button>
+</header>
+<table class="table table-hover" *ngIf="loadCompleted">
+  <tr>
+    <th>Property Location</th>
+    <td>{{ applicationDetailToDisplay[0].property_location }}</td>
+  </tr>
+  <tr>
+    <th>Property Name</th>
+    <td>{{ applicationDetailToDisplay[0].property_name }}</td>
+  </tr>
+  <tr>
+    <th>Estimated Property Amount</th>
+    <td>{{ applicationDetailToDisplay[0].estimated_property_amt }}</td>
+  </tr>
+  <tr>
+    <th>Loan Amount</th>
+    <td>{{ applicationDetailToDisplay[0].loan_amount }}</td>
+  </tr>
+
+  <tr>
+    <th>Interest rate</th>
+    <td>{{ applicationDetailToDisplay[0].interest_rate }}</td>
+  </tr>
+
+  <tr>
+    <th>Tenure</th>
+    <td>{{ applicationDetailToDisplay[0].tenure }}</td>
+  </tr>
+
+  <tr>
+    <th>LOA</th>
+    <td>{{ applicationDetailToDisplay[0].LOA }}</td>
+  </tr>
+
+  <tr>
+    <th>NOC</th>
+    <td>{{ applicationDetailToDisplay[0].NOC }}</td>
+  </tr>
+
+  <tr>
+    <th>Agreement to Sale</th>
+    <td>{{ applicationDetailToDisplay[0].agreement_to_sale }}</td>
+  </tr>
+
+  <!-- <tr>
+    <th>Type of employment</th>
+    <td>Private</td>
+  </tr>
+
+  <tr>
+    <th>Retirement Age</th>
+    <td>60</td>
+  </tr>
+
+  <tr>
+    <th>Organisation type</th>
+    <td>IT</td>
+  </tr>
+
+  <tr>
+    <th>Employer Name</th>
+    <td>LTI</td>
+  </tr> -->
+</table>
