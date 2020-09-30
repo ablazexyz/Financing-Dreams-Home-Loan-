@@ -38,7 +38,7 @@
     </tr>
   </table>
 </section>
-<section id="pending-applications">
+<section id="pending-applications" *ngIf="applications.length > 0">
   <header class="mt-5 mb-3">
     <h4>Pending Applications</h4>
   </header>
@@ -51,11 +51,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="d-flex">
+      <tr class="d-flex" *ngFor="let application of applications">
         <td class="col-8">
-          <a href="#" style="text-decoration: underline">3451678345</a>
+          <a
+            style="text-decoration: underline"
+            [routerLink]="['../viewApplicationDetails']"
+            [queryParams]="{ application_id: application.application_id }"
+            >{{ application.application_id }}</a
+          >
         </td>
-        <td class="col-4">Pending</td>
+        <td class="col-4">{{ application.loan_status }}</td>
       </tr>
     </tbody>
   </table>

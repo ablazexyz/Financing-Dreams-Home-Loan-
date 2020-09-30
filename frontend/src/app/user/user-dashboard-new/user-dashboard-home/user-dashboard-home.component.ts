@@ -1,4 +1,6 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApplicationDetails } from './../../../applicationDetails';
+import { UserService } from './../../user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,12 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashboardHomeComponent implements OnInit {
   accountExists: boolean = true;
-  constructor(private router: Router) {
+  applications: ApplicationDetails[];
+  constructor(
+    private service: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
+    this.applications = new Array();
   }
 
   ngOnInit(): void {
+    this.service.getApplicationsByCustomerId().subscribe((data) => {
+      this.applications = data;
+    });
+  }
+
+  viewApplicationDetailsOf ( application_id: number) {
+    console.log(application_id);
+    console.log(this.route.parent);
+    this.router.navigate(['../viewApplicationDetails'], {
+      relativeTo: this.route,
+    });
   }
 }
