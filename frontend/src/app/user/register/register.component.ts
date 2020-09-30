@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 import { Register } from './../register';
 import { UserService } from './../user.service';
@@ -17,8 +18,9 @@ export class RegisterComponent implements OnInit {
 
   registerDetails: Register;
   dob: string  ;
+  status: boolean = false; 
 
-  constructor(private fb: FormBuilder, private service: RegisterService, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder, private service: RegisterService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit(): void {
     this.userRegisterDetails = this.fb.group({
@@ -52,12 +54,26 @@ export class RegisterComponent implements OnInit {
                                           this.userRegisterDetails.controls.nationality.value,
                                           this.dob);
 
-    this.service.registerUser(this.registerDetails).subscribe(data => {
-       console.log(data);
-      //  this.auth = Object.assign({},data);
-      //  console.log(this.auth.fname);
-       console.log('user Registered Successfully');
-     });
+    this.service.registerUser(this.registerDetails).subscribe(res => {
+      
+      if (res.status == 200) {
+        this.status = false;
+        alert("You Are Succesfully Registered With Us. Please Login With Your Credentials")
+        this.router.navigate(['/userLogin'])
+        console.log("SUCCESS",res.status)
+      }
+    },
+      err => {
+        if (err.status == 200) {
+          this.status = false;
+          console.log("error false",err.status)
+        }
+        else {
+          this.status = true;
+          
+        }
+
+      });
   }
 
 }

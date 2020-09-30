@@ -1,5 +1,6 @@
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Session } from 'protractor';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router) { 
+
+    if (sessionStorage.getItem("adminEmail")==null){
+      this.router.navigate(['/adminLogin'])
+    }
+  }
 
   ngOnInit(): void {
   }
 
+  signout(){
+
+    sessionStorage.removeItem("adminEmail");
+  }
 }
