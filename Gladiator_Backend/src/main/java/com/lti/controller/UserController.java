@@ -50,9 +50,16 @@ public class UserController {
 
 	// http://localhost:9091/HomeApp/users/register
 	@PostMapping(path = "register")
-	public void registerUser(@RequestBody Registration reg) {
+	public ResponseEntity<String> registerUser(@RequestBody Registration reg) {
 
-		service.createRegistration(reg);
+		try {
+			service.findRegistrationDetailsbyEmail(reg.getEmailId());
+			return ResponseEntity.notFound().build();
+		}
+		catch(Exception e) {
+			service.createRegistration(reg);
+		}
+		return null;
 	}
 
 	@GetMapping(path = "/")
