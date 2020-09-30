@@ -32,19 +32,25 @@ public class CustomerDaoImpl {
 		return reg;
 
 	}
+	
+	public List<Registration> getAllRegistrations() {
 
-	public Admin getAdminDetails(String email) {
+		Query query = entityManager.createQuery("Select r From Registration r");
+		List<Registration> reg = query.getResultList();
+		return reg;
 
-		Query query = entityManager.createQuery("Select a From Admin a Where ademail = :email");
-		query.setParameter("email", email);
-		Admin adm = (Admin) query.getSingleResult();
-		return adm;
+	}
+
+	public List<Admin> getAllAdmins() {
+
+		Query query = entityManager.createQuery("Select a From Admin a");
+		List<Admin> admlist = query.getResultList();
+		return admlist;
 	}
 
 	public Customer_Details getCustomerDetailsbyEmail(String email) {
 
-		Query query = entityManager
-				.createQuery("Select c From Customer_Details c Where c.registration.emailId = :email");
+		Query query = entityManager.createQuery("Select c From Customer_Details c Where c.registration.emailId = :email");
 		query.setParameter("email", email);
 		Customer_Details cd = (Customer_Details) query.getSingleResult();
 		return cd;
@@ -52,8 +58,7 @@ public class CustomerDaoImpl {
 
 	public List<Application> getAllApplicationsbyEmail(String email) {
 
-		Query query = entityManager
-				.createQuery("Select a From Application a where a.cdetails2.registration.emailId = :email");
+		Query query = entityManager.createQuery("Select a From Application a where a.cdetails2.registration.emailId = :email");
 		query.setParameter("email", email);
 		return query.getResultList();
 

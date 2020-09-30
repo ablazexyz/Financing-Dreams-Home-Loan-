@@ -25,10 +25,16 @@ public class CustomerServiceImpl {
 		return dao.getRegistrationDetailsbyEmail(email);
 	}
 	
-	public Admin findAdminDetails(String email) {
+	public List<Registration> findAllRegistrations(){
 		
-		return dao.getAdminDetails(email);
+		return dao.getAllRegistrations();
 	}
+	
+	public List<Admin> findAllAdmins() {
+		
+		return dao.getAllAdmins();
+	}
+	
 	
 	public Customer_Details findCustomerDetailsbyEmail(String email) {
 		

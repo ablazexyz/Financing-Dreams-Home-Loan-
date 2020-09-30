@@ -96,14 +96,20 @@ public class Welcome {
 			System.out.println("Enter Password: ");
 			String pass = sc.next();
 
-			Admin adm = service.findAdminDetails(ademail);
-
-			if (adm.getAdpassword().equals(pass) && adm.getAdemail().equals(ademail)) {
-				System.out.println("Admin Login Successful");
-				adlogin = true;
-			} else {
-				System.out.println("Incorrect Credentials");
+			List<Admin> admins = service.findAllAdmins();
+			
+			for(Admin adm: admins) {
+				
+				if (adm.getAdemail().equals(ademail) && adm.getAdpassword().equals(pass)) {
+					
+						System.out.println("Admin Login Successful");
+						adlogin = true;
+				}
+				else {
+						System.out.println("Incorrect Credentials");
+					 }
 			}
+			
 		}
 
 		if (login) {
