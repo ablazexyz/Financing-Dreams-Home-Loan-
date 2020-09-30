@@ -1,3 +1,4 @@
+import { ApplicationDetails } from './../applicationDetails';
 import { CustomerDetails } from './customerDetails';
 // import { Register } from './register-model';
 import { Injectable } from '@angular/core';
@@ -25,6 +26,12 @@ export class UserService {
   getCustomerById() {
     return this.http.get<CustomerDetails>(
       'http://localhost:3000/customers/?customerId=1'
+    );
+  }
+
+  getApplicationsByCustomerId() {
+    return this.http.get<ApplicationDetails[]>(
+      'http://localhost:3000/applications/?customer_id=123'
     );
   }
 }

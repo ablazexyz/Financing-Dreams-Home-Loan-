@@ -1,3 +1,5 @@
+import { ApplicationDetails } from './../../../applicationDetails';
+import { UserService } from './../../user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashboardHomeComponent implements OnInit {
   accountExists: boolean = true;
-  constructor() {}
+  applications: ApplicationDetails[];
+  constructor(private service: UserService) {
+    this.applications = new Array();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.getApplicationsByCustomerId().subscribe((data) => {
+      this.applications = data;
+    });
+  }
 }
