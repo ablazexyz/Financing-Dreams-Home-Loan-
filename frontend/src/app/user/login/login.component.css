@@ -1,0 +1,56 @@
+.image-container{
+  background: url(../../../assets/images/4-sq.jpg) center no-repeat;
+  background-size: cover;
+  height: 100vh;
+
+}
+.form-container{
+  background-color: rgb(240, 245, 247);
+  display: flex;
+  justify-content: center;
+}
+.form-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+.form-box h3{
+  font-weight: bold;
+  color: rgb(253, 186, 0)
+}
+.form-box .form-input{
+  position: relative;
+}
+.form-box .form-input input{
+  width: 100%;
+  height: 40px;
+  /* margin-bottom: 20px; */
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: white;
+  padding-left: 45px;
+}
+.form-box .form-input span{
+  position: absolute;
+  top: 8px;
+  padding-left: 20px;
+  color: rgb(223, 58, 47);
+}
+.form-box .form-input input::placeholder{
+  padding-left: 0px;
+}
+.form-box .form-input input:focus,
+.form-box .form-input input:valid{
+  border-bottom: 2px solid rgb(35, 37, 34);
+}
+.form-box button[type="submit"]{
+  border: none;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+  border-right: 5px;
+  font-weight: bold;
+  transition: 0.5s;
+}

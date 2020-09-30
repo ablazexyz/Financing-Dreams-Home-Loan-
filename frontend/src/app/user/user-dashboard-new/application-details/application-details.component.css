@@ -1,0 +1,27 @@
+
+.application-details {
+  margin: 0 auto;
+}
+
+.application-details-header {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .application-details {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .application-details {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  .application-details {
+    max-width: 70%;
+  }
+}

@@ -1,0 +1,35 @@
+<div class="row featurette" id="Eligibility">
+  <div class="col-md-1"></div>
+  <div class="col-md-3" id="Eligibility">
+    <div class="card text-white bg-info">
+      <div class="card-header" style="text-align: center;">Eligibility Calcuator</div>
+
+      <div class="card-body">
+
+
+        <form action="#!">
+
+          <!-- Monthly Income -->
+          <div class="form-group">
+            <label for="monthly_income">Monthly Income</label>
+            <input type="number" class="form-control" id="loan_amount" [(ngModel)]="income"
+              [ngModelOptions]="{standalone: true}" placeholder="Enter Monthly Income:">
+          </div>
+
+          <!-- Calculate button -->
+          <button class="btn btn-primary" type="submit" (click)="updateloan()">Calculate</button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="card" id="info_card">
+      <div class="card-body">
+        <h4 style="text-align: center;">Eligible Loan Amount </h4>
+        <h3 style="text-align: center;"> &#x20b9; {{loan.toFixed(0)}} </h3>
+      </div>
+    </div>
+  </div>
+</div>

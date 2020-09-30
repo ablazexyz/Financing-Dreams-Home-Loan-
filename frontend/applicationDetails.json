@@ -1,0 +1,49 @@
+{
+  "applications": [
+    {
+      "application_id": 1,
+      "property_location": "New Town",
+      "property_name": "Nayan",
+      "estimated_property_amt": 1000000,
+      "loan_amount": 50000,
+      "interest_rate": 5,
+      "tenure": 2,
+      "LOA": "",
+      "NOC": "",
+      "agreement_to_sale": "",
+      "customer_id": 123,
+      "loan_remarks": "NA",
+      "loan_status": "pending"
+    },
+    {
+      "application_id": 2,
+      "property_location": "Laitumkhrah",
+      "property_name": "Dunoon Compound",
+      "estimated_property_amt": 500000,
+      "loan_amount": 123000,
+      "interest_rate": 6,
+      "tenure": 3,
+      "LOA": "",
+      "NOC": "",
+      "agreement_to_sale": "",
+      "customer_id": 123,
+      "loan_remarks": "NA",
+      "loan_status": "accepted"
+    },
+    {
+      "application_id": 3,
+      "property_location": "Guwahati",
+      "property_name": "Ashaniwas",
+      "estimated_property_amt": 345234,
+      "loan_amount": 200000,
+      "interest_rate": 4,
+      "tenure": 5,
+      "LOA": "",
+      "NOC": "",
+      "agreement_to_sale": "",
+      "customer_id": 123,
+      "loan_remarks": "NA",
+      "loan_status": "sent for approval"
+    }
+  ]
+}

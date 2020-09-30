@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-lg-6 col-md-6 form-container">
+
+
+
+      <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+
+
+
+        <div class="logo">
+          <img src="../../../assets/images/logo2.png" alt="Logo">
+        </div>
+        <div class="heading mb-4">
+          <h3>User Login</h3>
+        </div>
+        <form [formGroup]="userLoginDetails" (submit)=authenticateUser()>
+          <div class="form-input form-group mb-3">
+            <span><i class="fa fa-user fa-lg"></i></span>
+            <input type="text" id="username" name="emailId" formControlName="emailId" placeholder="Email" >
+            <div *ngIf="userLoginDetails.controls.emailId.invalid && userLoginDetails.controls.emailId.touched" class="mt-0 text-danger">Email field can't be empty</div>
+          </div>
+          <div class="form-input form-group mb-3">
+            <span><i class="fa fa-lock fa-lg"></i></span>
+            <input type="password" id="password" name="password" formControlName="password" placeholder="Password">
+            <div *ngIf="userLoginDetails.controls.password.invalid && userLoginDetails.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
+          </div>
+
+          <div *ngIf="invalid" class="alert alert-danger">
+            <div class="text-danger">Invalid credentials.</div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLoginDetails.invalid">Login</button>
+            <span>OR</span>
+            <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
+          </div>
+        </form>
+        <div class="mt-4">
+          Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active" >Register</a>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 d-none d-md-block image-container">
+    <!-- Image -->
+    </div>
+  </div>
+</div>
