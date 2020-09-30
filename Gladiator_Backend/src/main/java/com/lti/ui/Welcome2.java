@@ -52,19 +52,21 @@ public class Welcome2 {
 			System.out.println("Enter Password: ");
 			String pass = sc.next();
 
+			/*
 			System.out.println("Enter Customer Gender: ");
 			String gender = sc.next();
 
 			System.out.println("Enter Customer Mobile Number: ");
 			String number = sc.next();
-
+			*/
+			
 			Registration reg = new Registration();
 
 			reg.setEmailId(email);
-			reg.setName(name);
-			reg.setGender(gender);
+			reg.setFirstName(name);
+			//reg.setGender(gender);
 			reg.setPassword(pass);
-			reg.setMnumber(number);
+			//reg.setMnumber(number);
 
 			service.createRegistration(reg);
 		}

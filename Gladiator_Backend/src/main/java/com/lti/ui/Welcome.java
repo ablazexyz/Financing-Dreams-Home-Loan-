@@ -61,7 +61,7 @@ public class Welcome {
 			Registration reg = new Registration();
 
 			reg.setEmailId(email);
-			reg.setName(name);
+			reg.setFirstName(name);
 			reg.setGender(gender);
 			reg.setPassword(pass);
 			reg.setMnumber(number);

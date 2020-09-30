@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 @Entity
 @Table(name = "CUSTOMER_TBL")
 public class Customer_Details implements Serializable{
@@ -53,10 +58,10 @@ public class Customer_Details implements Serializable{
 	private String salaryURL;
 	
 	
-	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Registration registration;
 	
-	@OneToMany(mappedBy = "cdetails2", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cdetails2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Application> applications;
 
 	

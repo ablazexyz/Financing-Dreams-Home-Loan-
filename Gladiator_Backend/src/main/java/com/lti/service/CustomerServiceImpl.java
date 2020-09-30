@@ -2,22 +2,29 @@ package com.lti.service;
 
 import java.util.List;
 
-import com.lti.dao.CustomerDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.lti.dao.CustomerDao;
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
+import com.lti.model.Login;
 import com.lti.model.Registration;
 
+@Service("service")
 public class CustomerServiceImpl {
+
+	@Autowired
+	CustomerDao dao;
 	
-	CustomerDaoImpl dao = new CustomerDaoImpl();
-	
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void createRegistration(Registration reg) {
-		
-		dao.beginTransaction();
+	
 		dao.addRegistration(reg);
-		dao.commitTransaction();
-		
+
 	}
 	
 	public Registration findRegistrationDetailsbyEmail(String email) {
@@ -55,4 +62,22 @@ public class CustomerServiceImpl {
 		
 		return dao.getAllApplications();
 	}
+	
+	public boolean verifyLogin(Login login) {
+		
+		try {
+			Admin adm = dao.getAdminDetailsbyEmail(login.getEmailId());
+			if (adm.getAdpassword().equals(login.getPassword())) {
+				return true;
+			}
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return false;
+		
+	}
+	
+	
 }

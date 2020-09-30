@@ -2,15 +2,22 @@ package com.lti.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(scopeName = "prototype")
 @Entity
 @Table(name = "REGISTRATION_TBL")
 public class Registration implements Serializable{
@@ -19,8 +26,11 @@ public class Registration implements Serializable{
 	@Column(name = "CUSTOMER_EMAIL")
 	private String emailId;
 	
-	@Column(name = "CUSTOMER_NAME")
-	private String name;
+	@Column(name = "CUSTOMER_FIRST_NAME")
+	private String firstName;
+	
+	@Column(name = "CUSTOMER_LAST_NAME")
+	private String lastName;
 	
 	@Column(name = "PASSWORD")
 	private String password;
@@ -35,7 +45,7 @@ public class Registration implements Serializable{
 	private String mnumber;
 	
 	@Column(name = "CUSTOMER_DOB")
-	private Date dob;
+	private LocalDateTime dob;
 	
 	
 
@@ -43,14 +53,14 @@ public class Registration implements Serializable{
 		super();
 	}
 	
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "Registration_Customer_Id")
 	private Customer_Details cdetails;
 
 	public Registration(String emailId, String cname, String cpass, String cnumber) {
 		super();
 		this.emailId = emailId;
-		this.name = cname;
+		this.firstName = cname;
 		this.password = cpass;
 		this.mnumber = cnumber;
 	}
@@ -63,12 +73,21 @@ public class Registration implements Serializable{
 		this.emailId = emailId;
 	}
 
-	public String getName() {
-		return name;
+	
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPassword() {
@@ -103,11 +122,11 @@ public class Registration implements Serializable{
 		this.mnumber = mnumber;
 	}
 
-	public Date getDob() {
+	public LocalDateTime getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDateTime dob) {
 		this.dob = dob;
 	}
 
@@ -121,7 +140,7 @@ public class Registration implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Registration [emailId=" + emailId + ", name=" + name + ", password=" + password + ", gender=" + gender
+		return "Registration [emailId=" + emailId + ", name=" + firstName + ", password=" + password + ", gender=" + gender
 				+ ", nationality=" + nationality + ", mnumber=" + mnumber + ", dob=" + dob + ", cdetails=" + cdetails
 				+ "]";
 	}

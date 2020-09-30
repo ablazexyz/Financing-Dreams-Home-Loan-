@@ -3,22 +3,27 @@ package com.lti.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Registration;
-import com.lti.utility.JpaUtility;
 
+@Repository("dao")
+@Scope(scopeName = "singleton")
 public class CustomerDaoImpl {
 
+	@PersistenceContext
 	private EntityManager entityManager;
 
-	public CustomerDaoImpl() {
-		entityManager = JpaUtility.getEntityManager();
-	}
-
+	@Transactional(propagation = Propagation.MANDATORY)
 	public void addRegistration(Registration reg) {
 
 		entityManager.persist(reg);
@@ -30,6 +35,15 @@ public class CustomerDaoImpl {
 		query.setParameter("email", email);
 		Registration reg = (Registration) query.getSingleResult();
 		return reg;
+
+	}
+	
+	public Admin getAdminDetailsbyEmail(String email) {
+
+		Query query = entityManager.createQuery("Select a From Admin a Where ademail = :email");
+		query.setParameter("email", email);
+		Admin adm = (Admin)query.getSingleResult();
+		return adm;
 
 	}
 	
@@ -78,16 +92,4 @@ public class CustomerDaoImpl {
 
 	}
 	
-
-	public void beginTransaction() {
-		entityManager.getTransaction().begin();
-	}
-
-	public void commitTransaction() {
-		entityManager.getTransaction().commit();
-	}
-
-	public void rollbackTransaction() {
-		entityManager.getTransaction().rollback();
-	}
 }

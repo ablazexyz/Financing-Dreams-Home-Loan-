@@ -1,9 +1,11 @@
-import { AdminLogin } from './../adminLogin';
+import { Login } from './../Login';
+
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -14,7 +16,8 @@ import { Router } from '@angular/router';
 export class AdminLoginComponent implements OnInit {
 
   adminLogin: FormGroup;
-  adminDetails: AdminLogin;
+  adminDetails: Login;
+  status: boolean;
 
   constructor(private fb: FormBuilder, private service: AdminService, private router: Router) { }
 
@@ -32,20 +35,49 @@ export class AdminLoginComponent implements OnInit {
     // console.log(this.login);
     // console.log(Object.keys(data).length);
 
-    const loginDetails = new AdminLogin(this.adminLogin.controls.username.value,
+    this.adminDetails = new Login(this.adminLogin.controls.username.value,
                                       this.adminLogin.controls.password.value);
 
-    this.service.authenticateAdmin(loginDetails).subscribe( data => {
-      this.adminDetails = Object.assign({}, data[0]);
-      if (Object.keys(data).length === 0){
-        alert('Invalid Credentials');
+
+    // this.service.authenticateAdmin(loginDetails).subscribe( data => {
+    //   this.adminDetails = Object.assign({}, data[0]);
+    //   if (Object.keys(data).length === 0){
+    //     alert('Invalid Credentials');
+    //   }
+    //   else{
+    //   //  alert('Login Success');
+    //    console.log(this.adminDetails);
+    //    this.router.navigateByUrl('/adminDashboard');
+    //   }
+    // });
+
+    this.service.loginAdmin(this.adminDetails).subscribe(res => {
+      
+      if (res.status == 200) {
+        this.status = true;
+        console.log("SUCCESS",res.status)
+      }
+    },
+      err => {
+        if (err.status == 200) {
+          this.status = true;
+          console.log("error false",err.status)
+        }
+        else {
+          this.status = false;
+          console.log("error", err.status)
+        }
+
+      });
+
+      if (this.status){
+
+        this.router.navigateByUrl('/adminDashboard');
       }
       else{
-      //  alert('Login Success');
-       console.log(this.adminDetails);
-       this.router.navigateByUrl('/adminDashboard');
+
+        console.log("Invalid Credentials");
       }
-    });
 
   }
 }
