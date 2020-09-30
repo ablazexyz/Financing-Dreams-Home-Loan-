@@ -52,32 +52,25 @@ export class AdminLoginComponent implements OnInit {
     // });
 
     this.service.loginAdmin(this.adminDetails).subscribe(res => {
-      
+
       if (res.status == 200) {
         this.status = true;
-        console.log("SUCCESS",res.status)
+        console.log("SUCCESS",res.status);
+        this.router.navigateByUrl('/adminDashboard');
       }
     },
       err => {
         if (err.status == 200) {
           this.status = true;
-          console.log("error false",err.status)
+          console.log("error false",err.status);
+          this.router.navigateByUrl('/adminDashboard');
         }
         else {
           this.status = false;
-          console.log("error", err.status)
+          console.log("error", err.status);
+          console.log("Invalid Credentials");
         }
 
       });
-
-      if (this.status){
-
-        this.router.navigateByUrl('/adminDashboard');
-      }
-      else{
-
-        console.log("Invalid Credentials");
-      }
-
   }
 }
