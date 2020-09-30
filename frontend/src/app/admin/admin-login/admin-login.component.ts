@@ -56,28 +56,22 @@ export class AdminLoginComponent implements OnInit {
       if (res.status == 200) {
         this.status = true;
         console.log("SUCCESS",res.status)
+        this.router.navigateByUrl('/adminDashboard');
       }
     },
       err => {
         if (err.status == 200) {
           this.status = true;
           console.log("error false",err.status)
+          this.router.navigateByUrl('/adminDashboard');
         }
         else {
           this.status = false;
           console.log("error", err.status)
+          console.log("Invalid Credentials");
         }
 
       });
-
-      if (this.status){
-
-        this.router.navigateByUrl('/adminDashboard');
-      }
-      else{
-
-        console.log("Invalid Credentials");
-      }
 
   }
 }

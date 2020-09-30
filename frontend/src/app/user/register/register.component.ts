@@ -1,7 +1,9 @@
+import { RegisterService } from './register.service';
 import { Register } from './../register';
 import { UserService } from './../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,10 @@ export class RegisterComponent implements OnInit {
   userRegisterDetails: FormGroup;
   register: Register;
 
-  constructor(private fb: FormBuilder, private service: UserService) { }
+  registerDetails: Register;
+  dob: string  ;
+
+  constructor(private fb: FormBuilder, private service: RegisterService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.userRegisterDetails = this.fb.group({
@@ -29,22 +34,25 @@ export class RegisterComponent implements OnInit {
   }
 
   RegisterUser(): void {
-
+    
+    this.dob = this.userRegisterDetails.controls.dateOfBirth.value;
+    this.dob = this.datePipe.transform(this.dob,'yyyy-MM-dd');
+    
     // console.log(this.userRegister.value);
     // this.register = Object.assign({}, this.userRegister.value);
     // console.log(this.register);
     // let copy =JSON.parse(JSON.stringify(myObject))     ---------  to copy nested object
 
-    const registerDetails = new Register(this.userRegisterDetails.controls.firstName.value,
+    this.registerDetails = new Register(this.userRegisterDetails.controls.firstName.value,
                                           this.userRegisterDetails.controls.lastName.value,
                                           this.userRegisterDetails.controls.email.value,
                                           this.userRegisterDetails.controls.password.value,
                                           this.userRegisterDetails.controls.phoneNumber.value,
                                           this.userRegisterDetails.controls.gender.value,
                                           this.userRegisterDetails.controls.nationality.value,
-                                          this.userRegisterDetails.controls.dateOfBirth.value);
+                                          this.dob);
 
-    this.service.registerUser(registerDetails).subscribe(data => {
+    this.service.registerUser(this.registerDetails).subscribe(data => {
        console.log(data);
       //  this.auth = Object.assign({},data);
       //  console.log(this.auth.fname);

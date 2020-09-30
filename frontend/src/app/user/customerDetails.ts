@@ -1,4 +1,4 @@
-import { Register1 } from './register1';
+import { Register } from './register';
 
 export class CustomerDetails {
   customerId: number;
@@ -12,7 +12,7 @@ export class CustomerDetails {
   pan_card: string;
   voter_id: string;
   salary_slip: string;
-  registration_details: Register1;
+  registration_details: Register;
 
   constructor(
     customerId: number,
@@ -26,7 +26,7 @@ export class CustomerDetails {
     pan_card: string,
     voter_id: string,
     salary_slip: string,
-    registration_details: Register1
+    registration_details: Register
   ) {
     this.customerId = customerId;
     this.aadhaar = aadhaar;

@@ -14,6 +14,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './user/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserModule,
     HttpClientModule
   ],
-  providers: [UserService, AdminService],
+
+  providers: [UserService, AdminService,DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
