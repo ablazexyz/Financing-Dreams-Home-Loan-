@@ -96,7 +96,7 @@
     <div class="form-group">
       <label for="loan_amount">Loan Amount</label>
       <input
-        type="text"
+        type="number"
         name="loan_amount"
         id="loan_amount"
         class="form-control"
@@ -120,7 +120,14 @@
         <div *ngIf="applicationDetailsForm.controls.loan_amount.errors.pattern">
           Only numeric digits allowed
         </div>
+
+        <div *ngIf="applicationDetailsForm.controls.loan_amount.errors.max">
+          Max Loan Amount breached
+        </div>
+
       </div>
+
+      
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-6 col-6">

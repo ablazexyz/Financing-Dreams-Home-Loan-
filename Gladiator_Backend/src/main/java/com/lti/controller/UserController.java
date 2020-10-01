@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Login;
 import com.lti.model.Registration;
@@ -97,4 +99,25 @@ public class UserController {
 			return null; 
 		}
 	}
+	
+	// http://localhost:9091/HomeApp/users/applicationdetails/
+	@PostMapping(path = "applicationdetails/{emailId}")
+	public Application addApplication(@PathVariable("emailId") String email,@RequestBody Application appl) {
+		
+		Customer_Details cd = service.findCustomerDetailsbyEmail(email);
+		
+		appl.setCdetails2(cd);
+		appl.setLoanStatus("Pending");
+	
+		if (cd.getApplications().isEmpty()) {
+			cd.setApplications(new HashSet<Application>());
+		}
+		
+		cd.addApplications(appl);
+		
+		service.createApplication(appl);
+		
+		return appl;
+	}
+	
 }

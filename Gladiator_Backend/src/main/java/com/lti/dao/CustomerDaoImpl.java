@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.model.Admin;
+import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Registration;
 
@@ -32,6 +33,14 @@ public class CustomerDaoImpl implements CustomerDao{
 	public Registration updateRegistration(Registration reg) {
 		
 		return entityManager.merge(reg);
+	}
+	
+	
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void addApplication(Application appl) {
+		
+		entityManager.persist(appl);
+		
 	}
 
 	public Registration getRegistrationDetailsbyEmail(String email) {
@@ -75,7 +84,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		return cd;
 	}
 
-	/*
+
 	public List<Application> getAllApplicationsbyEmail(String email) {
 
 		Query query = entityManager.createQuery("Select a From Application a where a.cdetails2.registration.emailId = :email");
@@ -83,7 +92,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		return query.getResultList();
 
 	}
-	*/
+
 
 	public List<Customer_Details> getAllCustomerDetails() {
 
@@ -102,6 +111,8 @@ public class CustomerDaoImpl implements CustomerDao{
 			return true;
 		}
 	}
+
+	
 
 	/*
 	public List<Application> getAllApplications() {

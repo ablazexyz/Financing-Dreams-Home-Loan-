@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.CustomerDao;
 import com.lti.model.Admin;
+import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Login;
 import com.lti.model.Registration;
@@ -34,6 +35,13 @@ public class CustomerServiceImpl implements CustomerService{
 		return dao.updateRegistration(reg);
 	}
 	
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void createApplication(Application appl) {
+		
+		dao.addApplication(appl);
+	}
+	
 	public Registration findRegistrationDetailsbyEmail(String email) {
 		
 		return dao.getRegistrationDetailsbyEmail(email);
@@ -55,12 +63,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return dao.getCustomerDetailsbyEmail(email);
 	}
 	
-	/*
+
 	public List<Application> findAllApplicationsbyEmail(String email){
 		
 		return dao.getAllApplicationsbyEmail(email);
 	}
-	*/
+
 	
 	public List<Customer_Details> findAllCustomerDetails(){
 		
@@ -111,4 +119,6 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return dao.isFirstTimeUser(emailId);
 	}
+
+	
 }

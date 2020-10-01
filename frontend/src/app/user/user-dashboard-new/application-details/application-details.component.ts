@@ -1,35 +1,45 @@
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user.service';
 import { CustomerDetails } from '../../customerDetails';
+
+
 
 @Component({
   selector: 'application-details',
   templateUrl: './application-details.component.html',
   styleUrls: ['./application-details.component.css'],
 })
+
+
 export class ApplicationDetailsComponent implements OnInit {
 
+ 
   salary: number;
+
+  userDetail: CustomerDetails;
 
   applicationDetailsForm: FormGroup;
 
+ 
   constructor(private fb: FormBuilder, private router: Router, private service: UserService) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
 
+    
     this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
 
-      this.salary = data.salary;
-      console.log(this.salary);
-    })
-
+      this.userDetail = data;
+      alert(this.userDetail.salary);
+    });
 
   }
 
+
   ngOnInit(): void {
+
     this.applicationDetailsForm = this.fb.group({
       property_location: ['', Validators.required],
       property_name: ['', Validators.required],
