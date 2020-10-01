@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "CUSTOMER_TBL")
 public class Customer_Details implements Serializable{
@@ -53,7 +56,7 @@ public class Customer_Details implements Serializable{
 	@Column(name = "CUSTOMER_SALARY_URL")
 	private String salaryURL;
 	
-	
+	@JsonManagedReference
 	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Registration registration;
 	

@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Component
 @Scope(scopeName = "prototype")
@@ -56,6 +58,7 @@ public class Registration implements Serializable{
 		super();
 	}
 	
+	@JsonBackReference
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "Registration_Customer_Id")
 	private Customer_Details cdetails;
