@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Component
 @Scope(scopeName = "prototype")
@@ -58,7 +59,8 @@ public class Registration implements Serializable{
 		super();
 	}
 	
-	@JsonBackReference
+	
+	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "Registration_Customer_Id")
 	private Customer_Details cdetails;
@@ -148,11 +150,7 @@ public class Registration implements Serializable{
 	@Override
 	public String toString() {
 		return "Registration [emailId=" + emailId + ", name=" + firstName + ", password=" + password + ", gender=" + gender
-<<<<<<< HEAD
-				+ ", nationality=" + nationality + ", mnumber=" + mnumber + ", dob=" + dob + ", cdetails=" + cdetails
-=======
 				+ ", nationality=" + nationality + ", mnumber=" + phoneNumber + ", dob=" + dob + ", cdetails=" + cdetails
->>>>>>> f02455ee0c6ffc634493f469e8aebc7c2dbce0a4
 				+ "]";
 	}
 	

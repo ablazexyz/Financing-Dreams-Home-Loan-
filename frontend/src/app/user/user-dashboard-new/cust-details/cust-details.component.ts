@@ -1,6 +1,10 @@
-import { Router } from '@angular/router';
+import { Register } from './../../register';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { CustomerDetails } from '../../customerDetails';
+import { UserService } from '../../user.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'cust-details',
@@ -9,13 +13,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustDetailsComponent implements OnInit {
   customerDetailsForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {
+
+  regdetails: Register;
+
+  custDetails: CustomerDetails;
+
+  constructor(private fb: FormBuilder, private router: Router,  private service: UserService) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
+
+    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data => {
+
+      this.regdetails = data;
+      console.log(this.regdetails);
+
+    });
+  
   }
 
   ngOnInit(): void {
+
+    
+
     this.customerDetailsForm = this.fb.group({
       aadhaar: [
         '',
@@ -46,6 +66,23 @@ export class CustDetailsComponent implements OnInit {
   }
 
   addCustomerDetails(): void {
-    console.log(this.customerDetailsForm.controls.aadhaar.value);
+
+    this.custDetails = new CustomerDetails(
+                              this.customerDetailsForm.controls.aadhaar.value,
+                              this.customerDetailsForm.controls.monthly_sal.value,
+                              this.customerDetailsForm.controls.PAN.value,
+                              this.customerDetailsForm.controls.type_of_employment.value,
+                              this.customerDetailsForm.controls.org_type.value,
+                              this.customerDetailsForm.controls.employer_name.value,
+                              this.customerDetailsForm.controls.retirement_age.value);
+    
+    this.regdetails.setCustomerDetails(this.custDetails);
+
+    this.service.updateUserDetails(this.regdetails).subscribe(data => {
+
+      this.regdetails = data;
+      console.log(this.regdetails);
+
+    });
   }
 }

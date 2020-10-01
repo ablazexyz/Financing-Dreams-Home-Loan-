@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get<Register>('http://localhost:9091/HomeApp/users/isFirstTimeUser/'+email);
   }
 
+  updateUserDetails(reg:Register): Observable<Register>{
+
+    return this.http.post<Register>('http://localhost:9091/HomeApp/users/customerdetails',reg);
+  }
+
   getApplicationsByCustomerId() {
     return this.http.get<ApplicationDetails[]>(
       'http://localhost:3000/applications/?customer_id=123'
