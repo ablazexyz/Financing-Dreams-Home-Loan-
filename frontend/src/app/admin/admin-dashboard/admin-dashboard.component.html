@@ -20,36 +20,43 @@
           <div class="sidebar col-lg-3 col-md-4 fixed-top">
 
             <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border"><img src="../../../assets/images/logo2.png" alt="Logo" class="logo">Financing Dreams</a>
-            <div class="bottom-border pb-3">
-              <img src="../../../assets/images/AdminIcon.png" alt="Profile-Pic" width="50" class="rounded-circle mr-3 ml-3">
-              <a href="#" class="text-white">Admin Username</a>
+            <div class="bottom-border pb-3 d-flex justify-content-center align-items-center">
+              <img src="../../../assets/images/AdminIcon.png" alt="Profile-Pic" width="50" class="rounded-circle mr-3">
+              <span class="text-light">Admin Username</span>
             </div>
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 current "><i class="fa fa-home text-light fa-lg mr-3"></i>Dashboard</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 " (click)="highlightDash=!highlightDash ; highlightProfile=false ; highlightApp=false; navTitle='dashboard'" [class.current]="highlightDash" routerLink="/adminDashboard/adminHome"><i class="fa fa-home text-light fa-lg mr-3"></i>Dashboard</a>
               </li>
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link "><i class="fa fa-user text-light fa-lg mr-3"></i>Profile</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link" (click)="highlightProfile=!highlightProfile ; highlightDash=false ; highlightApp=false; navTitle='profile'" [class.current]="highlightProfile" routerLink="/adminDashboard/adminProfile"><i class="fa fa-user text-light fa-lg mr-3"></i>Profile</a>
               </li>
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link "><i class="fa fa-id-card text-light fa-lg mr-3"></i>View Applications</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link" (click)="highlightApp=!highlightApp ; highlightProfile=false ; highlightDash=false; navTitle='Applications'" [class.current]="highlightApp" routerLink="/adminDashboard/adminApplications"><i class="fa fa-id-card text-light fa-lg mr-3"></i>View Applications</a>
               </li>
 
             </ul>
           </div>
 
           <!-- top Nav -->
-          <div class="col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-3 top-navbar">
-            <div class="row align-item-center">
+          <div class="col-lg-9 col-md-8 ml-auto fixed-top top-navbar">
+            <div class="row align-item-center bg-dark py-2">
               <div class="col-md-8">
-                <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
+                <h4 class="text-light text-uppercase mb-1">{{navTitle}}</h4>
               </div>
-              <div class="col-md-2 ml-auto signOut">
+              <div class="col-md-4 ml-auto text-right signOut">
                 <a routerLink="/adminLogin" routerLinkActive="router-link-active" class="fa fa-sign-out text-danger fa-lg" (click)="signout()">Sign out</a>
               </div>
-
             </div>
-          </div>
+            <div class="row align-item-center mt-4 mr-4">
+              <router-outlet></router-outlet>
+            </div>
+        </div>
+
+
+
+
+
         </div>
       </div>
     </div>

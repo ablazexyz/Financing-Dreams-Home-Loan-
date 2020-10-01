@@ -1,3 +1,6 @@
+import { ViewApplicationsComponent } from './admin/view-applications/view-applications.component';
+import { ProfileComponent } from './admin/profile/profile.component';
+import { HomeViewComponent } from './admin/home-view/home-view.component';
 import { ViewApplicationDetailsComponent } from './user/user-dashboard-new/view-application-details/view-application-details.component';
 import { ViewCustomerDetailsComponent } from './user/user-dashboard-new/view-customer-details/view-customer-details.component';
 import { RegisterComponent } from './user/register/register.component';
@@ -15,7 +18,14 @@ import { LoginComponent } from './user/login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'adminLogin', component: AdminLoginComponent },
-  { path: 'adminDashboard', component: AdminDashboardComponent },
+  { path: 'adminDashboard', component: AdminDashboardComponent,
+  children: [
+    { path: '', redirectTo: 'adminHome', pathMatch: 'full' },
+    { path: 'adminHome', component: HomeViewComponent },
+    { path: 'adminProfile', component: ProfileComponent },
+    { path: 'adminApplications', component: ViewApplicationsComponent }
+  ]
+},
   { path: 'home', component: HomeComponent },
   { path: 'userLogin', component: LoginComponent },
   { path: 'userRegister', component: RegisterComponent },

@@ -9,6 +9,11 @@ import { Session } from 'protractor';
 })
 export class AdminDashboardComponent implements OnInit {
 
+  highlightDash = true;
+  highlightProfile = false;
+  highlightApp = false;
+  navTitle = 'dashboard';
+
   constructor( private router: Router) {
 
     if (sessionStorage.getItem("adminEmail")==null){
