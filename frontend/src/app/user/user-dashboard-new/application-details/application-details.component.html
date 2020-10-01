@@ -1,9 +1,8 @@
 <div class="application-details">
   <h3 class="application-details-header">Add Loan details</h3>
   <form
-    action=""
     [formGroup]="applicationDetailsForm"
-    (ngSubmit)="addApplicationDetails()"
+    (submit)=addApplicationDetails()
   >
     <div class="form-group">
       <label for="property_location">Property Location</label>
@@ -116,6 +115,17 @@
         >
           Loan Amount info required
         </div>
+        <div
+          *ngIf="applicationDetailsForm.controls.loan_amount.errors?.max"
+        >
+          Loan Amount to large
+        </div>
+        <div
+          *ngIf="applicationDetailsForm.controls.loan_amount.errors?.max"
+        >
+          Loan Amount to large
+        </div>
+
 
         <div *ngIf="applicationDetailsForm.controls.loan_amount.errors.pattern">
           Only numeric digits allowed
