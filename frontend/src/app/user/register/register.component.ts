@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   registerDetails: Register;
   dob: string  ;
-  status: boolean = false; 
+  status: boolean = false;
 
   constructor(private fb: FormBuilder, private service: RegisterService, private datePipe: DatePipe, private router: Router) { }
 
@@ -36,10 +36,10 @@ export class RegisterComponent implements OnInit {
   }
 
   RegisterUser(): void {
-    
+
     this.dob = this.userRegisterDetails.controls.dateOfBirth.value;
     this.dob = this.datePipe.transform(this.dob,'yyyy-MM-dd');
-    
+
     // console.log(this.userRegister.value);
     // this.register = Object.assign({}, this.userRegister.value);
     // console.log(this.register);
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
                                           this.dob);
 
     this.service.registerUser(this.registerDetails).subscribe(res => {
-      
+
       if (res.status == 200) {
         this.status = false;
         alert("You Are Succesfully Registered With Us. Please Login With Your Credentials")
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
         }
         else {
           this.status = true;
-          
+
         }
 
       });

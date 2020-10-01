@@ -20,7 +20,7 @@ export class AdminLoginComponent implements OnInit {
   status: boolean;
   invalid:boolean;
 
-  constructor(private fb: FormBuilder, private service: AdminService, private router: Router) { 
+  constructor(private fb: FormBuilder, private service: AdminService, private router: Router) {
 
     sessionStorage.removeItem("adminEmail");
   }
@@ -56,7 +56,7 @@ export class AdminLoginComponent implements OnInit {
     // });
 
     this.service.loginAdmin(this.adminDetails).subscribe(res => {
-      
+
       if (res.status == 200) {
         this.status = true;
         console.log("SUCCESS",res.status)

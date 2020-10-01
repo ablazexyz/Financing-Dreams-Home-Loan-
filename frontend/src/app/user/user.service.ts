@@ -18,7 +18,7 @@ export class UserService {
 
   getUserDetails(email:String): Observable<Register>{
 
-    return this.http.get<Register>('http://localhost:9091/HomeApp/users/isFirstTimeUser/'+email);    
+    return this.http.get<Register>('http://localhost:9091/HomeApp/users/isFirstTimeUser/'+email);
   }
 
   getApplicationsByCustomerId() {

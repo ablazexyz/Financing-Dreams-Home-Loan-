@@ -9,7 +9,7 @@ import { Session } from 'protractor';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor( private router: Router) { 
+  constructor( private router: Router) {
 
     if (sessionStorage.getItem("adminEmail")==null){
       this.router.navigate(['/adminLogin'])

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
                                        this.userLoginDetails.controls.password.value);
 
     this.service.loginUser(this.logindetails).subscribe(res => {
-      
+
       if (res.status == 200) {
 
         console.log("SUCCESS",res.status)
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     },
       err => {
         if (err.status == 200) {
-         
+
           console.log("error false",err.status)
           sessionStorage.setItem('username', this.userLoginDetails.controls.emailId.value);
           this.router.navigate(['/userDashboard']);
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
       });
 
-     
+
   }
 
 }

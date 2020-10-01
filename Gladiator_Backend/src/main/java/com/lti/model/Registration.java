@@ -148,7 +148,11 @@ public class Registration implements Serializable{
 	@Override
 	public String toString() {
 		return "Registration [emailId=" + emailId + ", name=" + firstName + ", password=" + password + ", gender=" + gender
+<<<<<<< HEAD
+				+ ", nationality=" + nationality + ", mnumber=" + mnumber + ", dob=" + dob + ", cdetails=" + cdetails
+=======
 				+ ", nationality=" + nationality + ", mnumber=" + phoneNumber + ", dob=" + dob + ", cdetails=" + cdetails
+>>>>>>> f02455ee0c6ffc634493f469e8aebc7c2dbce0a4
 				+ "]";
 	}
 	
