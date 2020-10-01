@@ -12,6 +12,8 @@
         placeholder="Enter your first name"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.firstName.invalid && userRegisterDetails.controls.firstName.touched" class="text-danger mb-2">First Name can't be empty.</div>
+
     <div class="form-group">
       <label for="lastName">Last Name</label>
       <input
@@ -23,6 +25,8 @@
         placeholder="Enter your last name"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.lastName.invalid && userRegisterDetails.controls.lastName.touched" class="text-danger mb-2">Last Name can't be empty.</div>
+
     <div class="form-group">
       <label for="email">Email</label>
       <input
@@ -34,6 +38,8 @@
         placeholder="Enter your Email"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.email.invalid && userRegisterDetails.controls.email.touched" class="text-danger mb-2">Enter a valid Email</div>
+
     <div class="form-group">
       <label for="password">Password</label>
       <input
@@ -45,6 +51,8 @@
         placeholder="Set your Password"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.password.invalid && userRegisterDetails.controls.password.touched" class="text-danger mb-2">Doesn't match the required pattern.</div>
+
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
       <input
@@ -56,6 +64,8 @@
         placeholder="Enter your phone number"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.phoneNumber.invalid && userRegisterDetails.controls.phoneNumber.touched" class="text-danger mb-2">Enter a valid Phone Number</div>
+
     <div class="form-group">
       <label for="gender">Gender</label>
       <select name="gender" id="gender" class="form-control" formControlName="gender">
@@ -64,6 +74,8 @@
         <option value="others">Others</option>
       </select>
     </div>
+    <div *ngIf="userRegisterDetails.controls.gender.invalid && userRegisterDetails.controls.gender.touched" class="text-danger mb-2">Required Field</div>
+
     <div class="form-group">
       <label for="nationality">Nationality</label>
       <input
@@ -75,6 +87,8 @@
         placeholder="Enter your nationality"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.nationality.invalid && userRegisterDetails.controls.nationality.touched" class="text-danger mb-2">Required Field</div>
+
     <div class="form-group">
       <label for="dateOfBirth">Date of birth</label>
       <input
@@ -86,6 +100,8 @@
         placeholder="Choose your date of birth"
       />
     </div>
+    <div *ngIf="userRegisterDetails.controls.dateOfBirth.invalid && userRegisterDetails.controls.dateOfBirth.touched" class="text-danger mb-2">Required Field</div>
+
     <div *ngIf="status" class="alert alert-danger">
       <div class="text-danger">You are already registered with us, Please Login with your user details</div>
     </div>
