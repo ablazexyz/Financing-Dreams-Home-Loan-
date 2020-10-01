@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "CUSTOMER_TBL")
@@ -60,6 +62,7 @@ public class Customer_Details implements Serializable{
 	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Registration registration;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "cdetails2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Application> applications;
 
@@ -189,7 +192,7 @@ public class Customer_Details implements Serializable{
 		this.registration = registration;
 	}
 
-	/*
+	
 	public Set<Application> getApplications() {
 		return applications;
 	}
@@ -197,7 +200,9 @@ public class Customer_Details implements Serializable{
 	public void setApplications(Set<Application> applications) {
 		this.applications = applications;
 	}
-	*/
+
+
+	
 	
 	
 }

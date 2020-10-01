@@ -1,24 +1,35 @@
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user.service';
 import { CustomerDetails } from '../../customerDetails';
+import { Application } from '../../application';
+
+
 
 @Component({
   selector: 'application-details',
   templateUrl: './application-details.component.html',
   styleUrls: ['./application-details.component.css'],
 })
+
+
 export class ApplicationDetailsComponent implements OnInit {
 
-  salary: number = 20;
+
+  salary: number;
+
+  userDetail: CustomerDetails;
 
   applicationDetailsForm: FormGroup;
+
+  applicationdetails: Application;
 
   constructor(private fb: FormBuilder, private router: Router, private service: UserService) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
+
 
     this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
 
@@ -29,8 +40,8 @@ export class ApplicationDetailsComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
-    console.log(this.salary);
     this.applicationDetailsForm = this.fb.group({
       property_location: ['', Validators.required],
       property_name: ['', Validators.required],
@@ -38,7 +49,7 @@ export class ApplicationDetailsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[0-9]*$')],
       ],
-      loan_amount: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(this.salary)]],
+      loan_amount: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       interest_rate: [
         '',
         [Validators.required, Validators.pattern('^[0-9]*$')],
@@ -47,13 +58,31 @@ export class ApplicationDetailsComponent implements OnInit {
       LOA: [],
       NOC: [],
       agreement_to_sale: [],
-    }, { validator: this.validateAmount});
+    }/*, { validator: this.validateAmount}*/);
   }
+  /*
   validateAmount: ValidatorFn = (fg: FormGroup) => {
     const start = fg.get('estimated_property_amt').value;
     const end = fg.get('loan_amount').value;
     return start !== null && end !== null && start > end
      ? null : { range: true };
   }
-  addApplicationDetails(): void {}
+  */
+  addApplicationDetails(): void {
+
+    this.applicationdetails = new Application(this.applicationDetailsForm.controls.property_location.value,
+                                              this.applicationDetailsForm.controls.property_name.value,
+                                              this.applicationDetailsForm.controls.estimated_property_amt.value,
+                                              this.applicationDetailsForm.controls.loan_amount.value,
+                                              this.applicationDetailsForm.controls.interest_rate.value,
+                                              this.applicationDetailsForm.controls.tenure.value);
+
+
+    this.service.addApplication(sessionStorage.getItem('username'),this.applicationdetails).subscribe(data=>{
+
+      this.applicationdetails = data;
+      console.log(this.applicationdetails);
+
+    })
+  }
 }

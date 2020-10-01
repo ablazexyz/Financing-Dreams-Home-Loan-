@@ -3,6 +3,7 @@ package com.lti.dao;
 import java.util.List;
 
 import com.lti.model.Admin;
+import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Registration;
 
@@ -22,11 +23,13 @@ public interface CustomerDao {
 	
 	public Customer_Details getCustomerDetailsbyEmail(String email);
 	
-	//public List<Application> getAllApplicationsbyEmail(String email);
+	public List<Application> getAllApplicationsbyEmail(String email);
 	
 	public List<Customer_Details> getAllCustomerDetails();
 	
 	//public List<Application> getAllApplications();
 	
 	public boolean isFirstTimeUser(String emailId);
+
+	public void addApplication(Application appl);
 }

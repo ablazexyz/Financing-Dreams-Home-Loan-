@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Register } from './register';
+import {Application} from './application'
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,11 @@ export class UserService {
 
     console.log(custdetails);
     return this.http.post<Register>('http://localhost:9091/HomeApp/users/customerdetails/'+email,custdetails);
+  }
+
+  addApplication(email:String, appl:Application): Observable<Application>{
+
+    return this.http.post<Application>('http://localhost:9091/HomeApp/users/applicationdetails/'+email,appl);
   }
   
   updateUserDetails(reg:Register): Observable<Register>{
