@@ -1,44 +1,34 @@
 import { Register } from './register';
 
 export class CustomerDetails {
-  customerId: number;
+  customer_id: number;
   aadhaar: number;
+  salary: number;
   pan: string;
-  monthly_sal: number;
-  type_of_employment: string;
-  retirement_age: number;
-  organisation_type: string;
-  employer_name: string;
-  pan_card: string;
-  voter_id: string;
-  salary_slip: string;
-  registration_details: Register;
+  emptype: string;
+  orgtype: string;
+  empname: string;
+  retireage: number;
+  panURL: string;
+  voterURL: string;
+  salaryURL: string;
+  registration: Register;
 
   constructor(
-    customerId: number,
     aadhaar: number,
+    salary: number,
     pan: string,
-    monthly_sal: number,
-    type_of_employment: string,
-    retirement_age: number,
-    organisation_type: string,
-    employer_name: string,
-    pan_card: string,
-    voter_id: string,
-    salary_slip: string,
-    registration_details: Register
+    emptype: string,
+    orgtype: string,
+    empname: string,
+    retireage: number
   ) {
-    this.customerId = customerId;
     this.aadhaar = aadhaar;
+    this.salary = salary;
     this.pan = pan;
-    this.monthly_sal = monthly_sal;
-    this.type_of_employment = type_of_employment;
-    this.retirement_age = retirement_age;
-    this.organisation_type = organisation_type;
-    this.employer_name = employer_name;
-    this.pan_card = pan_card;
-    this.voter_id = voter_id;
-    this.salary_slip = salary_slip;
-    this.registration_details = registration_details;
+    this.emptype = emptype;
+    this.orgtype = orgtype;
+    this.empname = empname;
+    this.retireage = retireage;
   }
 }

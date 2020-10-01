@@ -27,7 +27,7 @@ export class Register{
     return this.cdetails;
   }
 
-  setCustomerDetails(custdetails:CustomerDetails) {
+  setCustomerDetails(custdetails: CustomerDetails) {
     this.cdetails = custdetails;
   }
 
