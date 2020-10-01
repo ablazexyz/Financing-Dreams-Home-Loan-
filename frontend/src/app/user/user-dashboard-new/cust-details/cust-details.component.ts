@@ -22,12 +22,11 @@ export class CustDetailsComponent implements OnInit {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
-  
   }
 
   ngOnInit(): void {
 
-    
+
 
     this.customerDetailsForm = this.fb.group({
       aadhaar: [
@@ -70,9 +69,9 @@ export class CustDetailsComponent implements OnInit {
                               this.customerDetailsForm.controls.org_type.value,
                               this.customerDetailsForm.controls.employer_name.value,
                               this.customerDetailsForm.controls.retirement_age.value);
-    
+
     console.log("Customer Details",this.custDetails);
-                              
+
     console.log("AADHAR VALUE",this.customerDetailsForm.controls.aadhaar.value);
     this.service.setUserDetails(sessionStorage.getItem('username'),this.custDetails).subscribe(data => {
 
