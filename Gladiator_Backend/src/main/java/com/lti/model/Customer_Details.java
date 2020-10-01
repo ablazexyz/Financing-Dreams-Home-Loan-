@@ -57,7 +57,6 @@ public class Customer_Details implements Serializable{
 	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Registration registration;
 	
-	/*
 	@OneToMany(mappedBy = "cdetails2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Application> applications;
 
@@ -66,7 +65,7 @@ public class Customer_Details implements Serializable{
 		
 		applications.add(appl);
 	}
-	*/
+
 	
 	public Customer_Details() {
 		super();
