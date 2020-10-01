@@ -30,6 +30,7 @@ export class ApplicationDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.salary);
     this.applicationDetailsForm = this.fb.group({
       property_location: ['', Validators.required],
       property_name: ['', Validators.required],
