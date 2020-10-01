@@ -28,6 +28,12 @@ public class CustomerServiceImpl implements CustomerService{
 
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void modifyRegistration(Registration reg) {
+		
+		dao.updateRegistration(reg);
+	}
+	
 	public Registration findRegistrationDetailsbyEmail(String email) {
 		
 		return dao.getRegistrationDetailsbyEmail(email);
