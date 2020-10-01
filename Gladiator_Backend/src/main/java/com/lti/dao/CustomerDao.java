@@ -10,7 +10,7 @@ public interface CustomerDao {
 	
 	public void addRegistration(Registration reg);
 	
-	public void updateRegistration(Registration reg);
+	public Registration updateRegistration(Registration reg);
 	
 	public Registration getRegistrationDetailsbyEmail(String email);
 	

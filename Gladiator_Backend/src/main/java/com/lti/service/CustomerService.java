@@ -11,6 +11,8 @@ public interface CustomerService {
 	
 	public void createRegistration(Registration reg);
 	
+	public Registration modifyRegistration(Registration reg);
+	
 	public Registration findRegistrationDetailsbyEmail(String email);
 	
 	public List<Registration> findAllRegistrations();

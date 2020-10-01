@@ -30,9 +30,11 @@ export class UserDashboardHomeComponent implements OnInit {
     this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data => {
 
       this.registrationDetails = data;
+      console.log(this.registrationDetails);
       
-      if (this.registrationDetails.getCustomerDetails()==null){
+      if (this.registrationDetails.getCustomerDetails() == null){
         this.isFirstTimeUser = true;
+        
       }
       else{
         this.isFirstTimeUser = false;

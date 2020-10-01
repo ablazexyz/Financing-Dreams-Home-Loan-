@@ -29,9 +29,9 @@ public class CustomerDaoImpl implements CustomerDao{
 	}
 	
 	@Transactional(propagation = Propagation.MANDATORY)
-	public void updateRegistration(Registration reg) {
+	public Registration updateRegistration(Registration reg) {
 		
-		entityManager.merge(reg);
+		return entityManager.merge(reg);
 	}
 
 	public Registration getRegistrationDetailsbyEmail(String email) {
