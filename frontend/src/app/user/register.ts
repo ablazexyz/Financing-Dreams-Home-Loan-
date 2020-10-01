@@ -23,12 +23,4 @@ export class Register{
     this.dob = dateOfBirth;
   }
 
-  getCustomerDetails(): CustomerDetails{
-    return this.cdetails;
-  }
-
-  setCustomerDetails(custdetails: CustomerDetails) {
-    this.cdetails = custdetails;
-  }
-
 }

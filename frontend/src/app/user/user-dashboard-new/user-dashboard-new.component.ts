@@ -8,14 +8,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-dashboard-new.component.css'],
 })
 export class UserDashboardNewComponent implements OnInit {
-  name: string;
+
 
   constructor(private router: Router, private service:UserService) {
   }
 
   ngOnInit(): void {
-    // console.log('user dashboard init called');
-    this.name = sessionStorage.getItem('Name');
+
   }
 
   SignOut(): void{

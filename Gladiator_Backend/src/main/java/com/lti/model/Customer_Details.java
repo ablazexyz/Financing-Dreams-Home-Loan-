@@ -57,7 +57,6 @@ public class Customer_Details implements Serializable{
 	@Column(name = "CUSTOMER_SALARY_URL")
 	private String salaryURL;
 	
-	@JsonBackReference
 	@OneToOne(mappedBy = "cdetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Registration registration;
 	

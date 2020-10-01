@@ -22,13 +22,6 @@ export class CustDetailsComponent implements OnInit {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
-
-    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data => {
-
-      this.regdetails = data;
-      console.log(this.regdetails);
-
-    });
   
   }
 
@@ -67,6 +60,8 @@ export class CustDetailsComponent implements OnInit {
 
   addCustomerDetails(): void {
 
+    console.log("Add customer called")
+
     this.custDetails = new CustomerDetails(
                               this.customerDetailsForm.controls.aadhaar.value,
                               this.customerDetailsForm.controls.monthly_sal.value,
@@ -76,13 +71,14 @@ export class CustDetailsComponent implements OnInit {
                               this.customerDetailsForm.controls.employer_name.value,
                               this.customerDetailsForm.controls.retirement_age.value);
     
-    this.regdetails.setCustomerDetails(this.custDetails);
-
-    this.service.updateUserDetails(this.regdetails).subscribe(data => {
+    console.log("Customer Details",this.custDetails);
+                              
+    console.log("AADHAR VALUE",this.customerDetailsForm.controls.aadhaar.value);
+    this.service.setUserDetails(sessionStorage.getItem('username'),this.custDetails).subscribe(data => {
 
       this.regdetails = data;
       console.log(this.regdetails);
-
+      this.router.navigate(['/userDashboard/applicationDetails']);
     });
   }
 }

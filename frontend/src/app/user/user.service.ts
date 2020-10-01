@@ -16,11 +16,22 @@ export class UserService {
     return this.http.get('http://localhost:3000/users?emailId=' + user.emailId + '&password=' + user.password);
   }
 
-  getUserDetails(email:String): Observable<Register>{
+  getRegDetails(email:String): Observable<Register>{
 
     return this.http.get<Register>('http://localhost:9091/HomeApp/users/isFirstTimeUser/'+email);
   }
 
+  getUserDetails(email:String): Observable<CustomerDetails>{
+
+    return this.http.get<CustomerDetails>('http://localhost:9091/HomeApp/users/customerdetails/'+email);
+  }
+
+  setUserDetails(email:String, custdetails:CustomerDetails):Observable<Register>{
+
+    console.log(custdetails);
+    return this.http.post<Register>('http://localhost:9091/HomeApp/users/customerdetails/'+email,custdetails);
+  }
+  
   updateUserDetails(reg:Register): Observable<Register>{
 
     return this.http.post<Register>('http://localhost:9091/HomeApp/users/customerdetails',reg);
