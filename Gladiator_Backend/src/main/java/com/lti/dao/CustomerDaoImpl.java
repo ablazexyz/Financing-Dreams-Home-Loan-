@@ -27,6 +27,12 @@ public class CustomerDaoImpl implements CustomerDao{
 
 		entityManager.persist(reg);
 	}
+	
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void updateRegistration(Registration reg) {
+		
+		entityManager.merge(reg);
+	}
 
 	public Registration getRegistrationDetailsbyEmail(String email) {
 
@@ -84,6 +90,17 @@ public class CustomerDaoImpl implements CustomerDao{
 		Query query = entityManager.createQuery("Select c From Customer_Details c");
 		return query.getResultList();
 
+	}
+
+	@Override
+	public boolean isFirstTimeUser(String emailId) {
+		Registration registeredUser = entityManager.find(Registration.class, emailId);
+		try {
+			int customerId = registeredUser.getCdetails().getCustomer_id();
+			return false;
+		} catch (NullPointerException e) {
+			return true;
+		}
 	}
 
 	/*

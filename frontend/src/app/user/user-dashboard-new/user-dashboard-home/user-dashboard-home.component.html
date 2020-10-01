@@ -1,4 +1,7 @@
-<section id="account-details" *ngIf="accountExists">
+<section
+  id="account-details"
+  *ngIf="accountExists && !isFirstTimeUser && isLoaded"
+>
   <header>
     <h4 class="mt-5 mb-3">Your Account details:</h4>
   </header>
@@ -18,7 +21,10 @@
     </tbody>
   </table>
 </section>
-<section id="account-details-small-screen" *ngIf="accountExists">
+<section
+  id="account-details-small-screen"
+  *ngIf="accountExists && !isFirstTimeUser && isLoaded"
+>
   <header>
     <h4 class="mt-5 mb-3">Your Account details:</h4>
   </header>
@@ -65,8 +71,15 @@
     </tbody>
   </table>
 </section>
-<div id="apply-loan-button" class="text-center">
-  <button class="btn btn-primary" routerLink="../customerDetails">
+<div id="apply-loan-button" class="text-center" *ngIf="!isFirstTimeUser">
+  <button class="btn btn-primary" routerLink="../applicationDetails">
     Apply for Another Loan
+  </button>
+</div>
+
+<div id="apply-loan-button" class="text-center mt-5" *ngIf="isFirstTimeUser">
+  <h4 class="mb-5">Apply for your first loan today!</h4>
+  <button class="btn btn-primary" routerLink="../customerDetails">
+    Click here
   </button>
 </div>

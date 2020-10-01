@@ -1,3 +1,5 @@
+import { CustomerDetails } from './customerDetails';
+
 export class Register{
   firstName: string;
   lastName: string;
@@ -7,6 +9,7 @@ export class Register{
   gender: string;
   nationality: string;
   dob: string;
+  cdetails: CustomerDetails;
 
   constructor(firstName: string, lastName: string, email: string, password: string, phoneNumber: number,
               gender: string, nationality: string, dateOfBirth: string){
@@ -18,6 +21,14 @@ export class Register{
     this.gender = gender;
     this.nationality = nationality;
     this.dob = dateOfBirth;
+  }
+
+  getCustomerDetails(): CustomerDetails{
+    return this.cdetails;
+  }
+
+  setCustomerDetails(custdetails:CustomerDetails) {
+    this.cdetails = custdetails;
   }
 
 }

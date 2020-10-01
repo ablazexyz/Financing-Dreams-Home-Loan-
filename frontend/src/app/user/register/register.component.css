@@ -9,7 +9,7 @@
   font-family: "Roboto", sans-serif;
   text-align: center;
 }
-#register-button {
+#register-button ,#login-button{
   text-align: center;
 }
 

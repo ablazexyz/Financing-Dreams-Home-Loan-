@@ -18,8 +18,12 @@ export class AdminLoginComponent implements OnInit {
   adminLogin: FormGroup;
   adminDetails: Login;
   status: boolean;
+  invalid:boolean;
 
-  constructor(private fb: FormBuilder, private service: AdminService, private router: Router) { }
+  constructor(private fb: FormBuilder, private service: AdminService, private router: Router) {
+
+    sessionStorage.removeItem("adminEmail");
+  }
 
   ngOnInit(): void {
     this.adminLogin = this.fb.group({
@@ -52,7 +56,7 @@ export class AdminLoginComponent implements OnInit {
     // });
 
     this.service.loginAdmin(this.adminDetails).subscribe(res => {
-      
+
       if (res.status == 200) {
         this.status = true;
         console.log("SUCCESS",res.status)
@@ -63,12 +67,14 @@ export class AdminLoginComponent implements OnInit {
         if (err.status == 200) {
           this.status = true;
           console.log("error false",err.status)
+          sessionStorage.setItem("adminEmail",this.adminLogin.controls.username.value)
           this.router.navigateByUrl('/adminDashboard');
         }
         else {
           this.status = false;
           console.log("error", err.status)
           console.log("Invalid Credentials");
+          this.invalid = true;
         }
 
       });

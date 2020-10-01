@@ -28,6 +28,12 @@ public class CustomerServiceImpl implements CustomerService{
 
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void modifyRegistration(Registration reg) {
+		
+		dao.updateRegistration(reg);
+	}
+	
 	public Registration findRegistrationDetailsbyEmail(String email) {
 		
 		return dao.getRegistrationDetailsbyEmail(email);
@@ -68,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	*/
 	
-	public boolean verifyLogin(Login login) {
+	public boolean verifyAdLogin(Login login) {
 		
 		try {
 			Admin adm = dao.getAdminDetailsbyEmail(login.getAdemail());
@@ -84,5 +90,25 @@ public class CustomerServiceImpl implements CustomerService{
 		
 	}
 	
-	
+	public boolean verifyLogin(Login login) {
+		
+		try {
+			Registration reg = dao.getRegistrationDetailsbyEmail(login.getAdemail());
+			if (reg.getPassword().equals(login.getAdpass())) {
+				return true;
+			}
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		return false;
+		
+	}
+
+	@Override
+	public boolean isFirstTimeUser(String emailId) {
+		
+		return dao.isFirstTimeUser(emailId);
+	}
 }

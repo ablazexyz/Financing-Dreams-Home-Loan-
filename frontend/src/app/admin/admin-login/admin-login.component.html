@@ -19,16 +19,23 @@
           <div class="heading mb-2">
             <h4>Admin Login</h4>
           </div>
-          <form [formGroup]="adminLogin"(submit)=authenticateAdmin()>
+          <form [formGroup]="adminLogin" (submit)=authenticateAdmin()>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-user fa-lg"></i></span>
-              <input type="text" id="username" name="username" formControlName="username" placeholder="Username" >
-              <div *ngIf="adminLogin.controls.username.invalid && adminLogin.controls.username.touched" class="mt-0 text-danger">Username field can't be empty</div>
+              <input type="text" id="username" name="username" formControlName="username" placeholder="Username">
+              <div *ngIf="adminLogin.controls.username.invalid && adminLogin.controls.username.touched"
+                class="mt-0 text-danger">Username field can't be empty</div>
             </div>
             <div class="form-input form-group mb-3">
               <span><i class="fa fa-lock fa-lg"></i></span>
               <input type="password" id="password" name="password" formControlName="password" placeholder="Password">
-              <div *ngIf="adminLogin.controls.password.invalid && adminLogin.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
+              <div *ngIf="adminLogin.controls.password.invalid && adminLogin.controls.password.touched"
+                class="mt-0 text-danger">Password field can't be empty</div>
+            </div>
+
+
+            <div *ngIf="invalid" class="alert alert-danger">
+              <div class="text-danger">Invalid credentials.</div>
             </div>
 
             <div class="text-center">
@@ -40,4 +47,5 @@
     </div>
   </div>
 </body>
+
 </html>

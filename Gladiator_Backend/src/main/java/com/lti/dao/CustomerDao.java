@@ -10,6 +10,8 @@ public interface CustomerDao {
 	
 	public void addRegistration(Registration reg);
 	
+	public void updateRegistration(Registration reg);
+	
 	public Registration getRegistrationDetailsbyEmail(String email);
 	
 	public Admin getAdminDetailsbyEmail(String email);
@@ -25,4 +27,6 @@ public interface CustomerDao {
 	public List<Customer_Details> getAllCustomerDetails();
 	
 	//public List<Application> getAllApplications();
+	
+	public boolean isFirstTimeUser(String emailId);
 }

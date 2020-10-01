@@ -1,8 +1,7 @@
 package com.lti.model;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Scope(scopeName = "prototype")
@@ -42,10 +44,11 @@ public class Registration implements Serializable{
 	private String nationality;
 	
 	@Column(name = "CUSTOMER_MOBILE")
-	private String mnumber;
+	private String phoneNumber;
 	
 	@Column(name = "CUSTOMER_DOB")
-	private LocalDateTime dob;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dob;
 	
 	
 
@@ -62,7 +65,7 @@ public class Registration implements Serializable{
 		this.emailId = emailId;
 		this.firstName = cname;
 		this.password = cpass;
-		this.mnumber = cnumber;
+		this.phoneNumber = cnumber;
 	}
 
 	public String getEmailId() {
@@ -114,6 +117,7 @@ public class Registration implements Serializable{
 		this.nationality = nationality;
 	}
 
+<<<<<<< HEAD
 	public String getMnumber() {
 		return mnumber;
 	}
@@ -127,6 +131,22 @@ public class Registration implements Serializable{
 	}
 
 	public void setDob(LocalDateTime dob) {
+=======
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public LocalDate getDob() {
+		return dob;
+	}
+
+	public void setDob(LocalDate dob) {
+>>>>>>> f02455ee0c6ffc634493f469e8aebc7c2dbce0a4
 		this.dob = dob;
 	}
 
@@ -141,7 +161,11 @@ public class Registration implements Serializable{
 	@Override
 	public String toString() {
 		return "Registration [emailId=" + emailId + ", name=" + firstName + ", password=" + password + ", gender=" + gender
+<<<<<<< HEAD
 				+ ", nationality=" + nationality + ", mnumber=" + mnumber + ", dob=" + dob + ", cdetails=" + cdetails
+=======
+				+ ", nationality=" + nationality + ", mnumber=" + phoneNumber + ", dob=" + dob + ", cdetails=" + cdetails
+>>>>>>> f02455ee0c6ffc634493f469e8aebc7c2dbce0a4
 				+ "]";
 	}
 	

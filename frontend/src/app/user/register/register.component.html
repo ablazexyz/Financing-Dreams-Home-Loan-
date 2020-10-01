@@ -86,8 +86,17 @@
         placeholder="Choose your date of birth"
       />
     </div>
+    <div *ngIf="status" class="alert alert-danger">
+      <div class="text-danger">You are already registered with us, Please Login with your user details</div>
+    </div>
+
     <div class="form-group" id="register-button">
       <button type="submit" class="btn btn-primary" [disabled]="userRegisterDetails.invalid">Register</button>
     </div>
+
+    <div class="form-group" id="login-button">
+      <button class="btn btn-danger" routerLink="/userLogin">Login</button>
+    </div>
   </form>
+
 </div>
