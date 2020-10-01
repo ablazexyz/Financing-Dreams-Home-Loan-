@@ -32,4 +32,10 @@ export class UserService {
       'http://localhost:3000/applications/?application_id=' + applicationId
     );
   }
+
+  isFirstTimeUser(email: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      'http://localhost:9091/HomeApp/users/isFirstTimeUser/' + email
+    );
+  }
 }
