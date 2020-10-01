@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationDetails } from './../../../applicationDetails';
 import { UserService } from './../../user.service';
 import { Component, OnInit } from '@angular/core';
+import { Register } from '../../register';
 
 @Component({
   selector: 'user-dashboard-home',
@@ -13,15 +14,33 @@ export class UserDashboardHomeComponent implements OnInit {
   applications: ApplicationDetails[];
   isFirstTimeUser: boolean;
   isLoaded: boolean = false;
-  constructor(
-    private service: UserService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+
+  registrationDetails: Register;
+
+  name: string;
+
+  constructor(private service: UserService, private router: Router,private route: ActivatedRoute) {
     if (!sessionStorage.getItem('username')) {
       this.router.navigate(['/userLogin']);
     }
+
     this.applications = new Array();
+
+
+    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data => {
+
+      this.registrationDetails = data;
+      
+      if (this.registrationDetails.getCustomerDetails()==null){
+        this.isFirstTimeUser = true;
+      }
+      else{
+        this.isFirstTimeUser = false;
+      }
+      
+      sessionStorage.setItem('Name', (data.firstName + ' ' + data.lastName));
+
+    });
   }
 
   ngOnInit(): void {
@@ -35,6 +54,8 @@ export class UserDashboardHomeComponent implements OnInit {
       (error) => console.log(error),
       () => (this.isLoaded = true)
     );
+
+    this.name = sessionStorage.getItem('Name');
   }
 
   viewApplicationDetailsOf(application_id: number) {
