@@ -47,5 +47,6 @@ export class CustDetailsComponent implements OnInit {
 
   addCustomerDetails(): void {
     console.log(this.customerDetailsForm.controls.aadhaar.value);
+
   }
 }
