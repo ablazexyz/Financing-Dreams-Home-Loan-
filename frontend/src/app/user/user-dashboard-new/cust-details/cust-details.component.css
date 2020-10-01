@@ -1,0 +1,25 @@
+
+.cust-details {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.cust-details-header {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .cust-details {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .cust-details {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 1001px) {
+}

@@ -1,0 +1,93 @@
+<div class="reg-form">
+  <h3 id="reg-form-header">Register</h3>
+  <form [formGroup]="userRegisterDetails" (submit)=RegisterUser()>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        class="form-control"
+        formControlName="firstName"
+        placeholder="Enter your first name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+        placeholder="Enter your last name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter your Email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Set your Password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        type="tel"
+        name="phoneNumber"
+        id="phoneNumber"
+        class="form-control"
+        formControlName="phoneNumber"
+        placeholder="Enter your phone number"
+      />
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select name="gender" id="gender" class="form-control" formControlName="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input
+        type="text"
+        name="nationality"
+        id="nationality"
+        class="form-control"
+        formControlName="nationality"
+        placeholder="Enter your nationality"
+      />
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <input
+        type="date"
+        name="dateOfBirth"
+        id="dateOfBirth"
+        class="form-control"
+        formControlName="dateOfBirth"
+        placeholder="Choose your date of birth"
+      />
+    </div>
+    <div class="form-group" id="register-button">
+      <button type="submit" class="btn btn-primary" [disabled]="userRegisterDetails.invalid">Register</button>
+    </div>
+  </form>
+</div>
