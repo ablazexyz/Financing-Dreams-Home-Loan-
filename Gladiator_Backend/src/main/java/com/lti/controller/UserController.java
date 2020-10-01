@@ -74,5 +74,8 @@ public class UserController {
 		
 		return service.findRegistrationDetailsbyEmail(email);
 
+	@GetMapping(path = "isFirstTimeUser/{email}")
+	public boolean isFirstTimeUser(@PathVariable(name = "email") String email) {
+		return service.isFirstTimeUser(email);
 	}
 }

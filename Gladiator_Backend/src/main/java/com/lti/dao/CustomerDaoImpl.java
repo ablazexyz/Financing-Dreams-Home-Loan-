@@ -92,6 +92,17 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	}
 
+	@Override
+	public boolean isFirstTimeUser(String emailId) {
+		Registration registeredUser = entityManager.find(Registration.class, emailId);
+		try {
+			int customerId = registeredUser.getCdetails().getCustomer_id();
+			return false;
+		} catch (NullPointerException e) {
+			return true;
+		}
+	}
+
 	/*
 	public List<Application> getAllApplications() {
 

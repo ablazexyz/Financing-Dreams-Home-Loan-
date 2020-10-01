@@ -105,4 +105,10 @@ public class CustomerServiceImpl implements CustomerService{
 		return false;
 		
 	}
+
+	@Override
+	public boolean isFirstTimeUser(String emailId) {
+		
+		return dao.isFirstTimeUser(emailId);
+	}
 }

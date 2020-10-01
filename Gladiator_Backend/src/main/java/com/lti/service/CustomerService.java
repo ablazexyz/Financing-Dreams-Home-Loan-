@@ -28,4 +28,6 @@ public interface CustomerService {
 	public boolean verifyLogin(Login login) ;
 	
 	public boolean verifyAdLogin(Login login) ;
+	
+	public boolean isFirstTimeUser(String emailId);
 }

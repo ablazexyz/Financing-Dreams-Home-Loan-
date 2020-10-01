@@ -27,4 +27,6 @@ public interface CustomerDao {
 	public List<Customer_Details> getAllCustomerDetails();
 	
 	//public List<Application> getAllApplications();
+	
+	public boolean isFirstTimeUser(String emailId);
 }
