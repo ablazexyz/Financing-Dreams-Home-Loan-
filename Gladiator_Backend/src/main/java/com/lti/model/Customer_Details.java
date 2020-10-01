@@ -200,6 +200,8 @@ public class Customer_Details implements Serializable{
 	public void setApplications(Set<Application> applications) {
 		this.applications = applications;
 	}
+
+
 	
 	
 	

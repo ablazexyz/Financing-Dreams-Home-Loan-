@@ -92,7 +92,7 @@ public class UserController {
 	public Customer_Details getCustomerDetails(@PathVariable("emailId") String email) {
 		
 		try {
-			Customer_Details cd = service.findCustomerDetailsbyEmail(email);
+			Customer_Details cd =  service.findCustomerDetailsbyEmail(email);
 			return cd;
 		}
 		catch(Exception e) {
