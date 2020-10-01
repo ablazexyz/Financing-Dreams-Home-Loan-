@@ -117,21 +117,6 @@ public class Registration implements Serializable{
 		this.nationality = nationality;
 	}
 
-<<<<<<< HEAD
-	public String getMnumber() {
-		return mnumber;
-	}
-
-	public void setMnumber(String mnumber) {
-		this.mnumber = mnumber;
-	}
-
-	public LocalDateTime getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDateTime dob) {
-=======
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -146,7 +131,6 @@ public class Registration implements Serializable{
 	}
 
 	public void setDob(LocalDate dob) {
->>>>>>> f02455ee0c6ffc634493f469e8aebc7c2dbce0a4
 		this.dob = dob;
 	}
 
