@@ -4,6 +4,7 @@ import { CustomerDetails } from './customerDetails';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Register } from './register';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,13 @@ import { Observable } from 'rxjs';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  registerUser(user): Observable<object> {
-    return this.http.post('http://localhost:3000/users', user);
-  }
-
   loginUser(user): Observable<object>{
     return this.http.get('http://localhost:3000/users?emailId=' + user.emailId + '&password=' + user.password);
+  }
+
+  getUserDetails(email:String): Observable<Register>{
+
+    return this.http.get<Register>('http://localhost:9091/HomeApp/users/isFirstTimeUser/'+email);    
   }
 
   getApplicationsByCustomerId() {

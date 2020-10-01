@@ -69,12 +69,14 @@ public class UserController {
 		return service.findAllRegistrations();
 	}
 	
-	@GetMapping(path= "{emailId}")
+	// http://localhost:9091/HomeApp/users/isFirstTimeUser/{emailId}
+	@GetMapping(path= "isFirstTimeUser/{emailId}")
 	public Registration getUserDetails(@PathVariable("emailId") String email) {
 		
 		return service.findRegistrationDetailsbyEmail(email);
-
-	@GetMapping(path = "isFirstTimeUser/{email}")
+	}
+	
+	@GetMapping(path = "isFirstTimeUser/")
 	public boolean isFirstTimeUser(@PathVariable(name = "email") String email) {
 		return service.isFirstTimeUser(email);
 	}
