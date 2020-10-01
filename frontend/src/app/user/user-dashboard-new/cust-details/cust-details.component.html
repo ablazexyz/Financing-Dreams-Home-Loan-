@@ -1,9 +1,8 @@
 <div class="cust-details">
   <h3 class="cust-details-header">Add details</h3>
   <form
-    action=""
     [formGroup]="customerDetailsForm"
-    (ngSubmit)="addCustomerDetails()"
+    (submit)=addCustomerDetails()
   >
     <div class="form-group">
       <label for="aadhaar">Aadhaar Number</label>
@@ -223,13 +222,15 @@
       </div>
     </div>
     <div class="form-group text-center mt-2">
-      <input
-        type="submit"
-        value="Submit"
-        class="btn btn-primary"
-        routerLink="/userDashboard/applicationDetails"
-        [disabled]="customerDetailsForm.invalid"
-      />
+      <button  type="submit"
+      class="btn btn-primary"
+      [disabled]="customerDetailsForm.invalid">
+      
+      <!-- routerLink="/userDashboard/applicationDetails"
+      -->
+       
+      Submit
+      </button>
     </div>
   </form>
 </div>

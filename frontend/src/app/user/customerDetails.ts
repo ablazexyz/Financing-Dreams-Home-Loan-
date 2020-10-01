@@ -2,7 +2,7 @@ import { Register } from './register';
 
 export class CustomerDetails {
   customer_id: number;
-  aadhaar: number;
+  aadhar: number;
   salary: number;
   pan: string;
   emptype: string;
@@ -15,7 +15,7 @@ export class CustomerDetails {
   registration: Register;
 
   constructor(
-    aadhaar: number,
+    aadhar: number,
     salary: number,
     pan: string,
     emptype: string,
@@ -23,7 +23,7 @@ export class CustomerDetails {
     empname: string,
     retireage: number
   ) {
-    this.aadhaar = aadhaar;
+    this.aadhar = aadhar;
     this.salary = salary;
     this.pan = pan;
     this.emptype = emptype;

@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../user.service';
+import { CustomerDetails } from '../../customerDetails';
 
 @Component({
   selector: 'application-details',
@@ -8,11 +10,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./application-details.component.css'],
 })
 export class ApplicationDetailsComponent implements OnInit {
+
+  salary: number;
+
   applicationDetailsForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {
+
+  constructor(private fb: FormBuilder, private router: Router, private service: UserService) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
+
+    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
+
+      this.salary = data.salary;
+      console.log(this.salary);
+    })
+
+
   }
 
   ngOnInit(): void {

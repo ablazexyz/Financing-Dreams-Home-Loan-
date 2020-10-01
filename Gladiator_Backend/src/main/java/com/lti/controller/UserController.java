@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.model.Customer_Details;
 import com.lti.model.Login;
 import com.lti.model.Registration;
 import com.lti.service.CustomerService;
@@ -76,8 +77,24 @@ public class UserController {
 		return service.findRegistrationDetailsbyEmail(email);
 	}
 	
-	@PostMapping(path = "customerdetails")
-	public Registration updateRegistration(@RequestBody Registration reg) {
+	@PostMapping(path = "customerdetails/{emailId}")
+	public Registration setCustomerDetails(@PathVariable("emailId") String email,@RequestBody Customer_Details cd) {
+		
+		Registration reg = service.findRegistrationDetailsbyEmail(email);
+		reg.setCdetails(cd);
 		return service.modifyRegistration(reg);
+	}
+	
+	// http://localhost:9091/HomeApp/users/customerdetails/
+	@GetMapping(path= "customerdetails/{emailId}")
+	public Customer_Details getCustomerDetails(@PathVariable("emailId") String email) {
+		
+		try {
+			Customer_Details cd = service.findCustomerDetailsbyEmail(email);
+			return cd;
+		}
+		catch(Exception e) {
+			return null; 
+		}
 	}
 }

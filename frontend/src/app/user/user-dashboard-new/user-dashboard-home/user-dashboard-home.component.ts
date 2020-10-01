@@ -27,25 +27,32 @@ export class UserDashboardHomeComponent implements OnInit {
     this.applications = new Array();
 
 
-    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data => {
+    this.service.getRegDetails(sessionStorage.getItem('username')).subscribe(data => {
 
       this.registrationDetails = data;
       console.log(this.registrationDetails);
       
-      if (this.registrationDetails.getCustomerDetails() == null){
+      this.name = (data.firstName + ' ' + data.lastName);
+    });
+
+
+    this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
+
+      console.log(data)
+      if (data == null){
         this.isFirstTimeUser = true;
-        
       }
       else{
         this.isFirstTimeUser = false;
       }
-      
-      sessionStorage.setItem('Name', (data.firstName + ' ' + data.lastName));
+      console.log("Boolean Value:",this.isFirstTimeUser)
+    })
 
-    });
+
   }
 
   ngOnInit(): void {
+    /*
     this.service.getApplicationsByCustomerId().subscribe((data) => {
       this.applications = data;
     });
@@ -56,8 +63,8 @@ export class UserDashboardHomeComponent implements OnInit {
       (error) => console.log(error),
       () => (this.isLoaded = true)
     );
-
-    this.name = sessionStorage.getItem('Name');
+    */
+    
   }
 
   viewApplicationDetailsOf(application_id: number) {
