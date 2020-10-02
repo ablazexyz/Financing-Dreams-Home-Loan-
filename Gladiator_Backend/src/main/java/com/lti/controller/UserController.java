@@ -87,7 +87,7 @@ public class UserController {
 		return service.modifyRegistration(reg);
 	}
 	
-	// http://localhost:9091/HomeApp/users/customerdetails/
+	// http://localhost:9091/HomeApp/users/customerdetails/{emailId}
 	@GetMapping(path= "customerdetails/{emailId}")
 	public Customer_Details getCustomerDetails(@PathVariable("emailId") String email) {
 		
@@ -100,7 +100,7 @@ public class UserController {
 		}
 	}
 	
-	// http://localhost:9091/HomeApp/users/applicationdetails/
+	// http://localhost:9091/HomeApp/users/applicationdetails/{emailId}
 	@PostMapping(path = "applicationdetails/{emailId}")
 	public Application addApplication(@PathVariable("emailId") String email,@RequestBody Application appl) {
 		
@@ -120,4 +120,12 @@ public class UserController {
 		return appl;
 	}
 	
+	// http://localhost:9091/HomeApp/users/applicationdetails/{emailId}
+	@GetMapping(path= "applicationdetails/{emailId}")
+	public List<Application> getAllApplicationsbyEmail(@PathVariable("emailId") String email){
+		
+		return service.findAllApplicationsbyEmail(email);
+		
+	}
+
 }

@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "LOAN_TBL")
 public class Loan {
@@ -20,15 +23,17 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int LoanId;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "APPLICATION_ID")
 	private Application application;
 
-	/*
+
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ACCOUNT_NO")
 	private Account account;
-	*/
+	
 	
 	public Loan() {
 		super();
@@ -50,7 +55,7 @@ public class Loan {
 		LoanId = loanId;
 	}
 
-	/*
+	
 	public Account getAccount() {
 		return account;
 	}
@@ -58,6 +63,6 @@ public class Loan {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	*/
+	
 	
 }
