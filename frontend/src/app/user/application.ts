@@ -1,3 +1,5 @@
+import { CustomerDetails } from './customerDetails';
+
 export class Application{
 
   applicationId: number;
@@ -12,6 +14,7 @@ export class Application{
   loanURL: string;
   nocURL: string;
   agreementURL: string;
+  cdetails2: CustomerDetails;
 
   constructor(
     propertyLocation: string,

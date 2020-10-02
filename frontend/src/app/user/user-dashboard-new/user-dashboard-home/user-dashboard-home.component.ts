@@ -1,8 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApplicationDetails } from './../../../applicationDetails';
+
 import { UserService } from './../../user.service';
 import { Component, OnInit } from '@angular/core';
 import { Register } from '../../register';
+import { Application } from '../../application';
 
 @Component({
   selector: 'user-dashboard-home',
@@ -11,7 +12,7 @@ import { Register } from '../../register';
 })
 export class UserDashboardHomeComponent implements OnInit {
   accountExists: boolean = true;
-  applications: ApplicationDetails[];
+  applications: Application[];
   isFirstTimeUser: boolean;
   isLoaded: boolean = false;
 
@@ -52,9 +53,10 @@ export class UserDashboardHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
-    this.service.getApplicationsByCustomerId().subscribe((data) => {
+  
+    this.service.getApplicationsbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
       this.applications = data;
+      console.log("Applications",this.applications);
     });
     this.service.isFirstTimeUser(sessionStorage.getItem('username')).subscribe(
       (data) => {
@@ -63,7 +65,7 @@ export class UserDashboardHomeComponent implements OnInit {
       (error) => console.log(error),
       () => (this.isLoaded = true)
     );
-    */
+
     
   }
 

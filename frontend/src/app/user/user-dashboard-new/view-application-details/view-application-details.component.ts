@@ -2,6 +2,7 @@ import { UserService } from './../../user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApplicationDetails } from 'src/app/applicationDetails';
+import { Application } from '../../application';
 
 @Component({
   selector: 'view-application-details',
@@ -10,8 +11,11 @@ import { ApplicationDetails } from 'src/app/applicationDetails';
 })
 export class ViewApplicationDetailsComponent implements OnInit {
   applicationId: number;
-  applicationDetailToDisplay: ApplicationDetails;
+
+  applicationDetailToDisplay: Application;
+
   loadCompleted: boolean = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -31,6 +35,7 @@ export class ViewApplicationDetailsComponent implements OnInit {
       (data) => {
         this.applicationDetailToDisplay = data;
         console.log(this.applicationDetailToDisplay);
+        console.log("Customer Details:", this.applicationDetailToDisplay.cdetails2);
       },
       (error) => console.log(error),
       () => (this.loadCompleted = true)

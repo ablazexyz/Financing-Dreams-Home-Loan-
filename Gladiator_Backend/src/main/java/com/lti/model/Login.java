@@ -10,15 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component("login")
 @Scope(scopeName = "prototype")
-@Entity
-@Table(name = "LOGIN_TBL")
 public class Login {
 	
-	@Id
-	@Column(name ="ADMIN_EMAIL")
+	
 	private String ademail;
 	
-	@Column(name = "ADMIN_PASS")
+
 	private String adpass;
 
 	

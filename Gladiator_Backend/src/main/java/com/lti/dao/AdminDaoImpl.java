@@ -49,17 +49,23 @@ public class AdminDaoImpl implements AdminDao{
 		Loan loan = new Loan();
 		loan.setApplication(appl);
 
-		List<Integer> cid_list = entityManager.createQuery("SELECT a.cust_id FROM Account a").getResultList();
-
-		Account ac1;
+		List<Integer> cid_list = entityManager.createQuery("SELECT c.cust_id FROM Account c").getResultList();
+		System.out.println("Cust ID List");
+		
+		for (int c:cid_list) {
+			System.out.println("CID: "+c);
+		}
+		
+		Account ac1 ;
 		int cid = appl.getCdetails2().getCustomer_id();
-
+		System.out.println("Cust ID: "+cid);
+		
 		if (cid_list.contains(cid)) {
 
-			Query query1 = entityManager.createQuery("SELECT a FROM Account a WHERE a.cust_id = :cid",Account.class);
+			Query query1 = entityManager.createQuery("SELECT c FROM Account c Where c.cust_id = :cid");
 			query1.setParameter("cid", cid);
 
-			ac1 = (Account) query.getSingleResult();
+			ac1 = (Account) query1.getSingleResult(); 
 
 			double balance = ac1.getBalance();
 			balance += (loan.getApplication().getLoanAmt());

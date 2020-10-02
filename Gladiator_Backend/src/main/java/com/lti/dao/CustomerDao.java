@@ -32,4 +32,6 @@ public interface CustomerDao {
 	public boolean isFirstTimeUser(String emailId);
 
 	public void addApplication(Application appl);
+
+	public Application getApplicationById(int applId);
 }

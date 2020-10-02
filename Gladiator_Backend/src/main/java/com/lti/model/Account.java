@@ -73,6 +73,12 @@ public class Account {
 	public void setCust_id(int cust_id) {
 		this.cust_id = cust_id;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [AccountNo=" + AccountNo + ", balance=" + balance + ", cust_id=" + cust_id + ", loans=" + loans
+				+ "]";
+	}
 	
 	
 }

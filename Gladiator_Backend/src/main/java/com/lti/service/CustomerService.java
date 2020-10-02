@@ -35,4 +35,6 @@ public interface CustomerService {
 	public boolean verifyAdLogin(Login login) ;
 	
 	public boolean isFirstTimeUser(String emailId);
+
+	public Application findApplicationById(int applId);
 }

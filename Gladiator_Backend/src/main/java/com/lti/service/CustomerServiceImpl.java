@@ -120,5 +120,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return dao.isFirstTimeUser(emailId);
 	}
 
+	@Override
+	public Application findApplicationById(int applId) {
+		
+		return dao.getApplicationById(applId);
+		
+	}
+
 	
 }

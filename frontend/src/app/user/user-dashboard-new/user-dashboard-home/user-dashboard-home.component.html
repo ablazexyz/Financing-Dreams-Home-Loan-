@@ -65,11 +65,11 @@
           <a
             style="text-decoration: underline"
             [routerLink]="['../viewApplicationDetails']"
-            [queryParams]="{ application_id: application.application_id }"
-            >{{ application.application_id }}</a
+            [queryParams]="{ application_id: application.applicationId }"
+            >{{ application.applicationId }}</a
           >
         </td>
-        <td class="col-4">{{ application.loan_status }}</td>
+        <td class="col-4">{{ application.loanStatus }}</td>
       </tr>
     </tbody>
   </table>

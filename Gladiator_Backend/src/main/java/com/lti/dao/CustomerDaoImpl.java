@@ -112,14 +112,13 @@ public class CustomerDaoImpl implements CustomerDao{
 		}
 	}
 
-	
-
-	/*
-	public List<Application> getAllApplications() {
-
-		Query query = entityManager.createQuery("Select a From Application a ");
-		return query.getResultList();
-
+	@Override
+	public Application getApplicationById(int applId) {
+		
+		Query query = entityManager.createQuery("Select a From Application a where a.applicationId = :id");
+		query.setParameter("id", applId);
+		return (Application) query.getSingleResult();
 	}
-	*/
+
+	
 }

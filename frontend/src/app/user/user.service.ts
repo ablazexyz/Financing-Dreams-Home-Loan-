@@ -11,6 +11,9 @@ import {Application} from './application'
   providedIn: 'root',
 })
 export class UserService {
+  getApplicationDetailsById(applicationId: number) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   loginUser(user): Observable<object>{
@@ -43,18 +46,14 @@ export class UserService {
     return this.http.post<Register>('http://localhost:9091/HomeApp/users/customerdetails',reg);
   }
 
-  getApplicationsByCustomerId() {
-    return this.http.get<ApplicationDetails[]>(
-      'http://localhost:3000/applications/?customer_id=123'
-    );
+  getApplicationsbyEmail(email:String): Observable<Application[]>{
+
+    return this.http.get<Application[]>('http://localhost:9091/HomeApp/users/applicationdetails/'+email);
   }
 
-  getApplicationDetailById(
-    applicationId: number
-  ): Observable<ApplicationDetails> {
-    return this.http.get<ApplicationDetails>(
-      'http://localhost:3000/applications/?application_id=' + applicationId
-    );
+  getApplicationDetailById(applicationId: number): Observable<Application> {
+
+    return this.http.get<Application>('http://localhost:9091/HomeApp/users/application/'+applicationId);
   }
 
   isFirstTimeUser(email: string): Observable<boolean> {

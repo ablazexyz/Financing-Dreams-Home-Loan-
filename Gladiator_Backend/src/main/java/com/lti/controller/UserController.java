@@ -127,5 +127,12 @@ public class UserController {
 		return service.findAllApplicationsbyEmail(email);
 		
 	}
+	
+	// http://localhost:9091/HomeApp/users/application/{id}
+	@GetMapping(path= "application/{id}")
+	public Application getApplicationById(@PathVariable("id") int applId) {
+		
+		return service.findApplicationById(applId);
+	}
 
 }
