@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
@@ -118,6 +119,17 @@ public class CustomerDaoImpl implements CustomerDao{
 		Query query = entityManager.createQuery("Select a From Application a where a.applicationId = :id");
 		query.setParameter("id", applId);
 		return (Application) query.getSingleResult();
+	}
+
+	@Override
+	public Account getAccountByEmail(String email) {
+		Query query = entityManager.createQuery("Select a From Account a Where a.cust_id = "
+												+ "(Select b.customer_id From Customer_Details b "
+												+ "Where b.registration.emailId = :email)");
+		
+		query.setParameter("email", email);
+		
+		return (Account) query.getSingleResult();
 	}
 
 	

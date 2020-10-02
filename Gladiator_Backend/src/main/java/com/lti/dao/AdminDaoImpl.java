@@ -29,10 +29,19 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<Application> getAllApplications() {
 
-		Query query = entityManager.createQuery("Select a From Application a ");
+		Query query = entityManager.createQuery("Select a From Application a Where a.loanStatus = :status ");
+		query.setParameter("status", "Pending");
 		return query.getResultList();
 	}
+	
+	
 
+	@Override
+	public List<Loan> getApprovedLoans() {
+		
+		Query query = entityManager.createQuery("Select l From Loan l");
+		return query.getResultList();
+	}
 
 
 	@Override
@@ -105,5 +114,7 @@ public class AdminDaoImpl implements AdminDao{
 		return appl;
 		
 	}
+
+
 
 }

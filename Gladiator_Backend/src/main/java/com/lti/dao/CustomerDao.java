@@ -2,6 +2,7 @@ package com.lti.dao;
 
 import java.util.List;
 
+import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
@@ -34,4 +35,6 @@ public interface CustomerDao {
 	public void addApplication(Application appl);
 
 	public Application getApplicationById(int applId);
+
+	public Account getAccountByEmail(String email);
 }

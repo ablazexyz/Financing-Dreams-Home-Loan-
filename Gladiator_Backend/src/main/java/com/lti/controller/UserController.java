@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.model.Account;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
 import com.lti.model.Login;
@@ -133,6 +134,19 @@ public class UserController {
 	public Application getApplicationById(@PathVariable("id") int applId) {
 		
 		return service.findApplicationById(applId);
+	}
+	
+	// http://localhost:9091/HomeApp/users/account/{emailid}
+	@GetMapping(path = "account/{email}")
+	public Account getAccountByEmail(@PathVariable("email") String email) {
+		
+		try {
+			return service.findAccountByEmail(email);
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 }

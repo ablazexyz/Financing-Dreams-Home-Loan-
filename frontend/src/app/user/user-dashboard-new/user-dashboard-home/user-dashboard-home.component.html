@@ -3,7 +3,7 @@
 </header>
 <section
   id="account-details"
-  *ngIf="accountExists && !isFirstTimeUser && isLoaded"
+  *ngIf="(accountExists && (!isFirstTimeUser) && isLoaded)"
 >
   <header>
     <h4 class="mt-5 mb-3">Your Account details:</h4>
@@ -18,15 +18,15 @@
     </thead>
     <tbody>
       <tr class="d-flex">
-        <td class="col-8">1234567</td>
-        <td class="col-4">34000</td>
+        <td class="col-8">{{account.accountNo}}</td>
+        <td class="col-4">{{account.balance}}</td>
       </tr>
     </tbody>
   </table>
 </section>
 <section
   id="account-details-small-screen"
-  *ngIf="accountExists && !isFirstTimeUser && isLoaded"
+  *ngIf="(accountExists && !isFirstTimeUser && isLoaded)"
 >
   <header>
     <h4 class="mt-5 mb-3">Your Account details:</h4>

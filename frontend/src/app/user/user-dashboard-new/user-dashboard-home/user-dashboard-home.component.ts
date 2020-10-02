@@ -1,3 +1,5 @@
+import { Account } from './../../Account';
+
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { UserService } from './../../user.service';
@@ -11,9 +13,15 @@ import { Application } from '../../application';
   styleUrls: ['./user-dashboard-home.component.css'],
 })
 export class UserDashboardHomeComponent implements OnInit {
-  accountExists: boolean = true;
-  applications: Application[];
+  
+  accountExists: boolean = false;
+
+  applications: Application[] = [];
+
+  account: Account;
+
   isFirstTimeUser: boolean;
+
   isLoaded: boolean = false;
 
   registrationDetails: Register;
@@ -25,39 +33,69 @@ export class UserDashboardHomeComponent implements OnInit {
       this.router.navigate(['/userLogin']);
     }
 
-    this.applications = new Array();
 
+  }
 
-    this.service.getRegDetails(sessionStorage.getItem('username')).subscribe(data => {
-
-      this.registrationDetails = data;
-      console.log(this.registrationDetails);
-      
-      this.name = (data.firstName + ' ' + data.lastName);
-    });
-
+  ngOnInit(): void {
 
     this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
-
-      console.log(data)
+  
       if (data == null){
         this.isFirstTimeUser = true;
       }
       else{
         this.isFirstTimeUser = false;
+
+      this.service.getRegDetails(sessionStorage.getItem('username')).subscribe(data => {
+
+        this.registrationDetails = data;
+        console.log(this.registrationDetails);
+        
+        this.name = (data.firstName + ' ' + data.lastName);
+
+        console.log("Registration Details :",data)
+      });
+
+     
+
+     
+    
+          this.service.getAccountbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
+            
+            this.account = data;
+            console.log("Account Details",this.account);
+
+            if (data==null){
+              this.accountExists = false;
+            }
+            else{
+              this.accountExists = true;
+            }
+            
+
+            
+           
+
+            console.log("First Time User Value:",this.isFirstTimeUser);
+            console.log("Account Exists Boolean:",this.accountExists);
+            console.log("IsLoaded Boolean Value: ",this.isLoaded);
+
+            this.service.getApplicationsbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
+              this.applications = data;
+              console.log("Applications",this.applications);
+            });
+
+            this.isLoaded = true;
+            
+          })
+
       }
-      console.log("Boolean Value:",this.isFirstTimeUser)
-    })
 
 
-  }
-
-  ngOnInit(): void {
-  
-    this.service.getApplicationsbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
-      this.applications = data;
-      console.log("Applications",this.applications);
     });
+
+
+    /*
     this.service.isFirstTimeUser(sessionStorage.getItem('username')).subscribe(
       (data) => {
         this.isFirstTimeUser = data;
@@ -65,7 +103,7 @@ export class UserDashboardHomeComponent implements OnInit {
       (error) => console.log(error),
       () => (this.isLoaded = true)
     );
-
+      */
     
   }
 

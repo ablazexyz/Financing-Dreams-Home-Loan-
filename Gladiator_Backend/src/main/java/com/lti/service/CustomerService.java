@@ -2,6 +2,7 @@ package com.lti.service;
 
 import java.util.List;
 
+import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
@@ -37,4 +38,6 @@ public interface CustomerService {
 	public boolean isFirstTimeUser(String emailId);
 
 	public Application findApplicationById(int applId);
+
+	public Account findAccountByEmail(String email);
 }

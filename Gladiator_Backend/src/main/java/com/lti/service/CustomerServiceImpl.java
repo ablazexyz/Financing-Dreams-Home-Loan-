@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.CustomerDao;
+import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
@@ -125,6 +126,12 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return dao.getApplicationById(applId);
 		
+	}
+
+	@Override
+	public Account findAccountByEmail(String email) {
+		
+		return dao.getAccountByEmail(email);
 	}
 
 	

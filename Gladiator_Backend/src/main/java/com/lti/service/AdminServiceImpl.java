@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.AdminDao;
 import com.lti.model.Application;
+import com.lti.model.Loan;
 
 @Service("AdminService")
 @Scope(scopeName = "singleton")
@@ -38,5 +39,13 @@ public class AdminServiceImpl implements adminService{
 		return dao.rejectAppl(applId,loanRemarks);
 		
 	}
+
+	@Override
+	public List<Loan> findApprovedLoans() {
+		
+		return dao.getApprovedLoans();
+	}
+
+	
 
 }

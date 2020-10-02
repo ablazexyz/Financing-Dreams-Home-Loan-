@@ -19,18 +19,30 @@ import com.lti.service.adminService;
 @RestController
 @CrossOrigin
 @RequestMapping(path = "admin")
+//http://localhost:9091/HomeApp/admin/
 public class AdminController {
 	
 	@Autowired
 	private adminService service;
 	
+	// http://localhost:9091/HomeApp/admin/applications
 	@GetMapping(path = "applications")
-	public List<Application> getApplications(){
+	public List<Application> getPendingApplications(){
 		
 		return service.findAllApplication();
 		
 	}
 	
+
+	// http://localhost:9091/HomeApp/admin/loans
+	@GetMapping(path = "loans")
+	public List<Loan> getApprovedLoans(){
+		
+		return service.findApprovedLoans();
+		
+	}
+	
+	// http://localhost:9091/HomeApp/admin/approve
 	@PostMapping(path = "approve")
 	public void verifyApplication(@RequestBody LoanStatus loan) {
 		
@@ -38,6 +50,7 @@ public class AdminController {
 		
 	}
 	
+	// http://localhost:9091/HomeApp/admin/reject
 	@PostMapping(path = "reject")
 	public Application rejectApplication(@RequestBody LoanStatus loan) {
 		

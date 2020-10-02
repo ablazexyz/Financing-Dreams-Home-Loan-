@@ -1,3 +1,4 @@
+import { Account } from './Account';
 import { ApplicationDetails } from './../applicationDetails';
 import { CustomerDetails } from './customerDetails';
 // import { Register } from './register-model';
@@ -11,9 +12,9 @@ import {Application} from './application'
   providedIn: 'root',
 })
 export class UserService {
-  getApplicationDetailsById(applicationId: number) {
-    throw new Error('Method not implemented.');
-  }
+
+  
+
   constructor(private http: HttpClient) {}
 
   loginUser(user): Observable<object>{
@@ -54,6 +55,11 @@ export class UserService {
   getApplicationDetailById(applicationId: number): Observable<Application> {
 
     return this.http.get<Application>('http://localhost:9091/HomeApp/users/application/'+applicationId);
+  }
+
+  getAccountbyEmail(email: string) : Observable<Account>{
+
+    return this.http.get<Account>('http://localhost:9091/HomeApp/users/account/'+email);
   }
 
   isFirstTimeUser(email: string): Observable<boolean> {
