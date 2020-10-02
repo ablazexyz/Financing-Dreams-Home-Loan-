@@ -16,7 +16,7 @@ import { Application } from '../../application';
 
 export class ApplicationDetailsComponent implements OnInit {
 
- 
+
   salary: number;
 
   userDetail: CustomerDetails;
@@ -24,13 +24,13 @@ export class ApplicationDetailsComponent implements OnInit {
   applicationDetailsForm: FormGroup;
 
   applicationdetails: Application;
- 
+
   constructor(private fb: FormBuilder, private router: Router, private service: UserService) {
     if (!sessionStorage.getItem('username')){
       this.router.navigate(['/userLogin']);
     }
 
-    
+
     this.service.getUserDetails(sessionStorage.getItem('username')).subscribe(data=>{
 
       this.salary = 6;
@@ -42,7 +42,6 @@ export class ApplicationDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.applicationDetailsForm = this.fb.group({
       property_location: ['', Validators.required],
       property_name: ['', Validators.required],
@@ -78,7 +77,7 @@ export class ApplicationDetailsComponent implements OnInit {
                                               this.applicationDetailsForm.controls.interest_rate.value,
                                               this.applicationDetailsForm.controls.tenure.value);
 
-    
+
     this.service.addApplication(sessionStorage.getItem('username'),this.applicationdetails).subscribe(data=>{
 
       this.applicationdetails = data;
