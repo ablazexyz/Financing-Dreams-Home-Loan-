@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="myNav">
@@ -19,20 +22,30 @@
 
           <div class="sidebar col-lg-3 col-md-4 fixed-top">
 
-            <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border"><img src="../../../assets/images/logo2.png" alt="Logo" class="logo">Financing Dreams</a>
+            <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border"><img
+                src="../../../assets/images/logo2.png" alt="Logo" class="logo">Financing Dreams</a>
             <div class="bottom-border pb-3 d-flex justify-content-center align-items-center">
               <img src="../../../assets/images/AdminIcon.png" alt="Profile-Pic" width="50" class="rounded-circle mr-3">
               <span class="text-light">Admin Username</span>
             </div>
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 " (click)="highlightDash=!highlightDash ; highlightProfile=false ; highlightApp=false; navTitle='dashboard'" [class.current]="highlightDash" routerLink="/adminDashboard/adminHome"><i class="fa fa-home text-light fa-lg mr-3"></i>Dashboard</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 "
+                  (click)="highlightDash=!highlightDash ; highlightProfile=false ; highlightApp=false; navTitle='dashboard'"
+                  [class.current]="highlightDash" routerLink="/adminDashboard/adminHome"><i
+                    class="fa fa-home text-light fa-lg mr-3"></i>Dashboard</a>
               </li>
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link" (click)="highlightProfile=!highlightProfile ; highlightDash=false ; highlightApp=false; navTitle='profile'" [class.current]="highlightProfile" routerLink="/adminDashboard/adminProfile"><i class="fa fa-user text-light fa-lg mr-3"></i>Profile</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link"
+                  (click)="highlightProfile=!highlightProfile ; highlightDash=false ; highlightApp=false; navTitle='profile'"
+                  [class.current]="highlightProfile" routerLink="/adminDashboard/adminProfile"><i
+                    class="fa fa-user text-light fa-lg mr-3"></i>Profile</a>
               </li>
               <li class="nav-item ">
-                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link" (click)="highlightApp=!highlightApp ; highlightProfile=false ; highlightDash=false; navTitle='Applications'" [class.current]="highlightApp" routerLink="/adminDashboard/adminApplications"><i class="fa fa-id-card text-light fa-lg mr-3"></i>View Applications</a>
+                <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link"
+                  (click)="highlightApp=!highlightApp ; highlightProfile=false ; highlightDash=false; navTitle='Applications'"
+                  [class.current]="highlightApp" routerLink="/adminDashboard/adminApplications"><i
+                    class="fa fa-id-card text-light fa-lg mr-3"></i>View Applications</a>
               </li>
 
             </ul>
@@ -45,24 +58,28 @@
                 <h4 class="text-light text-uppercase mb-1">{{navTitle}}</h4>
               </div>
               <div class="col-md-4 ml-auto text-right signOut">
-                <a routerLink="/adminLogin" routerLinkActive="router-link-active" class="fa fa-sign-out text-danger fa-lg" (click)="signout()">Sign out</a>
+                <a routerLink="/adminLogin" routerLinkActive="router-link-active"
+                  class="fa fa-sign-out text-danger fa-lg" (click)="signout()">Sign out</a>
               </div>
             </div>
-            <div class="row align-item-center mt-4 mr-4">
-              <router-outlet></router-outlet>
-            </div>
-        </div>
 
-
-
-
-
+          </div>
         </div>
       </div>
     </div>
   </nav>
   <!-- End of Navbar -->
 
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-around mt-5">
+      <div class="col-lg-3 col-md-5 col-sm-1"></div>
+      <div class="col-lg-9 col-md-7 col-sm-11 ml-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
 
 </body>
+
 </html>
