@@ -1,4 +1,6 @@
+import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
+import { Application } from 'src/app/user/application';
 
 @Component({
   selector: 'app-view-applications',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewApplicationsComponent implements OnInit {
 
-  constructor() { }
+  applications :Application[] = []
+  constructor(private service: AdminService) { }
 
   ngOnInit(): void {
+
+    this.service.getAllApplications().subscribe(data=>{
+
+      this.applications = data;
+      console.log(this.applications);
+    })
   }
 
 }

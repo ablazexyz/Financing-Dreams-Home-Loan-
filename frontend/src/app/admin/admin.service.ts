@@ -1,8 +1,10 @@
+
 import { Login } from './Login';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Config } from 'protractor';
+import { Application } from '../user/application';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,10 @@ export class AdminService {
   loginAdmin(login:Login): Observable<HttpResponse<Config>> {
 
     return this.http.post<Config>("http://localhost:9091/HomeApp/users/adlogin",login, { observe: 'response' });
+  }
+
+  getAllApplications(): Observable<Application[]>{
+
+    return this.http.get<Application[]>("http://localhost:9091/HomeApp/admin/applications");
   }
 }
