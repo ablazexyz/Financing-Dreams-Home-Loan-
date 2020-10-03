@@ -147,8 +147,8 @@
   </div>
 
   <div class="d-flex flex-row justify-content-center my-4">
-    <div class="w-25"><button class="btn btn-success btn-lg btn-block mr-3" data-toggle="modal" data-target="#remark">Approve</button></div>
-    <div class="w-25"><button class="btn btn-danger btn-lg btn-block ml-3" data-toggle="modal" data-target="#remark">Reject</button></div>
+    <div class="w-25"><button class="btn btn-success btn-lg btn-block mr-3" data-toggle="modal" data-target="#remark" (click)="approve()">Approve</button></div>
+    <div class="w-25"><button class="btn btn-danger btn-lg btn-block ml-3" data-toggle="modal" data-target="#remark" >Reject</button></div>
   </div>
 
   <!-- Modal -->
@@ -162,11 +162,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <textarea rows="3" cols="50"></textarea>
+        <textarea rows="3" cols="50" [(ngModel)]="remarks"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-success" (click)="submit()">Submit</button>
       </div>
     </div>
   </div>

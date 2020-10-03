@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewApplicationsComponent } from './view-applications/view-applications.component';
@@ -21,7 +21,8 @@ import { ViewCustomerComponent } from './view-customer/view-customer.component';
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     AdminDashboardComponent,
