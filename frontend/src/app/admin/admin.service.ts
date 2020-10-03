@@ -1,3 +1,4 @@
+import { LoanDto } from './../loanDto';
 import { LoanStatus } from './LoanStatus';
 
 import { Login } from './Login';
@@ -30,9 +31,9 @@ export class AdminService {
 
     return this.http.get<Application[]>('http://localhost:9091/HomeApp/admin/applications');
   }
-  getAllApprovedLoans(): Observable<Loan[]>{
+  getAllApprovedLoans(): Observable<LoanDto[]>{
 
-    return this.http.get<Loan[]>('http://localhost:9091/HomeApp/admin/loans');
+    return this.http.get<LoanDto[]>('http://localhost:9091/HomeApp/admin/loans');
   }
 
   approveApplication(loanstatus: LoanStatus){

@@ -1,3 +1,4 @@
+import { LoanDto } from './../../loanDto';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Application } from 'src/app/user/application';
@@ -12,7 +13,7 @@ export class ViewApplicationsComponent implements OnInit {
 
   applications: Application[] = [];
 
-  approved: Loan[] = [];
+  approved: LoanDto[] = [];
 
   constructor(private service: AdminService) { }
 
@@ -25,7 +26,7 @@ export class ViewApplicationsComponent implements OnInit {
     });
     this.service.getAllApprovedLoans().subscribe(data => {
         this.approved = data;
-        console.log(this.approved[0].application);
+        console.log(this.approved);
     });
   }
 
