@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.AdminDao;
+import com.lti.dto.LoanDto;
+import com.lti.model.Account;
 import com.lti.model.Application;
 import com.lti.model.Loan;
 
@@ -41,9 +43,15 @@ public class AdminServiceImpl implements adminService{
 	}
 
 	@Override
-	public List<Loan> findApprovedLoans() {
+	public List<Application> findApprovedLoans() {
 		
 		return dao.getApprovedLoans();
+	}
+
+	@Override
+	public Account findAccountByCustId(int cid) {
+		
+		return dao.getAccountByCustId(cid);
 	}
 
 	
