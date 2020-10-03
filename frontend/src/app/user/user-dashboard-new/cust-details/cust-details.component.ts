@@ -18,22 +18,24 @@ export class CustDetailsComponent implements OnInit {
 
   custDetails: CustomerDetails;
 
-  constructor(private fb: FormBuilder, private router: Router,  private service: UserService) {
-    if (!sessionStorage.getItem('username')){
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private service: UserService
+  ) {
+    if (!sessionStorage.getItem('username')) {
       this.router.navigate(['/userLogin']);
     }
   }
 
   ngOnInit(): void {
-
-
-
     this.customerDetailsForm = this.fb.group({
       aadhaar: [
         '',
         [
           Validators.required,
           Validators.minLength(12),
+          Validators.maxLength(12),
           Validators.pattern('^[0-9]*$'),
         ],
       ],
@@ -58,26 +60,30 @@ export class CustDetailsComponent implements OnInit {
   }
 
   addCustomerDetails(): void {
-
-    console.log("Add customer called")
+    console.log('Add customer called');
 
     this.custDetails = new CustomerDetails(
-                              this.customerDetailsForm.controls.aadhaar.value,
-                              this.customerDetailsForm.controls.monthly_sal.value,
-                              this.customerDetailsForm.controls.PAN.value,
-                              this.customerDetailsForm.controls.type_of_employment.value,
-                              this.customerDetailsForm.controls.org_type.value,
-                              this.customerDetailsForm.controls.employer_name.value,
-                              this.customerDetailsForm.controls.retirement_age.value);
+      this.customerDetailsForm.controls.aadhaar.value,
+      this.customerDetailsForm.controls.monthly_sal.value,
+      this.customerDetailsForm.controls.PAN.value,
+      this.customerDetailsForm.controls.type_of_employment.value,
+      this.customerDetailsForm.controls.org_type.value,
+      this.customerDetailsForm.controls.employer_name.value,
+      this.customerDetailsForm.controls.retirement_age.value
+    );
 
-    console.log("Customer Details",this.custDetails);
+    console.log('Customer Details', this.custDetails);
 
-    console.log("AADHAR VALUE",this.customerDetailsForm.controls.aadhaar.value);
-    this.service.setUserDetails(sessionStorage.getItem('username'),this.custDetails).subscribe(data => {
-
-      this.regdetails = data;
-      console.log(this.regdetails);
-      this.router.navigate(['/userDashboard/applicationDetails']);
-    });
+    console.log(
+      'AADHAR VALUE',
+      this.customerDetailsForm.controls.aadhaar.value
+    );
+    this.service
+      .setUserDetails(sessionStorage.getItem('username'), this.custDetails)
+      .subscribe((data) => {
+        this.regdetails = data;
+        console.log(this.regdetails);
+        this.router.navigate(['/userDashboard/applicationDetails']);
+      });
   }
 }
