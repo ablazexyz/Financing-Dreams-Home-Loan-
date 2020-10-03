@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.LoanDto;
+import com.lti.model.Account;
 import com.lti.model.Application;
 import com.lti.model.Loan;
 import com.lti.model.LoanStatus;
@@ -36,9 +39,21 @@ public class AdminController {
 
 	// http://localhost:9091/HomeApp/admin/loans
 	@GetMapping(path = "loans")
-	public List<Loan> getApprovedLoans(){
+	public List<LoanDto> getApprovedLoans(){
 		
-		return service.findApprovedLoans();
+		List<Application> approved = service.findApprovedLoans();
+		
+		List<LoanDto> loans = new ArrayList<>();
+		for(Application appl: approved) {
+			
+			int cid = appl.getCdetails2().getCustomer_id();
+			Account ac = service.findAccountByCustId(cid);
+			
+			LoanDto loandto = new LoanDto(appl.getLoan().getLoanId(), appl, ac); 
+			loans.add(loandto);
+		}
+		
+		return loans;
 		
 	}
 	

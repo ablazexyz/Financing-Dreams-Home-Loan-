@@ -5,6 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Config } from 'protractor';
 import { Application } from '../user/application';
+import { Loan } from '../user/Loan';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,11 @@ export class AdminService {
   getAllApplications(): Observable<Application[]>{
 
     return this.http.get<Application[]>("http://localhost:9091/HomeApp/admin/applications");
+  }
+
+  getAllApprovedLoans(): Observable<Loan[]>{
+
+    return this.http.get<Loan[]>("http://localhost:9091/HomeApp/admin/loans")
+    
   }
 }

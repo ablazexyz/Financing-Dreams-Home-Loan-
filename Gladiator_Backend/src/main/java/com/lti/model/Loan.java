@@ -63,6 +63,11 @@ public class Loan {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+	@Override
+	public String toString() {
+		return "Loan [LoanId=" + LoanId + ", application=" + application + ", account=" + account + "]";
+	}
 	
 	
 }

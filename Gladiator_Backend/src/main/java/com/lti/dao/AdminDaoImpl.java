@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.dto.LoanDto;
 import com.lti.model.Account;
 import com.lti.model.Application;
 import com.lti.model.Loan;
@@ -37,10 +38,14 @@ public class AdminDaoImpl implements AdminDao{
 	
 
 	@Override
-	public List<Loan> getApprovedLoans() {
+	public List<Application> getApprovedLoans() {
 		
-		Query query = entityManager.createQuery("Select l From Loan l");
-		return query.getResultList();
+		Query query = entityManager.createQuery("Select a From Application a JOIN a.loan l Where l IS NOT NULL");
+		
+		List<Application> approved = query.getResultList();
+		
+		
+		return approved;
 	}
 
 
@@ -113,6 +118,16 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return appl;
 		
+	}
+
+
+
+	@Override
+	public Account getAccountByCustId(int cid) {
+		
+		Query query = entityManager.createQuery("Select a From Account a Where a.cust_id = :cid");
+		query.setParameter("cid", cid);
+		return (Account) query.getSingleResult();
 	}
 
 
