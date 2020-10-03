@@ -199,43 +199,136 @@
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="pan_card">Upload PAN</label>
+
+    <!-- **********************PAN Card Form Control START************************************** -->
+    <div class="form-group">
+      <label for="pan_card">Upload PAN</label>
+      <div
+        style="
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          margin-top: -20px;
+        "
+      >
         <input
           type="file"
-          class="form-control-file"
           id="pan_card"
           name="pan_card"
+          (change)="selectFile($event, 'pan')"
           formControlName="pan_card"
+          style="margin-top: 20px"
         />
-      </div>
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="voter_id">Voter Id</label>
-        <input
-          type="file"
-          class="form-control-file"
-          id="voter_id"
-          name="voter_id"
-          formControlName="voter_id"
-        />
-      </div>
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="salary_slip">Salary Slip</label>
-        <input
-          type="file"
-          class="form-control-file"
-          id="salary_slip"
-          name="salary_slip"
-          formControlName="salary_slip"
-        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="margin-top: 20px"
+          (click)="upload('pan')"
+          [disabled]="!isPanSelected"
+        >
+          Upload
+        </button>
+        <span
+          *ngIf="isPanUploaded"
+          class="ml-2 text-center"
+          style="flex-grow: 1; margin-top: 20px"
+          >PAN Successfully uploaded!</span
+        >
       </div>
     </div>
+
+    <!-- *********************PAN card form control END***************************************** -->
+
+    <!-- *********************Voter Id form control START**************************************** -->
+
+    <div class="form-group">
+      <label for="voter_id">Upload Voter id</label>
+      <div
+        style="
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          margin-top: -20px;
+        "
+      >
+        <input
+          type="file"
+          id="voter_id"
+          name="voter_id"
+          (change)="selectFile($event, 'voter_id')"
+          formControlName="voter_id"
+          style="margin-top: 20px"
+        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="margin-top: 20px"
+          (click)="upload('voter_id')"
+          [disabled]="!isVoterIdSelected"
+        >
+          Upload
+        </button>
+        <span
+          *ngIf="isVoterIdUploaded"
+          class="ml-2 text-center"
+          style="flex-grow: 1; margin-top: 20px"
+          >Voter Id Successfully uploaded!</span
+        >
+      </div>
+    </div>
+
+    <!-- *******************Voter Id Form Control END******************************** -->
+
+    <!-- ****************Salary slip Form Control START****************************** -->
+
+    <div class="form-group">
+      <label for="salary_slip">Upload Salary Slip</label>
+      <div
+        style="
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          margin-top: -20px;
+        "
+      >
+        <input
+          type="file"
+          id="salary_slip"
+          name="salary_slip"
+          (change)="selectFile($event, 'salary_slip')"
+          formControlName="salary_slip"
+          style="margin-top: 20px"
+        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="margin-top: 20px"
+          (click)="upload('salary_slip')"
+          [disabled]="!isSalarySlipSelected"
+        >
+          Upload
+        </button>
+        <span
+          *ngIf="isSalarySlipUploaded"
+          class="ml-2 text-center"
+          style="flex-grow: 1; margin-top: 20px"
+          >Salary slip Successfully uploaded!</span
+        >
+      </div>
+    </div>
+
+    <!-- ********************Salary Slip Form Control END***************************** -->
+
     <div class="form-group text-center mt-2">
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="customerDetailsForm.invalid"
+        [disabled]="
+          customerDetailsForm.invalid ||
+          !isPanUploaded ||
+          !isVoterIdUploaded ||
+          !isSalarySlipUploaded
+        "
       >
         <!-- routerLink="/userDashboard/applicationDetails"
       -->
