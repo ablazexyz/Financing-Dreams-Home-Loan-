@@ -12,25 +12,32 @@ import { Loan } from '../user/Loan';
 })
 export class AdminService {
 
+  customer: Application ;
+
   constructor(private http: HttpClient) { }
 
   // authenticateAdmin(adminLogin): Observable<object>{
   //   return this.http.get('http://localhost:3000/admins?username=' + adminLogin.username + '&password=' + adminLogin.password);
   // }
 
-  loginAdmin(login:Login): Observable<HttpResponse<Config>> {
+  loginAdmin(login: Login): Observable<HttpResponse<Config>> {
 
-    return this.http.post<Config>("http://localhost:9091/HomeApp/users/adlogin",login, { observe: 'response' });
+    return this.http.post<Config>('http://localhost:9091/HomeApp/users/adlogin', login, { observe: 'response' });
   }
 
   getAllApplications(): Observable<Application[]>{
 
-    return this.http.get<Application[]>("http://localhost:9091/HomeApp/admin/applications");
+    return this.http.get<Application[]>('http://localhost:9091/HomeApp/admin/applications');
   }
-
   getAllApprovedLoans(): Observable<Loan[]>{
 
-    return this.http.get<Loan[]>("http://localhost:9091/HomeApp/admin/loans")
-    
+    return this.http.get<Loan[]>('http://localhost:9091/HomeApp/admin/loans');
   }
+
+  setCustomer(app: Application): void{
+    this.customer = app;
+  }
+  getCustomer(): Application{
+    return this.customer;
+}
 }

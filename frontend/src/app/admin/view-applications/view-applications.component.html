@@ -1,5 +1,5 @@
 <div class="table-responsive-lg ">
-<table class="table mx-4 p-2 align-item-center">
+<table class="table table-hover px-4 p-2 justify-content-center text-center">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -13,15 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>12123</td>
-      <td>Axel</td>
-      <td>200000</td>
-      <td>5%</td>
-      <td>2</td>
-      <td>Full-time</td>
-      <td><button class="btn btn-info btn-sm my-1">View Details</button><button class="btn btn-danger btn-sm ml-2 my-1">Reject</button></td>
+    <tr *ngFor="let app of applications">
+      <th scope="row">{{applications.indexOf(app) + 1}}</th>
+      <td>{{app.cdetails2.customer_id}}</td>
+      <td>{{app.cdetails2.registration.firstName}} {{app.cdetails2.registration.lastName}}</td>
+      <td>{{app.loanAmt}}</td>
+      <td>{{app.roi}}%</td>
+      <td>{{app.tenure}}</td>
+      <td>{{app.cdetails2.emptype}}</td>
+      <td><button class="btn btn-primary btn-sm my-1" routerLink="/adminDashboard/viewCustomer" (click)="viewCustomer(app)">View Details</button></td>
     </tr>
   </tbody>
 </table>

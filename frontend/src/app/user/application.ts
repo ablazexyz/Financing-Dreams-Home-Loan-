@@ -11,7 +11,7 @@ export class Application{
   tenure: number;
   loanStatus: string;
   loanRemarks: string;
-  loanURL: string;
+  loaURL: string;
   nocURL: string;
   agreementURL: string;
   cdetails2: CustomerDetails;

@@ -10,25 +10,29 @@ import { Loan } from 'src/app/user/Loan';
 })
 export class ViewApplicationsComponent implements OnInit {
 
-  applications :Application[] = []
+  applications: Application[] = [];
 
-  approved: Loan[] = [] 
+  approved: Loan[] = [];
 
   constructor(private service: AdminService) { }
 
   ngOnInit(): void {
 
-    this.service.getAllApplications().subscribe(data=>{
+    this.service.getAllApplications().subscribe(data => {
 
       this.applications = data;
-      console.log(this.applications);
-    })
+      // console.log(this.applications);
+    });
+    this.service.getAllApprovedLoans().subscribe(data => {
+        this.approved = data;
+        console.log(this.approved[0].application);
+    });
+  }
 
-    this.service.getAllApprovedLoans().subscribe(data=>{
-
-      this.approved = data;
-      console.log(this.approved[0].application);
-    })
+  viewCustomer(app: Application): void{
+    this.service.setCustomer(app);
+    // console.log(app);
+    // console.log(this.applications);
   }
 
 }

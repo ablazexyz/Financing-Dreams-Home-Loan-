@@ -7,11 +7,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewApplicationsComponent } from './view-applications/view-applications.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminLoginComponent, HomeViewComponent, ProfileComponent, ViewApplicationsComponent],
+  declarations: [AdminDashboardComponent,
+                AdminLoginComponent,
+                HomeViewComponent,
+                ProfileComponent,
+                ViewApplicationsComponent,
+                ViewCustomerComponent],
   imports: [
     CommonModule,
     RouterModule,

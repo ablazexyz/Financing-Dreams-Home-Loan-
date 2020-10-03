@@ -14,6 +14,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { LoginComponent } from './user/login/login.component';
+import { ViewCustomerComponent } from './admin/view-customer/view-customer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'adminHome', pathMatch: 'full' },
     { path: 'adminHome', component: HomeViewComponent },
     { path: 'adminProfile', component: ProfileComponent },
-    { path: 'adminApplications', component: ViewApplicationsComponent }
+    { path: 'adminApplications', component: ViewApplicationsComponent },
+    { path: 'viewCustomer' , component: ViewCustomerComponent }
   ]
 },
   { path: 'home', component: HomeComponent },
