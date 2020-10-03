@@ -1,3 +1,5 @@
+import { LoanDto } from './../loanDto';
+import { LoanStatus } from './LoanStatus';
 
 import { Login } from './Login';
 import { Observable } from 'rxjs';
@@ -29,10 +31,21 @@ export class AdminService {
 
     return this.http.get<Application[]>('http://localhost:9091/HomeApp/admin/applications');
   }
-  getAllApprovedLoans(): Observable<Loan[]>{
+  getAllApprovedLoans(): Observable<LoanDto[]>{
 
-    return this.http.get<Loan[]>('http://localhost:9091/HomeApp/admin/loans');
+    return this.http.get<LoanDto[]>('http://localhost:9091/HomeApp/admin/loans');
   }
+
+  approveApplication(loanstatus: LoanStatus){
+
+    return this.http.post('http://localhost:9091/HomeApp/admin/approve',loanstatus);
+  }
+
+  rejectApplication(loanstatus: LoanStatus): Observable<Application>{
+
+    return this.http.post<Application>('http://localhost:9091/HomeApp/admin/reject',loanstatus);
+  }
+
 
   setCustomer(app: Application): void{
     this.customer = app;
