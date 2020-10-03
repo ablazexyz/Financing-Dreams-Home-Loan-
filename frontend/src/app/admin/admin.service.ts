@@ -11,6 +11,8 @@ import { Application } from '../user/application';
 })
 export class AdminService {
 
+  customer: Application ;
+
   constructor(private http: HttpClient) { }
 
   // authenticateAdmin(adminLogin): Observable<object>{
@@ -25,5 +27,12 @@ export class AdminService {
   getAllApplications(): Observable<Application[]>{
 
     return this.http.get<Application[]>("http://localhost:9091/HomeApp/admin/applications");
+  }
+
+  setCustomer(app: Application){
+    this.customer = app;
+  }
+  getCustomer(){
+    return this.customer;
   }
 }

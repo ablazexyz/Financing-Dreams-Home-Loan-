@@ -31,19 +31,19 @@
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item ">
                 <a href="#" class="nav-link text-white  p-3 mb-2 "
-                  (click)="highlightDash=!highlightDash ; highlightProfile=false ; highlightApp=false; navTitle='dashboard'"
+                  (click)="highlightDash=true ; highlightProfile=false ; highlightApp=false; navTitle='dashboard'"
                   [class.current]="highlightDash" routerLink="/adminDashboard/adminHome"><i
                     class="fa fa-home text-light fa-lg mr-3"></i>Dashboard</a>
               </li>
               <li class="nav-item ">
                 <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link"
-                  (click)="highlightProfile=!highlightProfile ; highlightDash=false ; highlightApp=false; navTitle='profile'"
+                  (click)="highlightProfile=true ; highlightDash=false ; highlightApp=false; navTitle='profile'"
                   [class.current]="highlightProfile" routerLink="/adminDashboard/adminProfile"><i
                     class="fa fa-user text-light fa-lg mr-3"></i>Profile</a>
               </li>
               <li class="nav-item ">
                 <a href="#" class="nav-link text-white  p-3 mb-2 sidebar-link"
-                  (click)="highlightApp=!highlightApp ; highlightProfile=false ; highlightDash=false; navTitle='Applications'"
+                  (click)="highlightApp=true ; highlightProfile=false ; highlightDash=false; navTitle='Applications'"
                   [class.current]="highlightApp" routerLink="/adminDashboard/adminApplications"><i
                     class="fa fa-id-card text-light fa-lg mr-3"></i>View Applications</a>
               </li>

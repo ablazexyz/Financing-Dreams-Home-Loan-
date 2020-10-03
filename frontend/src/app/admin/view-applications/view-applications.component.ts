@@ -9,16 +9,21 @@ import { Application } from 'src/app/user/application';
 })
 export class ViewApplicationsComponent implements OnInit {
 
-  applications :Application[] = []
+  applications: Application[] = [];
+  counter = 0;
   constructor(private service: AdminService) { }
 
   ngOnInit(): void {
 
-    this.service.getAllApplications().subscribe(data=>{
+    this.service.getAllApplications().subscribe(data => {
 
       this.applications = data;
-      console.log(this.applications);
-    })
+      // console.log(this.applications);
+    });
+  }
+  viewCustomer(app: Application): void{
+    this.service.setCustomer(app);
+    // console.log(app);
   }
 
 }
