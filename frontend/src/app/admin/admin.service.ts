@@ -15,6 +15,7 @@ import { Loan } from '../user/Loan';
 export class AdminService {
 
   customer: Application ;
+  approvedCustomer: LoanDto;
 
   constructor(private http: HttpClient) { }
 
@@ -52,5 +53,11 @@ export class AdminService {
   }
   getCustomer(): Application{
     return this.customer;
-}
+  }
+  setApprovedCustomer(app: LoanDto): void{
+    this.approvedCustomer = app;
+  }
+  getApprovedCustomer(): LoanDto{
+    return this.approvedCustomer;
+  }
 }
