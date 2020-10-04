@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   login: any;
   auth: any;
   invalid = false;
+  view = 'register';
+  otpStatus = '';
 
   logindetails: Login;
 
@@ -29,6 +31,9 @@ export class LoginComponent implements OnInit {
       emailId: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  enterOtp(): void{
   }
 
   authenticateUser(): void{

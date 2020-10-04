@@ -1,13 +1,11 @@
 <div class="container-fluid">
   <div class="row">
 
+    <!-- Login Form  -->
+
     <div class="col-lg-6 col-md-6 form-container">
 
-
-
-      <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
-
-
+      <div *ngIf="view == 'login'" class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
 
         <div class="logo">
           <img src="../../../assets/images/logo2.png" alt="Logo">
@@ -18,13 +16,15 @@
         <form [formGroup]="userLoginDetails" (submit)=authenticateUser()>
           <div class="form-input form-group mb-3">
             <span><i class="fa fa-user fa-lg"></i></span>
-            <input type="text" id="username" name="emailId" formControlName="emailId" placeholder="Email" >
-            <div *ngIf="userLoginDetails.controls.emailId.invalid && userLoginDetails.controls.emailId.touched" class="mt-0 text-danger">Email field can't be empty</div>
+            <input type="text" id="username" name="emailId" formControlName="emailId" placeholder="Email">
+            <div *ngIf="userLoginDetails.controls.emailId.invalid && userLoginDetails.controls.emailId.touched"
+              class="mt-0 text-danger">Email field can't be empty</div>
           </div>
           <div class="form-input form-group mb-3">
             <span><i class="fa fa-lock fa-lg"></i></span>
             <input type="password" id="password" name="password" formControlName="password" placeholder="Password">
-            <div *ngIf="userLoginDetails.controls.password.invalid && userLoginDetails.controls.password.touched" class="mt-0 text-danger">Password field can't be empty</div>
+            <div *ngIf="userLoginDetails.controls.password.invalid && userLoginDetails.controls.password.touched"
+              class="mt-0 text-danger">Password field can't be empty</div>
           </div>
 
           <div *ngIf="invalid" class="alert alert-danger">
@@ -32,19 +32,59 @@
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success mx-3 float-sm-left" [disabled]="userLoginDetails.invalid">Login</button>
+            <button type="submit" class="btn btn-success mx-3 float-sm-left"
+              [disabled]="userLoginDetails.invalid">Login</button>
             <span>OR</span>
-            <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
+            <button class="btn btn-dark mx-3 float-sm-right" routerLink="/adminLogin"
+              routerLinkActive="router-link-active">Login as Admin</button>
           </div>
         </form>
         <div class="mt-4">
-          Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active" >Register</a>
+          Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active">Register</a>
         </div>
 
       </div>
+
+      <!-- Forgot Password  -->
+
+      <div *ngIf="view == 'register'" class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="text-center">
+                <h3><i class="fa fa-lock fa-4x text-dark"></i></h3>
+                <h2 class="text-center">Forgot Password?</h2>
+                <p>You can reset your password here.</p>
+                <div class="panel-body">
+
+                  <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+
+                    <div class="form-group form-input mb-1">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <input type="email" id="email" name="email" placeholder="Enter regsitered Email">
+                    </div>
+                    <div class="text-success">
+                      An OTP is sent to your Email
+                    </div>
+                    <div class="form-group form-input mt-2">
+                      <span><i class="fa fa-key"></i></span>
+                      <input type="number" id="otp" name="otp" placeholder="Enter OTP">
+                    </div>
+                    <div class="form-group mt-3">
+                      <button class="btn btn-lg btn-block btn-primary" >Reset Password</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
     </div>
     <div class="col-lg-6 col-md-6 d-none d-md-block image-container">
-    <!-- Image -->
+      <!-- Image -->
     </div>
   </div>
 </div>
