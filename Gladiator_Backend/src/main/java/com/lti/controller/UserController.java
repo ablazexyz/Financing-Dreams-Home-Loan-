@@ -93,7 +93,7 @@ public class UserController {
 	@GetMapping(path = "forgot/{emailId}")
 	public String forgotPassword(@PathVariable("emailId") String email) {
 
-		String numbers = "0123456789";
+		String numbers = "123456789";
 
 		Random rndm_method = new Random();
 
@@ -113,7 +113,7 @@ public class UserController {
 		return pass;
 	}
 	
-	@GetMapping(path="updatePass")
+	@PostMapping(path="updatePass")
 	public Registration updatePassword(@RequestBody Registration reg) {
 		
 		return service.modifyRegistration(reg);
