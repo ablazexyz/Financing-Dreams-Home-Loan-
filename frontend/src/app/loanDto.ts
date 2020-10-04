@@ -4,4 +4,5 @@ export class LoanDto{
 
     application: Application;
     account: Account;
+    loanId: number;
 }
