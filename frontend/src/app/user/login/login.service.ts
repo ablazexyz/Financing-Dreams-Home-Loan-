@@ -16,4 +16,8 @@ export class LoginService {
     return this.http.post<Config>("http://localhost:9091/HomeApp/users/login",login, { observe: 'response' });
   }
 
+  forgotpass(email:string): Observable<string>{
+
+    return this.http.get<string>("http://localhost:9091/HomeApp/users/forgot/"+email);
+  }
 }

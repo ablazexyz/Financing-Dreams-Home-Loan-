@@ -29,6 +29,11 @@ export class UserService {
     );
   }
 
+  updatePass(reg: Register): Observable<Register>{
+
+    return this.http.post<Register>('http://localhost:9091/HomeApp/users/updatePass',reg)
+  }
+
   getUserDetails(email: String): Observable<CustomerDetails> {
     return this.http.get<CustomerDetails>(
       'http://localhost:9091/HomeApp/users/customerdetails/' + email

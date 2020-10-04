@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Register } from '../register';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,22 @@ export class LoginComponent implements OnInit {
   view = 'register';
   otpStatus = '';
 
+
+  forgotbool: boolean = false;
+  otpbool: boolean = false;
+  otpboolw: boolean = false;
+  passbool: boolean = false;
+  email:string;
+  otp:string;
+  otpenter:string;
+  pass:string;
+  regdetails: Register;
+
   logindetails: Login;
 
-  constructor(private fb: FormBuilder, private service: LoginService, private router: Router) {
+
+  constructor(private fb: FormBuilder, private service: LoginService,
+              private uservice: UserService,private router: Router) {
     sessionStorage.removeItem('username');
   }
 
@@ -33,7 +47,48 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  enterOtp(): void{
+  forgot():void {
+
+    this.forgotbool = true;
+  }
+
+  otpgen():void {
+
+    this.forgotbool = false;
+    this.otpbool = true;
+
+    this.service.forgotpass(this.email).subscribe(data=>{
+      this.otp = data;
+    })
+
+  }
+
+  otpsubmit():void {
+
+    if (this.otp==this.otpenter){
+      this.otpbool = false;
+      this.passbool = true;
+      this.otpboolw = false;
+    }
+
+    else{
+      this.otpboolw = true;
+    }
+  }
+
+  passsubmit():void{
+
+    this.uservice.getRegDetails(this.email).subscribe(data=>{
+
+      this.regdetails = data;
+      this.regdetails.password = this.pass;
+      this.uservice.updatePass(this.regdetails).subscribe(data=>{
+
+        this.regdetails = data;
+        sessionStorage.setItem('username', this.email);
+        this.router.navigate(['/userDashboard']);
+      })
+    })
   }
 
   authenticateUser(): void{
@@ -66,8 +121,6 @@ export class LoginComponent implements OnInit {
         }
 
       });
-
-
   }
 
 }
