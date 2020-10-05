@@ -134,5 +134,13 @@ public class CustomerServiceImpl implements CustomerService{
 		return dao.getAccountByEmail(email);
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void modifyApplication(Application appl) {
+		
+		dao.updateApplication(appl);
+		
+	}
+
 	
 }

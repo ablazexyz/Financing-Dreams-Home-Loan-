@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -47,9 +48,7 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 
-	private MailService mail;
-
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("C:\\Gladiator\\Files Upload");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -122,9 +121,15 @@ public class UserController {
 	
 	
 	@PostMapping(path="updatePass")
-	public Registration updatePassword(@RequestBody Registration reg) {
+	public void updatePassword(@RequestBody Login login) {
 		
-		return service.modifyRegistration(reg);
+		List<Application> applst = service.findAllApplicationsbyEmail(login.getAdemail());
+		for(Application appl: applst) {
+			appl.getCdetails2().getRegistration().setPassword(login.getAdpass());
+			service.modifyApplication(appl);
+		}
+		
+		
 	}
 
 	@GetMapping(path = "/")
@@ -168,6 +173,7 @@ public class UserController {
 
 		appl.setCdetails2(cd);
 		appl.setLoanStatus("Pending");
+		appl.setApplDate(LocalDate.now());
 
 		if (cd.getApplications().isEmpty()) {
 			cd.setApplications(new HashSet<Application>());
@@ -236,6 +242,65 @@ public class UserController {
 				folderCreated = true;
 			} else {
 				System.out.println("Failed to create directory");
+			}
+		}
+
+		String message;
+		try {
+			try {
+				// Files.copy(file.getInputStream(),
+				// uploadPath.resolve(file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				// Files.copy(file.getInputStream(),
+				// uploadPath.resolve("resume.pdf"),StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(file.getInputStream(), uploadPath.resolve(documentType + ".pdf"),
+						StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception e) {
+				throw new RuntimeException("FAIL!");
+			}
+			// files.add(file.getOriginalFilename());
+
+			message = "Successfully uploaded!";
+			return ResponseEntity.status(HttpStatus.OK).body(message);
+		} catch (Exception e) {
+			message = "Failed to upload!";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+		}
+	}
+	
+	
+	@PostMapping("/fileUpload/{username}/{applicationId}/{documentType}")
+	public ResponseEntity<String> uploadApplicationDocuments(@RequestParam("file") MultipartFile file,
+			@PathVariable(name = "username") String username,@PathVariable(name = "applicationId") String applicationId, @PathVariable(name = "documentType") String documentType) {
+
+		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
+//		Path uploadPath = Path.of(rootLocation.toString(), id);
+		Path uploadPath = Paths.get(rootLocation.toString(), username, applicationId);
+		
+		
+		// Checking if the folder where to upload exists or not
+		File applicationDocumentsFolder = new File(uploadPath.toString());
+		
+		//System.out.println(userDocumentsFolder.getParentFile());
+		
+		
+		// allow only pdf uploads
+		String fileContentType = file.getContentType();
+		try {
+			if (!fileContentType.equals("application/pdf")) {
+				throw new FileTypeException();
+			}
+		} catch (FileTypeException e) {
+			return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(e.getMessage());
+		}
+		boolean folderCreated = false;
+		// if it doesn't exist , create that folder
+
+		if (!applicationDocumentsFolder.exists()) {
+			if (applicationDocumentsFolder.mkdir()) {
+				System.out.println("created directory for storing application documents");
+				folderCreated = true;
+			} else {
+				System.out.println("Failed to create directory for application documents");
 			}
 		}
 

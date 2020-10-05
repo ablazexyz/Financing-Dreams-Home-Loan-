@@ -1,5 +1,7 @@
 package com.lti.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "APPLICATION_TBL")
@@ -43,6 +47,15 @@ public class Application {
 	
 	@Column(name = "LOAN_REMARKS")
 	private String loanRemarks;
+	
+	@Column(name = "APPLICATION_DATE")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate applDate;
+	
+	@Column(name = "APPROVAL_DATE")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate apprDate;
+	
 	
 	@Column(name = "LOA_URL")
 	private String loaURL;
@@ -166,6 +179,22 @@ public class Application {
 
 	public void setAgreementURL(String agreementURL) {
 		this.agreementURL = agreementURL;
+	}
+
+	public LocalDate getApplDate() {
+		return applDate;
+	}
+
+	public void setApplDate(LocalDate applDate) {
+		this.applDate = applDate;
+	}
+
+	public LocalDate getApprDate() {
+		return apprDate;
+	}
+
+	public void setApprDate(LocalDate apprDate) {
+		this.apprDate = apprDate;
 	}
 
 	public Loan getLoan() {

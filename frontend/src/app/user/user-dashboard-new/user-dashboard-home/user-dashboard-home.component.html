@@ -1,5 +1,5 @@
 <header class="headings">
-  <h2>Welcome {{name}}</h2>
+  <h2>Welcome {{name | titlecase}}</h2>
 </header>
 <section
   id="account-details"
@@ -9,7 +9,7 @@
     <h4 class="mt-5 mb-3">Your Account details:</h4>
   </header>
 
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr class="d-flex">
         <th style="border-bottom: 0" class="col-8">Account Number</th>
@@ -32,7 +32,7 @@
     <h4 class="mt-5 mb-3">Your Account details:</h4>
   </header>
 
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr class="d-flex">
         <th style="border-bottom: 0" class="col-8">Account Number</th>
@@ -52,7 +52,7 @@
     <h4>Application Status</h4>
   </header>
 
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr class="d-flex">
         <th class="col-8">Application Id</th>
@@ -76,7 +76,7 @@
 </section>
 <div id="apply-loan-button" class="text-center" *ngIf="!isFirstTimeUser">
   <button class="btn btn-primary" routerLink="../applicationDetails">
-    Apply for Another Loan
+    Apply for a Loan
   </button>
 </div>
 
