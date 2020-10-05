@@ -49,7 +49,7 @@ public class UserController {
 
 	private MailService mail;
 
-	private final Path rootLocation = Paths.get("D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles");
+	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -94,6 +94,7 @@ public class UserController {
 		return null;
 	}
 
+	
 	// http://localhost:9091/HomeApp/users/forgot/{emailId}
 	@GetMapping(path = "forgot/{emailId}")
 	public String forgotPassword(@PathVariable("emailId") String email) {
@@ -117,6 +118,8 @@ public class UserController {
 		MailService.send(email, "OTP For Password Reset", msg);
 		return pass;
 	}
+	
+	
 	
 	@PostMapping(path="updatePass")
 	public Registration updatePassword(@RequestBody Registration reg) {
