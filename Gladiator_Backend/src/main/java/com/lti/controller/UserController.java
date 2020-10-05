@@ -44,7 +44,7 @@ public class UserController {
 
 	private MailService mail;
 
-	private final Path rootLocation = Paths.get("C:\\Gladiator\\Files Upload");
+	private final Path rootLocation = Paths.get("D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
