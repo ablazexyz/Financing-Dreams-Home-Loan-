@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   login: any;
   auth: any;
   invalid = false;
-  view = 'register';
+  view = 'login';
   otpStatus = '';
 
 
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
   forgot():void {
 
     this.forgotbool = true;
+    this.view = 'forgot';
   }
 
   otpgen():void {

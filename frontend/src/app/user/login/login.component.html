@@ -32,47 +32,21 @@
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success mx-2 float-sm-left" [disabled]="userLoginDetails.invalid">Login</button>
+            <button type="submit" class="btn btn-success mx-2 float-sm-left"
+              [disabled]="userLoginDetails.invalid">Login</button>
 
-            <button class="btn btn-dark mx-2 float-sm-right" routerLink="/adminLogin" routerLinkActive="router-link-active" >Login as Admin</button>
+            <button class="btn btn-dark mx-2 float-sm-right" routerLink="/adminLogin"
+              routerLinkActive="router-link-active">Login as Admin</button>
           </div>
         </form>
 
-
-        <button *ngIf=!forgotbool class="btn btn-danger mx-2 float-sm-left" (click)="forgot()">Forgot Password</button>
-
-        <div *ngIf=forgotbool class="alert alert-danger">
-          <div class="text-danger">
-            Please Enter Registered Email-ID to receive OTP:
-            <input type="text" [(ngModel)]="email" placeholder="Email" >
-            <button class="btn btn-success mx-2 float-sm-right" (click)="otpgen()">Submit</button>
-          </div>
+        <div class="alert text-center mt-2 mb-0">
+          <a *ngIf=!forgotbool routerLink="/userLogin" (click)="forgot()" routerLinkActive="router-link-active">Forgot
+            Password ?</a>
         </div>
 
-        <div *ngIf=otpbool class="alert alert-success">
-          <div class="text-primary">
-            Please Enter OTP recieved on Email:
-            <input type="text" [(ngModel)]="otpenter" placeholder="Enter OTP" >
-            <button class="btn btn-success mx-2 float-sm-right" (click)="otpsubmit()">Submit</button>
-          </div>
-          <div *ngIf=otpboolw class="alert alert-danger">
-            <div class="text-danger">
-              Please Enter Correct OTP
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf=passbool class="alert alert-success">
-          <div class="text-primary">
-            Please Enter New Password:
-            <input type="password" [(ngModel)]="pass" placeholder="Enter Password: " >
-            <button class="btn btn-success mx-2 float-sm-right" (click)="passsubmit()">Submit</button>
-          </div>
-        </div>
-
-
-        <div class="alert alert-success mt-4">
-          Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active" >Register</a>
+        <div class="alert alert-success mt-2">
+          Don't have an account ? <a routerLink="/userRegister" routerLinkActive="router-link-active">Register</a>
         </div>
 
 
@@ -81,38 +55,57 @@
 
       <!-- Forgot Password  -->
 
-      <div *ngIf="view == 'register'" class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+      <div *ngIf="view == 'forgot'" class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
 
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="text-center">
-                <h3><i class="fa fa-lock fa-4x text-dark"></i></h3>
-                <h2 class="text-center">Forgot Password?</h2>
-                <p>You can reset your password here.</p>
-                <div class="panel-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <h3><i class="fa fa-lock fa-4x text-dark"></i></h3>
+              <h2 class="text-center">Forgot Password?</h2>
+              <p>You can reset your password here.</p>
+              <div class="panel-body">
 
-                  <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+                <form id="register-form" role="form" autocomplete="off" class="form" method="post">
 
-                    <div class="form-group form-input mb-1">
-                        <span><i class="fa fa-envelope"></i></span>
-                        <input type="email" id="email" name="email" placeholder="Enter regsitered Email">
+                  <div class="form-group form-input mb-1">
+                    <span><i class="fa fa-envelope"></i></span>
+                    <input type="email" id="email" name="email" [(ngModel)]="email"
+                      placeholder="Enter regsitered Email">
+                  </div>
+                  <div *ngIf=otpbool class="text-success">
+                    An OTP is sent to your Email
+                  </div>
+                  <div *ngIf=otpbool class="form-group form-input mt-2">
+                    <span><i class="fa fa-key"></i></span>
+                    <input type="text" [(ngModel)]="otpenter" id="otp" name="otp" placeholder="Enter OTP">
+                  </div>
+                  <div *ngIf=otpboolw class="alert alert-danger">
+                    <div class="text-danger">
+                      Please Enter Correct OTP
                     </div>
-                    <div class="text-success">
-                      An OTP is sent to your Email
-                    </div>
-                    <div class="form-group form-input mt-2">
-                      <span><i class="fa fa-key"></i></span>
-                      <input type="number" id="otp" name="otp" placeholder="Enter OTP">
-                    </div>
-                    <div class="form-group mt-3">
-                      <button class="btn btn-lg btn-block btn-primary" >Reset Password</button>
-                    </div>
-                  </form>
+                  </div>
 
-                </div>
+                  <div *ngIf=passbool class="form-group form-input mt-2">
+                    <span><i class="fa fa-unlock"></i></span>
+                    <input type="password" [(ngModel)]="pass" id="pass" name="pass" placeholder="Enter new Password">
+                  </div>
+
+
+                  <div *ngIf=forgotbool class="form-group mt-3">
+                    <button class="btn btn-lg btn-block btn-primary" (click)="otpgen()">Reset Password</button>
+                  </div>
+                  <div *ngIf=otpbool class="form-group mt-3">
+                    <button class="btn btn-lg btn-block btn-primary" (click)="otpsubmit()">Submit</button>
+                  </div>
+                  <div *ngIf=passbool class="form-group mt-3">
+                    <button class="btn btn-lg btn-block btn-primary" (click)="passsubmit()">Submit</button>
+                  </div>
+                </form>
+
               </div>
             </div>
           </div>
+        </div>
       </div>
 
 
