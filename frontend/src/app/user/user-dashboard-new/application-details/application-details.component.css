@@ -24,4 +24,15 @@
   .application-details {
     max-width: 70%;
   }
+
+  
 }
+
+#info_card1
+{
+    width: 40%;
+    background-color: #f8d89f;
+    color: #c62827;
+}
+
+
