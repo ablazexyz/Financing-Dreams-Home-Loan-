@@ -1,4 +1,4 @@
-<div class="application-details" *ngIf="isloaded">
+<div class="application-details container-fluid bg-light my-4 rounded p-4" *ngIf="isloaded">
   <h3 class="application-details-header">Add Loan details</h3>
   <div *ngIf="applicationDetailsForm.errors?.range" class="alert alert-danger">
     *Loan Amount greater than Estimated Property Amount
@@ -149,5 +149,5 @@
     </div>
   </form>
 
- 
+
 </div>
