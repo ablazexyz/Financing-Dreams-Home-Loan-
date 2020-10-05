@@ -1,3 +1,5 @@
+import { LoanDto } from './../../loanDto';
+import { ActivatedRoute } from '@angular/router';
 import { LoanStatus } from './../LoanStatus';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from './../admin.service';
@@ -12,26 +14,42 @@ import { FormsModule } from '@angular/forms';
 export class ViewCustomerComponent implements OnInit {
   customer: Application;
 
-  remarks:string;
+  approvedCustomer: LoanDto;
 
-  approved:boolean = false;
+  remarks: string;
+
+  approved = false;
 
   loanstatus: LoanStatus;
 
-  constructor(private service: AdminService) { }
+  viewType: string;
+
+  constructor(private service: AdminService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.customer = this.service.getCustomer();
+
+    this.viewType = this.route.snapshot.queryParamMap.get('view');
+
+    if (this.viewType === 'pending'){
+      this.customer = this.service.getCustomer();
+    }
+    else if (this.viewType === 'approved'){
+      this.approvedCustomer = this.service.getApprovedCustomer();
+      console.log(this.approvedCustomer);
+      this.customer = this.approvedCustomer.application;
+    }
+    console.log(this.approvedCustomer);
+
     // console.log(this.customer);
   }
 
-  approve(){
+  approve(): void{
 
-    this.approved= true;
+    this.approved = true;
   }
 
 
-  submit(){
+  submit(): void{
 
     this.loanstatus = new LoanStatus(this.customer.applicationId,this.remarks);
     if (this.approved){
@@ -39,9 +57,9 @@ export class ViewCustomerComponent implements OnInit {
       this.service.approveApplication(this.loanstatus).subscribe();
     }
     else{
-      this.service.rejectApplication(this.loanstatus).subscribe(data=>{
+      this.service.rejectApplication(this.loanstatus).subscribe(data => {
         console.log(data);
-      })
+      });
     }
   }
 

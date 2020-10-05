@@ -1,28 +1,59 @@
 <div class="table-responsive-lg ">
-<table class="table table-hover px-4 p-2 justify-content-center text-center">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Customer-Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Loan Amount</th>
-      <th scope="col">ROI</th>
-      <th scope="col">Tenure</th>
-      <th scope="col">Employee Type</th>
-      <th scope="col">Verification</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let app of applications">
-      <th scope="row">{{applications.indexOf(app) + 1}}</th>
-      <td>{{app.cdetails2.customer_id}}</td>
-      <td>{{app.cdetails2.registration.firstName}} {{app.cdetails2.registration.lastName}}</td>
-      <td>{{app.loanAmt}}</td>
-      <td>{{app.roi}}%</td>
-      <td>{{app.tenure}}</td>
-      <td>{{app.cdetails2.emptype}}</td>
-      <td><button class="btn btn-primary btn-sm my-1" routerLink="/adminDashboard/viewCustomer" (click)="viewCustomer(app)">View Details</button></td>
-    </tr>
-  </tbody>
-</table>
+  <table *ngIf="viewType == 'pending' || viewType == null" class="table table-hover px-4 p-2 justify-content-center text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Customer-Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Loan Amount</th>
+        <th scope="col">ROI</th>
+        <th scope="col">Tenure</th>
+        <th scope="col">Employee Type</th>
+        <th scope="col">Verification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of applications">
+        <th scope="row">{{applications.indexOf(app) + 1}}</th>
+        <td>{{app.cdetails2.customer_id}}</td>
+        <td>{{app.cdetails2.registration.firstName}} {{app.cdetails2.registration.lastName}}</td>
+        <td>{{app.loanAmt}}</td>
+        <td>{{app.roi}}%</td>
+        <td>{{app.tenure}}</td>
+        <td>{{app.cdetails2.emptype}}</td>
+        <td><button class="btn btn-primary btn-sm my-1" routerLink="/adminDashboard/viewCustomer" [queryParams]="{ view: 'pending' }"
+            (click)="viewCustomer(app)">View Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="viewType == 'approved'" class="table table-hover px-4 p-2 justify-content-center text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Customer-Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Loan Amount</th>
+        <th scope="col">ROI</th>
+        <th scope="col">Tenure</th>
+        <th scope="col">Loan ID</th>
+        <th scope="col">Account Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of approved">
+        <th scope="row">{{approved.indexOf(app) + 1}}</th>
+        <td>{{app.application.cdetails2.customer_id}}</td>
+        <td>{{app.application.cdetails2.registration.firstName}} {{app.application.cdetails2.registration.lastName}}</td>
+        <td>{{app.application.loanAmt}}</td>
+        <td>{{app.application.roi}}%</td>
+        <td>{{app.application.tenure}}</td>
+        <td>{{app.loanId}}</td>
+        <td>{{app.account.accountNo}}</td>
+        <td><button class="btn btn-primary btn-sm my-1" routerLink="/adminDashboard/viewCustomer" [queryParams]="{ view: 'approved' }"
+            (click)="viewApprovedCustomer(app)">View Details</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
