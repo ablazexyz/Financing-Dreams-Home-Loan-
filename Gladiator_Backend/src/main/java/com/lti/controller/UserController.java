@@ -167,7 +167,8 @@ public class UserController {
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
 			@PathVariable(name = "id") String id, @PathVariable(name = "documentType") String documentType) {
 		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
-		Path uploadPath = Path.of(rootLocation.toString(), id);
+//		Path uploadPath = Path.of(rootLocation.toString(), id);
+		Path uploadPath = Paths.get(rootLocation.toString(), id);
 		// Checking if the folder where to upload exists or not
 		File userDocumentsFolder = new File(uploadPath.toString());
 		
