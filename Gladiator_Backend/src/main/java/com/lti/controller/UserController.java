@@ -89,6 +89,7 @@ public class UserController {
 		return null;
 	}
 
+	
 	// http://localhost:9091/HomeApp/users/forgot/{emailId}
 	@GetMapping(path = "forgot/{emailId}")
 	public String forgotPassword(@PathVariable("emailId") String email) {
@@ -112,6 +113,8 @@ public class UserController {
 		MailService.send(email, "OTP For Password Reset", msg);
 		return pass;
 	}
+	
+	
 	
 	@PostMapping(path="updatePass")
 	public Registration updatePassword(@RequestBody Registration reg) {
