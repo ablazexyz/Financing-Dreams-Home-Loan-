@@ -3,7 +3,12 @@ import { ApplicationDetails } from './../applicationDetails';
 import { CustomerDetails } from './customerDetails';
 // import { Register } from './register-model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Register } from './register';
 import { Application } from './application';
@@ -29,9 +34,11 @@ export class UserService {
     );
   }
 
-  updatePass(reg: Register): Observable<Register>{
-
-    return this.http.post<Register>('http://localhost:9091/HomeApp/users/updatePass',reg)
+  updatePass(reg: Register): Observable<Register> {
+    return this.http.post<Register>(
+      'http://localhost:9091/HomeApp/users/updatePass',
+      reg
+    );
   }
 
   getUserDetails(email: String): Observable<CustomerDetails> {
@@ -109,5 +116,20 @@ export class UserService {
       }
     );
     return this.http.request(newRequest);
+  }
+
+  downloadCustomerFilesFromStorage(
+    userFolderName: string,
+    documentType: string
+  ): Observable<Blob> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get<Blob>(
+      'http://localhost:9091/HomeApp/users/fileDownload/' +
+        userFolderName +
+        '/' +
+        documentType,
+      { headers: headers, responseType: 'blob' as 'json' }
+    );
   }
 }

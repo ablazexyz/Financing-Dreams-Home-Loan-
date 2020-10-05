@@ -33,23 +33,23 @@
   </header>
 
   <table class="table table-bordered">
-    <tr>
-      <th>Account Number</th>
-    </tr>
-    <tr>
-      <td>1234567</td>
-    </tr>
-    <tr>
-      <th>Balance</th>
-    </tr>
-    <tr>
-      <td>34000</td>
-    </tr>
+    <thead>
+      <tr class="d-flex">
+        <th style="border-bottom: 0" class="col-8">Account Number</th>
+        <th style="border-bottom: 0" class="col-4">Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="d-flex">
+        <td class="col-8">{{account.accountNo}}</td>
+        <td class="col-4">{{account.balance}}</td>
+      </tr>
+    </tbody>
   </table>
 </section>
 <section id="pending-applications" *ngIf="applications.length > 0">
   <header class="mt-5 mb-3">
-    <h4>Pending Applications</h4>
+    <h4>Application Status</h4>
   </header>
 
   <table class="table table-bordered">

@@ -232,7 +232,9 @@
           *ngIf="isPanUploaded"
           class="ml-2 text-center"
           style="flex-grow: 1; margin-top: 20px"
-          >PAN Successfully uploaded!</span
+          ><a [routerLink]="" (click)="viewUploadedDocument('pan')"
+            >View uploaded PAN</a
+          ></span
         >
       </div>
     </div>
@@ -272,7 +274,9 @@
           *ngIf="isVoterIdUploaded"
           class="ml-2 text-center"
           style="flex-grow: 1; margin-top: 20px"
-          >Voter Id Successfully uploaded!</span
+          ><a [routerLink]="" (click)="viewUploadedDocument('voter_id')"
+            >View Uploaded Voter ID</a
+          ></span
         >
       </div>
     </div>
@@ -312,7 +316,9 @@
           *ngIf="isSalarySlipUploaded"
           class="ml-2 text-center"
           style="flex-grow: 1; margin-top: 20px"
-          >Salary slip Successfully uploaded!</span
+          ><a [routerLink]="" (click)="viewUploadedDocument('salary_slip')"
+            >View uploaded salary slip</a
+          ></span
         >
       </div>
     </div>
