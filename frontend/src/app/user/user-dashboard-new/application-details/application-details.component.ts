@@ -16,7 +16,10 @@ import { Application } from '../../application';
 const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
   const pamt = fg.get('estimated_property_amt').value;
   const lamt = fg.get('loan_amount').value;
- return (pamt !== null && lamt !== null && pamt >= lamt) ? null : { range: true };
+  if (pamt !== null && lamt !== null){
+    return ( pamt >= lamt) ? null : { range: true };
+  }
+ 
 };
 
 @Component({
