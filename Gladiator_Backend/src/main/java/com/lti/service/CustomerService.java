@@ -40,4 +40,6 @@ public interface CustomerService {
 	public Application findApplicationById(int applId);
 
 	public Account findAccountByEmail(String email);
+	
+	public void modifyApplication(Application appl);
 }

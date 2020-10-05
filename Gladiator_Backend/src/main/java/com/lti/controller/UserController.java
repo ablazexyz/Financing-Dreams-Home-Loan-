@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -47,9 +48,7 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 
-	private MailService mail;
-
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("C:\\Gladiator\\Files Upload");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -122,9 +121,15 @@ public class UserController {
 	
 	
 	@PostMapping(path="updatePass")
-	public Registration updatePassword(@RequestBody Registration reg) {
+	public void updatePassword(@RequestBody Login login) {
 		
-		return service.modifyRegistration(reg);
+		List<Application> applst = service.findAllApplicationsbyEmail(login.getAdemail());
+		for(Application appl: applst) {
+			appl.getCdetails2().getRegistration().setPassword(login.getAdpass());
+			service.modifyApplication(appl);
+		}
+		
+		
 	}
 
 	@GetMapping(path = "/")
@@ -168,6 +173,7 @@ public class UserController {
 
 		appl.setCdetails2(cd);
 		appl.setLoanStatus("Pending");
+		appl.setApplDate(LocalDate.now());
 
 		if (cd.getApplications().isEmpty()) {
 			cd.setApplications(new HashSet<Application>());

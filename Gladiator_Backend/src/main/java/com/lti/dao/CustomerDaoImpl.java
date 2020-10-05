@@ -132,5 +132,13 @@ public class CustomerDaoImpl implements CustomerDao{
 		return (Account) query.getSingleResult();
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void updateApplication(Application appl) {
+		
+		entityManager.merge(appl);
+		
+	}
+
 	
 }

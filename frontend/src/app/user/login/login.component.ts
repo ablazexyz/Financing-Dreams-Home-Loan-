@@ -35,8 +35,7 @@ export class LoginComponent implements OnInit {
   logindetails: Login;
 
 
-  constructor(private fb: FormBuilder, private service: LoginService,
-              private uservice: UserService,private router: Router) {
+  constructor(private fb: FormBuilder, private service: LoginService,private router: Router) {
     sessionStorage.removeItem('username');
   }
 
@@ -79,16 +78,14 @@ export class LoginComponent implements OnInit {
 
   passsubmit():void{
 
-    this.uservice.getRegDetails(this.email).subscribe(data=>{
+    this.logindetails = new Login(this.email,this.pass);
+
+    this.service.updatepass(this.logindetails).subscribe(data=>{
 
       this.regdetails = data;
-      this.regdetails.password = this.pass;
-      this.uservice.updatePass(this.regdetails).subscribe(data=>{
+      sessionStorage.setItem('username', this.email);
+      this.router.navigate(['/userDashboard']);
 
-        this.regdetails = data;
-        sessionStorage.setItem('username', this.email);
-        this.router.navigate(['/userDashboard']);
-      })
     })
   }
 

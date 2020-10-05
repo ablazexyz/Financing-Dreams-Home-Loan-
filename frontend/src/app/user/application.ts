@@ -11,10 +11,13 @@ export class Application{
   tenure: number;
   loanStatus: string;
   loanRemarks: string;
+  applDate: string;
+  apprDate: string;
   loaURL: string;
   nocURL: string;
   agreementURL: string;
   cdetails2: CustomerDetails;
+
 
   constructor(
     propertyLocation: string,

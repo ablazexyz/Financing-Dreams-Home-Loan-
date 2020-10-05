@@ -31,6 +31,17 @@
   </tr>
 
   <tr>
+    <th>Application Date</th>
+    <td>{{ applicationDetailToDisplay.applDate | date:"dd/MM/yyyy"}}</td>
+  </tr>
+
+  <tr>
+    <th>Approval Date</th>
+    <td>{{ applicationDetailToDisplay.apprDate | date:"dd/MM/yyyy" }}</td>
+  </tr>
+
+
+  <tr>
     <th>LOA</th>
     <td>{{ applicationDetailToDisplay.loaURL }}</td>
   </tr>
@@ -49,6 +60,7 @@
     <th>Application Remarks</th>
     <td>{{ applicationDetailToDisplay.loanRemarks }}</td>
   </tr>
+
   <!-- <tr>
     <th>Type of employment</th>
     <td>Private</td>
