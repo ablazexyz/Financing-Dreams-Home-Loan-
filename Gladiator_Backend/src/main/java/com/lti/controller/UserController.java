@@ -1,6 +1,7 @@
 package com.lti.controller;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +11,11 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,7 +49,7 @@ public class UserController {
 
 	private MailService mail;
 
-	private final Path rootLocation = Paths.get("C:\\Gladiator\\Files Upload");
+	private final Path rootLocation = Paths.get("D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -205,9 +210,11 @@ public class UserController {
 	@PostMapping("/fileUpload/{id}/{documentType}")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
 			@PathVariable(name = "id") String id, @PathVariable(name = "documentType") String documentType) {
-		// Path where the file will be stored(will create a directory named with
-		// whatever is passed to 'id')
+
+		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
+//		Path uploadPath = Path.of(rootLocation.toString(), id);
 		Path uploadPath = Paths.get(rootLocation.toString(), id);
+
 		// Checking if the folder where to upload exists or not
 		File userDocumentsFolder = new File(uploadPath.toString());
 
@@ -252,6 +259,29 @@ public class UserController {
 			message = "Failed to upload!";
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
+	}
+	
+	
+	@GetMapping(path = "/fileDownload/{userFolderName}/{documentType}")
+	public ResponseEntity<Resource> downloadFile(@PathVariable(name = "userFolderName") String userFolderName, @PathVariable(name = "documentType") String documentType) {
+		//Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+		Path downloadPath = Paths.get(rootLocation.toString(), userFolderName, documentType + ".pdf");
+		Resource resource = null;
+		try {
+			resource = new UrlResource(downloadPath.toUri());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_PDF);
+		
+		//to open the document in a new tab instead of downloading it
+		headers.add("content-disposition", "inline; filename=" + resource.getFilename());
+	
+		return ResponseEntity.ok()
+				.headers(headers)
+				.body(resource);
 	}
 
 	// Function to handle large file upload requests
