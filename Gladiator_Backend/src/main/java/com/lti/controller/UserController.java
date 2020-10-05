@@ -261,7 +261,8 @@ public class UserController {
 	
 	@GetMapping(path = "/fileDownload/{userFolderName}/{documentType}")
 	public ResponseEntity<Resource> downloadFile(@PathVariable(name = "userFolderName") String userFolderName, @PathVariable(name = "documentType") String documentType) {
-		Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+		//Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+		Path downloadPath = Paths.get(rootLocation.toString(), userFolderName, documentType + ".pdf");
 		Resource resource = null;
 		try {
 			resource = new UrlResource(downloadPath.toUri());
