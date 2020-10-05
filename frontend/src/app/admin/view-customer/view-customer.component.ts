@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-view-customer',
   templateUrl: './view-customer.component.html',
-  styleUrls: ['./view-customer.component.css']
+  styleUrls: ['./view-customer.component.css'],
 })
 export class ViewCustomerComponent implements OnInit {
   customer: Application;
@@ -24,16 +24,14 @@ export class ViewCustomerComponent implements OnInit {
 
   viewType: string;
 
-  constructor(private service: AdminService, private route: ActivatedRoute) { }
+  constructor(private service: AdminService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-
     this.viewType = this.route.snapshot.queryParamMap.get('view');
 
-    if (this.viewType === 'pending'){
+    if (this.viewType === 'pending') {
       this.customer = this.service.getCustomer();
-    }
-    else if (this.viewType === 'approved'){
+    } else if (this.viewType === 'approved') {
       this.approvedCustomer = this.service.getApprovedCustomer();
       console.log(this.approvedCustomer);
       this.customer = this.approvedCustomer.application;
@@ -43,24 +41,27 @@ export class ViewCustomerComponent implements OnInit {
     // console.log(this.customer);
   }
 
-  approve(): void{
-
+  approve(): void {
     this.approved = true;
   }
 
-
-  submit(): void{
-
-    this.loanstatus = new LoanStatus(this.customer.applicationId,this.remarks);
-    if (this.approved){
-
+  submit(): void {
+    this.loanstatus = new LoanStatus(this.customer.applicationId, this.remarks);
+    if (this.approved) {
       this.service.approveApplication(this.loanstatus).subscribe();
-    }
-    else{
-      this.service.rejectApplication(this.loanstatus).subscribe(data => {
+    } else {
+      this.service.rejectApplication(this.loanstatus).subscribe((data) => {
         console.log(data);
       });
     }
   }
 
+  viewCustomerDocuments(username: string, documentType: string) {
+    this.service
+      .fetchCustomerFilesFromStorage(username, documentType)
+      .subscribe((data) => {
+        let file = URL.createObjectURL(data);
+        window.open(file);
+      });
+  }
 }

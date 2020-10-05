@@ -1,195 +1,291 @@
 <div class="container">
-
   <div class="d-flex flex-column text-center">
-    <h3 class="text-info">{{customer.cdetails2.registration.firstName}} {{customer.cdetails2.registration.lastName}}</h3>
+    <h3 class="text-info">
+      {{ customer.cdetails2.registration.firstName }}
+      {{ customer.cdetails2.registration.lastName }}
+    </h3>
   </div>
   <div class="d-flex flex-row justify-content-around mt-2 text-primary">
-    <div><i class="fa fa-envelope pr-2"></i>{{customer.cdetails2.registration.emailId}}</div>
-    <div><i class="fa fa-phone pr-2"></i>{{customer.cdetails2.registration.phoneNumber}}</div>
-    <div><i class="fa fa-birthday-cake pr-2"></i>{{customer.cdetails2.registration.dob}}</div>
-    <div><i class="fa fa-user pr-2"></i>{{customer.cdetails2.registration.gender}}</div>
-    <div><i class="fa fa-map-marker pr-2"></i>{{customer.cdetails2.registration.nationality}}</div>
+    <div>
+      <i class="fa fa-envelope pr-2"></i
+      >{{ customer.cdetails2.registration.emailId }}
+    </div>
+    <div>
+      <i class="fa fa-phone pr-2"></i
+      >{{ customer.cdetails2.registration.phoneNumber }}
+    </div>
+    <div>
+      <i class="fa fa-birthday-cake pr-2"></i
+      >{{ customer.cdetails2.registration.dob }}
+    </div>
+    <div>
+      <i class="fa fa-user pr-2"></i
+      >{{ customer.cdetails2.registration.gender }}
+    </div>
+    <div>
+      <i class="fa fa-map-marker pr-2"></i
+      >{{ customer.cdetails2.registration.nationality }}
+    </div>
   </div>
 
   <div *ngIf="viewType == 'approved'" class="table-responsive mt-4">
-    <table class="table table-hover ">
+    <table class="table table-hover">
       <thead class="thead-dark text-center">
-        <tr ><th colspan="3">Account Details</th></tr>
+        <tr>
+          <th colspan="3">Account Details</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Account Number </td>
+          <td>Account Number</td>
           <td>:</td>
-          <td>{{approvedCustomer.account.accountNo}}</td>
+          <td>{{ approvedCustomer.account.accountNo }}</td>
         </tr>
         <tr class="table-info">
           <td>Loan ID</td>
           <td>:</td>
-          <td>{{approvedCustomer.loanId}}</td>
+          <td>{{ approvedCustomer.loanId }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="table-responsive mt-4">
-    <table class="table table-hover ">
+    <table class="table table-hover">
       <thead class="thead-dark text-center">
-        <tr ><th colspan="3">Loan Details</th></tr>
+        <tr>
+          <th colspan="3">Loan Details</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Application ID </td>
+          <td>Application ID</td>
           <td>:</td>
-          <td>{{customer.applicationId}}</td>
+          <td>{{ customer.applicationId }}</td>
         </tr>
         <tr class="table-info">
           <td>Loan Amount</td>
           <td>:</td>
-          <td>{{customer.loanAmt}}</td>
+          <td>{{ customer.loanAmt }}</td>
         </tr>
         <tr>
           <td>ROI</td>
           <td>:</td>
-          <td>{{customer.roi}}</td>
+          <td>{{ customer.roi }}</td>
         </tr>
         <tr>
           <td>Tenure</td>
           <td>:</td>
-          <td>{{customer.tenure}}</td>
+          <td>{{ customer.tenure }}</td>
         </tr>
         <tr>
           <td>Property Location</td>
           <td>:</td>
-          <td>{{customer.propertyLocation}}</td>
+          <td>{{ customer.propertyLocation }}</td>
         </tr>
         <tr>
           <td>Property Amount</td>
           <td>:</td>
-          <td>{{customer.propertyAmt}}</td>
+          <td>{{ customer.propertyAmt }}</td>
         </tr>
         <tr>
           <td>Property Name</td>
           <td>:</td>
-          <td>{{customer.propertyName}}</td>
+          <td>{{ customer.propertyName }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="table-responsive mt-3">
-    <table class="table table-hover ">
+    <table class="table table-hover">
       <thead class="thead-dark text-center">
-        <tr ><th colspan="3">Customer Details</th></tr>
+        <tr>
+          <th colspan="3">Customer Details</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Customer ID </td>
+          <td>Customer ID</td>
           <td>:</td>
-          <td>{{customer.cdetails2.customer_id}}</td>
+          <td>{{ customer.cdetails2.customer_id }}</td>
         </tr>
         <tr>
           <td>Aadhar Number</td>
           <td>:</td>
-          <td>{{customer.cdetails2.aadhar}}</td>
+          <td>{{ customer.cdetails2.aadhar }}</td>
         </tr>
         <tr>
           <td>PAN Number</td>
           <td>:</td>
-          <td>{{customer.cdetails2.pan}}</td>
+          <td>{{ customer.cdetails2.pan }}</td>
         </tr>
         <tr>
           <td>Salary</td>
           <td>:</td>
-          <td>{{customer.cdetails2.salary}}</td>
+          <td>{{ customer.cdetails2.salary }}</td>
         </tr>
         <tr>
           <td>Type of Employment</td>
           <td>:</td>
-          <td>{{customer.cdetails2.emptype}}</td>
+          <td>{{ customer.cdetails2.emptype }}</td>
         </tr>
         <tr>
           <td>Employer Name</td>
           <td>:</td>
-          <td>{{customer.cdetails2.empname}}</td>
+          <td>{{ customer.cdetails2.empname }}</td>
         </tr>
         <tr>
           <td>Organization Type</td>
           <td>:</td>
-          <td>{{customer.cdetails2.orgtype}}</td>
+          <td>{{ customer.cdetails2.orgtype }}</td>
         </tr>
         <tr>
           <td>Retirement Age</td>
           <td>:</td>
-          <td>{{customer.cdetails2.retireage}}</td>
+          <td>{{ customer.cdetails2.retireage }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="table-responsive mt-3">
-    <table class="table table-hover ">
+    <table class="table table-hover">
       <thead class="thead-dark text-center">
-        <tr ><th colspan="3">Documents</th></tr>
+        <tr>
+          <th colspan="3">Documents</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
-          <td>PAN Card </td>
+          <td>PAN Card</td>
           <td>:</td>
-          <td>{{customer.cdetails2.panURL}}</td>
+          <!-- <td>{{customer.cdetails2.panURL}}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewCustomerDocuments(
+                  customer.cdetails2.registration.emailId,
+                  'pan'
+                )
+              "
+              >View PAN Card</a
+            >
+          </td>
         </tr>
         <tr>
           <td>Voter ID</td>
           <td>:</td>
-          <td>{{customer.cdetails2.voterURL}}</td>
+          <!-- <td>{{ customer.cdetails2.voterURL }}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewCustomerDocuments(
+                  customer.cdetails2.registration.emailId,
+                  'voter_id'
+                )
+              "
+              >View Voter ID Card</a
+            >
+          </td>
         </tr>
         <tr>
           <td>Salary Slip</td>
           <td>:</td>
-          <td>{{customer.cdetails2.salaryURL}}</td>
+          <!-- <td>{{ customer.cdetails2.salaryURL }}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewCustomerDocuments(
+                  customer.cdetails2.registration.emailId,
+                  'salary_slip'
+                )
+              "
+              >View Salary Slip</a
+            >
+          </td>
         </tr>
         <tr>
           <td>LOA</td>
           <td>:</td>
-          <td>{{customer.loaURL}}</td>
+          <td>{{ customer.loaURL }}</td>
         </tr>
         <tr>
           <td>NOC From Builder</td>
           <td>:</td>
-          <td>{{customer.nocURL}}</td>
+          <td>{{ customer.nocURL }}</td>
         </tr>
         <tr>
           <td>Agreement To Sale</td>
           <td>:</td>
-          <td>{{customer.agreementURL}}</td>
+          <td>{{ customer.agreementURL }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div *ngIf="viewType == 'pending'" class="d-flex flex-row justify-content-center my-4">
-    <div class="w-25"><button class="btn btn-success btn-lg btn-block mr-3" data-toggle="modal" data-target="#remark" (click)="approve()">Approve</button></div>
-    <div class="w-25"><button class="btn btn-danger btn-lg btn-block ml-3" data-toggle="modal" data-target="#remark" >Reject</button></div>
+  <div
+    *ngIf="viewType == 'pending'"
+    class="d-flex flex-row justify-content-center my-4"
+  >
+    <div class="w-25">
+      <button
+        class="btn btn-success btn-lg btn-block mr-3"
+        data-toggle="modal"
+        data-target="#remark"
+        (click)="approve()"
+      >
+        Approve
+      </button>
+    </div>
+    <div class="w-25">
+      <button
+        class="btn btn-danger btn-lg btn-block ml-3"
+        data-toggle="modal"
+        data-target="#remark"
+      >
+        Reject
+      </button>
+    </div>
   </div>
 
   <!-- Modal -->
-<div class="modal fade" id="remark" tabindex="-1" role="dialog" aria-labelledby="enterRemark" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="enterRemark">Remarks</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <textarea rows="3" cols="50" [(ngModel)]="remarks"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="submit()">Submit</button>
+  <div
+    class="modal fade"
+    id="remark"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="enterRemark"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="enterRemark">Remarks</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea rows="3" cols="50" [(ngModel)]="remarks"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-success" (click)="submit()">
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </div>
