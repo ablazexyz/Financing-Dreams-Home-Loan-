@@ -132,6 +132,7 @@ export class CustDetailsComponent implements OnInit {
             }
 
             alert('File successfully uploaded');
+            //this.selectedFiles = undefined;
           }
           //this.selectedFiles = undefined;
         },
@@ -178,5 +179,17 @@ export class CustDetailsComponent implements OnInit {
         this.isSalarySlipSelected = false;
       }
     }
+  }
+
+  viewUploadedDocument(documentType: string) {
+    this.service
+      .downloadCustomerFilesFromStorage(
+        sessionStorage.getItem('username'),
+        documentType
+      )
+      .subscribe((data) => {
+        let file = URL.createObjectURL(data);
+        window.open(file);
+      });
   }
 }
