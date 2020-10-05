@@ -3,7 +3,7 @@
   <div *ngIf="applicationDetailsForm.errors?.range" class="alert alert-danger">
     *Loan Amount greater than Estimated Property Amount
   </div>
-  <form [formGroup]="applicationDetailsForm" (submit)="addApplicationDetails()">
+  <form [formGroup]="applicationDetailsForm">
     <div class="form-group">
       <label for="property_location">Property Location</label>
       <input type="text" name="property_location" id="property_location" placeholder="Enter property location"
@@ -129,25 +129,42 @@
         </div>
       </div>
     </div>
-    <div class="form-row application-docs">
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="LOA">LOA</label>
-        <input type="file" class="form-control-file" id="LOA" name="LOA" formControlName="LOA" />
-      </div>
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="NOC">NOC from Builder</label>
-        <input type="file" class="form-control-file" id="NOC" name="NOC" formControlName="NOC" />
-      </div>
-      <div class="form-group col-md-4 col-sm-6">
-        <label for="agreement_to_sale">Agreement to sale</label>
-        <input type="file" class="form-control-file" id="agreement_to_sale" name="agreement_to_sale"
-          formControlName="agreement_to_sale" />
-      </div>
-    </div>
-    <div class="form-group text-center mt-2">
-      <input type="submit" value="Submit" class="btn btn-primary" [disabled]="applicationDetailsForm.invalid" />
+    <div class="form-group text-center mt-4">
+      <button class="btn btn-success btn-lg" [disabled]="applicationDetailsForm.invalid" (click)="addApplicationDetails()"
+      data-toggle="modal" data-target="#sent"
+      >Submit</button>
     </div>
   </form>
+
+  <div
+    class="modal fade p-4 text-center"
+    id="sent"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="sentDetails"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content align-items-center py-3">
+        <div class="spinner-grow text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="modal-body text-success">
+          Application Sent for Approval
+        </div>
+        <div class="modal-footer d-block">
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/userDashboard/userHome"
+            data-dismiss="modal"
+          >
+            View Application
+          </button>
+          </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>

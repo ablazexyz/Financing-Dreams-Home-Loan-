@@ -19,7 +19,7 @@ const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
   if (pamt !== null && lamt !== null){
     return ( pamt >= lamt) ? null : { range: true };
   }
- 
+
 };
 
 @Component({
@@ -28,7 +28,7 @@ const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
   styleUrls: ['./application-details.component.css'],
 })
 export class ApplicationDetailsComponent implements OnInit {
-  
+
   loanlimit: number;
 
   userDetail: CustomerDetails;
@@ -47,7 +47,7 @@ export class ApplicationDetailsComponent implements OnInit {
       this.router.navigate(['/userLogin']);
     }
 
-   
+
   }
 
   ngOnInit(): void {
@@ -90,7 +90,7 @@ export class ApplicationDetailsComponent implements OnInit {
     });
 
 
-   
+
 
   }
   /*
