@@ -1,0 +1,119 @@
+<h2>Upload Loan documents</h2>
+<div class="form-group">
+  <label for="LOA">Upload LOA</label>
+  <div
+    style="
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: -20px;
+    "
+  >
+    <input
+      type="file"
+      id="LOA"
+      (change)="selectFile($event, 'LOA')"
+      style="margin-top: 20px"
+    />
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-top: 20px"
+      (click)="upload('LOA')"
+      [disabled]="!isLOASelected"
+    >
+      Upload
+    </button>
+    <span
+      *ngIf="isLOAUploaded"
+      class="ml-2 text-center"
+      style="flex-grow: 1; margin-top: 20px"
+      ><a [routerLink]="" (click)="viewUploadedDocument('LOA')"
+        >View uploaded LOA</a
+      ></span
+    >
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="NOC">Upload NOC</label>
+  <div
+    style="
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: -20px;
+    "
+  >
+    <input
+      type="file"
+      id="NOC"
+      (change)="selectFile($event, 'NOC')"
+      style="margin-top: 20px"
+    />
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-top: 20px"
+      (click)="upload('NOC')"
+      [disabled]="!isNOCSelected"
+    >
+      Upload
+    </button>
+    <span
+      *ngIf="isNOCUploaded"
+      class="ml-2 text-center"
+      style="flex-grow: 1; margin-top: 20px"
+      ><a [routerLink]="" (click)="viewUploadedDocument('NOC')"
+        >View uploaded NOC</a
+      ></span
+    >
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="agreementToSale">Upload Agreement To Sale</label>
+  <div
+    style="
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: -20px;
+    "
+  >
+    <input
+      type="file"
+      id="agreementToSale"
+      (change)="selectFile($event, 'agreementToSale')"
+      style="margin-top: 20px"
+    />
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-top: 20px"
+      (click)="upload('agreementToSale')"
+      [disabled]="!isAgreementToSaleSelected"
+    >
+      Upload
+    </button>
+    <span
+      *ngIf="isAgreementToSaleUploaded"
+      class="ml-2 text-center"
+      style="flex-grow: 1; margin-top: 20px"
+      ><a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')"
+        >View uploaded Agreement To Sale document</a
+      ></span
+    >
+  </div>
+</div>
+
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!isLOAUploaded || !isNOCUploaded || !isAgreementToSaleUploaded"
+    (click)="onUploadComplete()"
+  >
+    Finsh
+  </button>
+</div>

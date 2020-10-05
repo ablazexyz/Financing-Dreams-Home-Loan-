@@ -118,6 +118,31 @@ export class UserService {
     return this.http.request(newRequest);
   }
 
+  pushApplicationFilesToStorage(
+    file: File,
+    userName: string,
+    applicationId: string,
+    documentType: string
+  ): Observable<HttpEvent<{}>> {
+    const data: FormData = new FormData();
+    data.append('file', file);
+    const newRequest = new HttpRequest(
+      'POST',
+      'http://localhost:9091/HomeApp/users/fileUpload/' +
+        userName +
+        '/' +
+        applicationId +
+        '/' +
+        documentType,
+      data,
+      {
+        reportProgress: true,
+        responseType: 'text',
+      }
+    );
+    return this.http.request(newRequest);
+  }
+
   downloadCustomerFilesFromStorage(
     userFolderName: string,
     documentType: string

@@ -1,3 +1,4 @@
+import { ApplicationDocsComponent } from './user/user-dashboard-new/application-docs/application-docs.component';
 import { ViewApplicationsComponent } from './admin/view-applications/view-applications.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { HomeViewComponent } from './admin/home-view/home-view.component';
@@ -19,15 +20,17 @@ import { ViewCustomerComponent } from './admin/view-customer/view-customer.compo
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'adminLogin', component: AdminLoginComponent },
-  { path: 'adminDashboard', component: AdminDashboardComponent,
-  children: [
-    { path: '', redirectTo: 'adminHome', pathMatch: 'full' },
-    { path: 'adminHome', component: HomeViewComponent },
-    { path: 'adminProfile', component: ProfileComponent },
-    { path: 'adminApplications', component: ViewApplicationsComponent },
-    { path: 'viewCustomer' , component: ViewCustomerComponent }
-  ]
-},
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    children: [
+      { path: '', redirectTo: 'adminHome', pathMatch: 'full' },
+      { path: 'adminHome', component: HomeViewComponent },
+      { path: 'adminProfile', component: ProfileComponent },
+      { path: 'adminApplications', component: ViewApplicationsComponent },
+      { path: 'viewCustomer', component: ViewCustomerComponent },
+    ],
+  },
   { path: 'home', component: HomeComponent },
   { path: 'userLogin', component: LoginComponent },
   { path: 'userRegister', component: RegisterComponent },
@@ -44,9 +47,13 @@ const routes: Routes = [
         path: 'viewApplicationDetails',
         component: ViewApplicationDetailsComponent,
       },
+      {
+        path: 'uploadDocuments',
+        component: ApplicationDocsComponent,
+      },
     ],
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

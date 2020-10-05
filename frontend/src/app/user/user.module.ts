@@ -11,6 +11,7 @@ import { CustDetailsComponent } from './user-dashboard-new/cust-details/cust-det
 import { ApplicationDetailsComponent } from './user-dashboard-new/application-details/application-details.component';
 import { ViewApplicationDetailsComponent } from './user-dashboard-new/view-application-details/view-application-details.component';
 import { ViewCustomerDetailsComponent } from './user-dashboard-new/view-customer-details/view-customer-details.component';
+import { ApplicationDocsComponent } from './user-dashboard-new/application-docs/application-docs.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ViewCustomerDetailsComponent } from './user-dashboard-new/view-customer
     ApplicationDetailsComponent,
     ViewApplicationDetailsComponent,
     ViewCustomerDetailsComponent,
+    ApplicationDocsComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, AppRoutingModule, FormsModule],
 

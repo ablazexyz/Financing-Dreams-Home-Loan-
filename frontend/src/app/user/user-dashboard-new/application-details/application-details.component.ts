@@ -12,14 +12,12 @@ import { UserService } from '../../user.service';
 import { CustomerDetails } from '../../customerDetails';
 import { Application } from '../../application';
 
-
 const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
   const pamt = fg.get('estimated_property_amt').value;
   const lamt = fg.get('loan_amount').value;
-  if (pamt !== null && lamt !== null){
-    return ( pamt >= lamt) ? null : { range: true };
+  if (pamt !== null && lamt !== null) {
+    return pamt >= lamt ? null : { range: true };
   }
- 
 };
 
 @Component({
@@ -28,7 +26,6 @@ const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
   styleUrls: ['./application-details.component.css'],
 })
 export class ApplicationDetailsComponent implements OnInit {
-  
   loanlimit: number;
 
   userDetail: CustomerDetails;
@@ -46,52 +43,51 @@ export class ApplicationDetailsComponent implements OnInit {
     if (!sessionStorage.getItem('username')) {
       this.router.navigate(['/userLogin']);
     }
-
-   
   }
 
   ngOnInit(): void {
-
     this.service
-    .getUserDetails(sessionStorage.getItem('username'))
-    .subscribe((data) => {
-      this.loanlimit = (data.salary*60*0.6);
+      .getUserDetails(sessionStorage.getItem('username'))
+      .subscribe((data) => {
+        this.loanlimit = data.salary * 60 * 0.6;
 
-      console.log(this.loanlimit);
+        console.log(this.loanlimit);
 
-      this.applicationDetailsForm = this.fb.group(
-        {
-          property_location: ['', Validators.required],
-          property_name: ['', Validators.required],
-          estimated_property_amt: [
-            '',
-            [Validators.required, Validators.pattern('^[0-9]*$')],
-          ],
-          loan_amount: [
-            '',
-            [Validators.required, Validators.pattern('^[0-9]*$'),Validators.max(this.loanlimit)],
-          ],
-          interest_rate: [
-            '',
-            [
-              Validators.required,
-              Validators.pattern(new RegExp(/^\d*(?:[.,]\d{1,2})?$/)),
+        this.applicationDetailsForm = this.fb.group(
+          {
+            property_location: ['', Validators.required],
+            property_name: ['', Validators.required],
+            estimated_property_amt: [
+              '',
+              [Validators.required, Validators.pattern('^[0-9]*$')],
             ],
-          ],
-          tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-          LOA: [],
-          NOC: [],
-          agreement_to_sale: [],
-        }, { validator: LoanAmtValidator }/*, { validator: this.validateAmount}*/
-      );
+            loan_amount: [
+              '',
+              [
+                Validators.required,
+                Validators.pattern('^[0-9]*$'),
+                Validators.max(this.loanlimit),
+              ],
+            ],
+            interest_rate: [
+              '',
+              [
+                Validators.required,
+                Validators.pattern(new RegExp(/^\d*(?:[.,]\d{1,2})?$/)),
+              ],
+            ],
+            tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+            LOA: [],
+            NOC: [],
+            agreement_to_sale: [],
+          },
+          {
+            validator: LoanAmtValidator,
+          } /*, { validator: this.validateAmount}*/
+        );
 
-      this.isloaded = true;
-
-    });
-
-
-   
-
+        this.isloaded = true;
+      });
   }
   /*
   validateAmount: ValidatorFn = (fg: FormGroup) => {
@@ -119,6 +115,11 @@ export class ApplicationDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.applicationdetails = data;
         console.log(this.applicationdetails);
+        this.router.navigate(['userDashboard/uploadDocuments'], {
+          queryParams: {
+            applicationId: this.applicationdetails.applicationId,
+          },
+        });
       });
   }
 }
