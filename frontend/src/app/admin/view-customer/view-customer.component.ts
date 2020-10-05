@@ -1,5 +1,5 @@
 import { LoanDto } from './../../loanDto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoanStatus } from './../LoanStatus';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from './../admin.service';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class ViewCustomerComponent implements OnInit {
   customer: Application;
 
-  approvedCustomer: LoanDto;
+  approvedCustomer: LoanDto = null;
 
   remarks: string;
 
@@ -24,7 +24,7 @@ export class ViewCustomerComponent implements OnInit {
 
   viewType: string;
 
-  constructor(private service: AdminService, private route: ActivatedRoute) { }
+  constructor(private service: AdminService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -55,14 +55,18 @@ export class ViewCustomerComponent implements OnInit {
     if (this.approved){
 
       this.service.approveApplication(this.loanstatus).subscribe();
-      this.viewType = 'approved';
+      // this.router.navigate(['/adminApplications']);
     }
     else{
       this.service.rejectApplication(this.loanstatus).subscribe(data => {
         console.log(data);
-        this.viewType = 'approved';
+        // this.router.navigate(['/adminApplications']);
       });
     }
+  }
+
+  routeToApplication(): void{
+    this.router.navigate(['/adminDashboard/adminApplications']);
   }
 
 }
