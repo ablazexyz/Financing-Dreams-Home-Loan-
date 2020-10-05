@@ -38,7 +38,7 @@ export class ViewCustomerComponent implements OnInit {
       console.log(this.approvedCustomer);
       this.customer = this.approvedCustomer.application;
     }
-    console.log(this.approvedCustomer);
+    // console.log(this.approvedCustomer);
 
     // console.log(this.customer);
   }
@@ -55,10 +55,12 @@ export class ViewCustomerComponent implements OnInit {
     if (this.approved){
 
       this.service.approveApplication(this.loanstatus).subscribe();
+      this.viewType = 'approved';
     }
     else{
       this.service.rejectApplication(this.loanstatus).subscribe(data => {
         console.log(data);
+        this.viewType = 'approved';
       });
     }
   }
