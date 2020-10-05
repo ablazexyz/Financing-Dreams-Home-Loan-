@@ -3,68 +3,43 @@
   <form [formGroup]="userRegisterDetails" (submit)=RegisterUser()>
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input
-        type="text"
-        name="firstName"
-        id="firstName"
-        class="form-control"
-        formControlName="firstName"
-        placeholder="Enter your first name"
-      />
+      <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName"
+        placeholder="Enter your first name" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.firstName.invalid && userRegisterDetails.controls.firstName.touched" class="text-danger mb-2">First Name can't be empty.</div>
+    <div *ngIf="userRegisterDetails.controls.firstName.invalid && userRegisterDetails.controls.firstName.touched"
+      class="text-danger mb-2">First Name can't be empty.</div>
 
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        name="lastName"
-        id="lastName"
-        class="form-control"
-        formControlName="lastName"
-        placeholder="Enter your last name"
-      />
+      <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName"
+        placeholder="Enter your last name" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.lastName.invalid && userRegisterDetails.controls.lastName.touched" class="text-danger mb-2">Last Name can't be empty.</div>
+    <div *ngIf="userRegisterDetails.controls.lastName.invalid && userRegisterDetails.controls.lastName.touched"
+      class="text-danger mb-2">Last Name can't be empty.</div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        class="form-control"
-        formControlName="email"
-        placeholder="Enter your Email"
-      />
+      <input type="email" name="email" id="email" class="form-control" formControlName="email"
+        placeholder="Enter your Email" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.email.invalid && userRegisterDetails.controls.email.touched" class="text-danger mb-2">Enter a valid Email</div>
+    <div *ngIf="userRegisterDetails.controls.email.invalid && userRegisterDetails.controls.email.touched"
+      class="text-danger mb-2">Enter a valid Email</div>
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        class="form-control"
-        formControlName="password"
-        placeholder="Set your Password"
-      />
+      <input type="password" name="password" id="password" class="form-control" formControlName="password"
+        placeholder="Set your Password" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.password.invalid && userRegisterDetails.controls.password.touched" class="text-danger mb-2">Doesn't match the required pattern.</div>
+    <div *ngIf="userRegisterDetails.controls.password.invalid && userRegisterDetails.controls.password.touched"
+      class="text-danger mb-2">Doesn't match the required pattern.</div>
 
     <div class="form-group">
       <label for="phoneNumber">Phone Number</label>
-      <input
-        type="tel"
-        name="phoneNumber"
-        id="phoneNumber"
-        class="form-control"
-        formControlName="phoneNumber"
-        placeholder="Enter your phone number"
-      />
+      <input type="tel" name="phoneNumber" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+        placeholder="Enter your phone number" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.phoneNumber.invalid && userRegisterDetails.controls.phoneNumber.touched" class="text-danger mb-2">Enter a valid Phone Number</div>
+    <div *ngIf="userRegisterDetails.controls.phoneNumber.invalid && userRegisterDetails.controls.phoneNumber.touched"
+      class="text-danger mb-2">Enter a valid Phone Number</div>
 
     <div class="form-group">
       <label for="gender">Gender</label>
@@ -74,45 +49,67 @@
         <option value="others">Others</option>
       </select>
     </div>
-    <div *ngIf="userRegisterDetails.controls.gender.invalid && userRegisterDetails.controls.gender.touched" class="text-danger mb-2">Required Field</div>
+    <div *ngIf="userRegisterDetails.controls.gender.invalid && userRegisterDetails.controls.gender.touched"
+      class="text-danger mb-2">Required Field</div>
 
     <div class="form-group">
       <label for="nationality">Nationality</label>
-      <input
-        type="text"
-        name="nationality"
-        id="nationality"
-        class="form-control"
-        formControlName="nationality"
-        placeholder="Enter your nationality"
-      />
+      <input type="text" name="nationality" id="nationality" class="form-control" formControlName="nationality"
+        placeholder="Enter your nationality" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.nationality.invalid && userRegisterDetails.controls.nationality.touched" class="text-danger mb-2">Required Field</div>
+    <div *ngIf="userRegisterDetails.controls.nationality.invalid && userRegisterDetails.controls.nationality.touched"
+      class="text-danger mb-2">Required Field</div>
 
     <div class="form-group">
       <label for="dateOfBirth">Date of birth</label>
-      <input
-        type="date"
-        name="dateOfBirth"
-        id="dateOfBirth"
-        class="form-control"
-        formControlName="dateOfBirth"
-        placeholder="Choose your date of birth"
-      />
+      <input type="date" name="dateOfBirth" id="dateOfBirth" class="form-control" formControlName="dateOfBirth"
+        placeholder="Choose your date of birth" />
     </div>
-    <div *ngIf="userRegisterDetails.controls.dateOfBirth.invalid && userRegisterDetails.controls.dateOfBirth.touched" class="text-danger mb-2">Required Field</div>
+    <div *ngIf="userRegisterDetails.controls.dateOfBirth.invalid && userRegisterDetails.controls.dateOfBirth.touched"
+      class="text-danger mb-2">Required Field</div>
 
     <div *ngIf="status" class="alert alert-danger">
       <div class="text-danger">You are already registered with us, Please Login with your user details</div>
     </div>
 
     <div class="form-group" id="register-button">
-      <button type="submit" class="btn btn-primary" [disabled]="userRegisterDetails.invalid">Register</button>
+      <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#register"
+        [disabled]="userRegisterDetails.invalid">Register</button>
     </div>
 
     <div class="form-group" id="login-button">
       <button class="btn btn-danger" routerLink="/userLogin">Login</button>
     </div>
   </form>
+
+  <!-- Modal -->
+  <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="enterRemark" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="enterRemark">Remarks</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div *ngIf="!registrationbool" class="alert alert-primary">
+             Please wait your Account is being created
+          </div>
+
+
+          <div *ngIf="registrationbool" class="alert alert-success">
+             You Are Succesfully Registered With Us. Please Login With Your Credentials
+          </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="login()" data-dismiss="modal" data-toggle="modal"
+            data-target="#status" [disabled]="loginbool">Login</button>
+          <!-- <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#status">Submit</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

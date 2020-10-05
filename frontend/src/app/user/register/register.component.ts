@@ -20,6 +20,9 @@ export class RegisterComponent implements OnInit {
   dob: string  ;
   status: boolean = false;
 
+  registrationbool: boolean = false;
+  loginbool: boolean = false;
+
   constructor(private fb: FormBuilder, private service: RegisterService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit(): void {
@@ -58,22 +61,26 @@ export class RegisterComponent implements OnInit {
 
       if (res.status == 200) {
         this.status = false;
-        alert("You Are Succesfully Registered With Us. Please Login With Your Credentials")
-        this.router.navigate(['/userLogin'])
-        console.log("SUCCESS",res.status)
+        console.log("SUCCESS",res.status);
+        this.registrationbool = true;
       }
     },
       err => {
         if (err.status == 200) {
           this.status = false;
           console.log("error false",err.status)
+          this.registrationbool = true;
         }
         else {
           this.status = true;
-
         }
 
       });
+  }
+
+  login():void{
+    this.loginbool = true;
+    this.router.navigate(['/userLogin']);
   }
 
 }
