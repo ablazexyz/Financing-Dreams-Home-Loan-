@@ -93,8 +93,11 @@
           </button>
         </div>
         <div class="modal-body">
-          
+
           <div *ngIf="!registrationbool" class="alert alert-primary">
+            <div class="spinner-border text-success spinner-border-sm" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
              Please wait your Account is being created
           </div>
 

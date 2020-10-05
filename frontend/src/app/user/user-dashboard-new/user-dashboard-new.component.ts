@@ -9,12 +9,12 @@ import { UserService } from '../user.service';
 })
 export class UserDashboardNewComponent implements OnInit {
 
-
+  user: string;
   constructor(private router: Router, private service:UserService) {
   }
 
   ngOnInit(): void {
-
+    this.user = sessionStorage.getItem('username');
   }
 
   SignOut(): void{

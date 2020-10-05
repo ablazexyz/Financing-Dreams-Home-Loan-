@@ -1,6 +1,6 @@
-<div class="cust-details">
-  <h3 class="cust-details-header">Add details</h3>
-  <form [formGroup]="customerDetailsForm" (submit)="addCustomerDetails()">
+<div class="cust-details container-fluid bg-light my-4 rounded p-4">
+  <h3 class="cust-details-header">Add Customer details</h3>
+  <form [formGroup]="customerDetailsForm">
     <div class="form-group">
       <label for="aadhaar">Aadhaar Number</label>
       <input
@@ -325,16 +325,17 @@
 
     <!-- ********************Salary Slip Form Control END***************************** -->
 
-    <div class="form-group text-center mt-2">
+    <div class="form-group text-center mt-4">
       <button
-        type="submit"
-        class="btn btn-primary"
+        class="btn btn-success btn-lg "
         [disabled]="
           customerDetailsForm.invalid ||
           !isPanUploaded ||
           !isVoterIdUploaded ||
           !isSalarySlipUploaded
         "
+        (click)="addCustomerDetails()"
+        data-toggle="modal" data-target="#saved"
       >
         <!-- routerLink="/userDashboard/applicationDetails"
       -->
@@ -343,4 +344,50 @@
       </button>
     </div>
   </form>
+
+  <div
+    class="modal fade"
+    id="saved"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="savedDetails"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="enterRemark">Remarks</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            routerLink="/userDashboard/applicationDetails"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="!detailsSaved" class="modal-body">
+          <div class="spinner-border text-success spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          Processing
+        </div>
+        <div *ngIf="detailsSaved" class="modal-body text-success">
+          Details Saved Successfully
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/userDashboard/applicationDetails"
+            data-dismiss="modal"
+          >
+            Continue...
+          </button>
+          </div>
+      </div>
+    </div>
+  </div>
+
 </div>

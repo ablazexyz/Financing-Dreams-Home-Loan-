@@ -1,5 +1,6 @@
 package com.lti.dao;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class AdminDaoImpl implements AdminDao{
 		Application appl = (Application) query.getSingleResult();
 		appl.setLoanStatus("Approved");
 		appl.setLoanRemarks(loanRemarks);
+		appl.setApprDate(LocalDate.now());
 		
 		Loan loan = new Loan();
 		loan.setApplication(appl);
@@ -113,6 +115,7 @@ public class AdminDaoImpl implements AdminDao{
 		Application appl = (Application) query.getSingleResult();
 		appl.setLoanStatus("Rejected");
 		appl.setLoanRemarks(loanRemarks);
+		appl.setApprDate(LocalDate.now());
 		
 		appl = entityManager.merge(appl);
 		

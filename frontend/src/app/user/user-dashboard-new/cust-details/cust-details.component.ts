@@ -19,6 +19,8 @@ import { Console } from 'console';
 export class CustDetailsComponent implements OnInit {
   customerDetailsForm: FormGroup;
 
+  detailsSaved = false;
+
   regdetails: Register;
 
   custDetails: CustomerDetails;
@@ -98,7 +100,10 @@ export class CustDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.regdetails = data;
         console.log(this.regdetails);
-        this.router.navigate(['/userDashboard/applicationDetails']);
+
+        this.detailsSaved = true;
+
+        // this.router.navigate(['/userDashboard/applicationDetails']);
       });
   }
 
