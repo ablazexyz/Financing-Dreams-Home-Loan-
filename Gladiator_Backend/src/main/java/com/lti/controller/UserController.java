@@ -49,7 +49,8 @@ public class UserController {
 
 	private MailService mail;
 
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+//	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -236,6 +237,65 @@ public class UserController {
 				folderCreated = true;
 			} else {
 				System.out.println("Failed to create directory");
+			}
+		}
+
+		String message;
+		try {
+			try {
+				// Files.copy(file.getInputStream(),
+				// uploadPath.resolve(file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				// Files.copy(file.getInputStream(),
+				// uploadPath.resolve("resume.pdf"),StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(file.getInputStream(), uploadPath.resolve(documentType + ".pdf"),
+						StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception e) {
+				throw new RuntimeException("FAIL!");
+			}
+			// files.add(file.getOriginalFilename());
+
+			message = "Successfully uploaded!";
+			return ResponseEntity.status(HttpStatus.OK).body(message);
+		} catch (Exception e) {
+			message = "Failed to upload!";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+		}
+	}
+	
+	
+	@PostMapping("/fileUpload/{username}/{applicationId}/{documentType}")
+	public ResponseEntity<String> uploadApplicationDocuments(@RequestParam("file") MultipartFile file,
+			@PathVariable(name = "username") String username,@PathVariable(name = "applicationId") String applicationId, @PathVariable(name = "documentType") String documentType) {
+
+		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
+//		Path uploadPath = Path.of(rootLocation.toString(), id);
+		Path uploadPath = Paths.get(rootLocation.toString(), username, applicationId);
+		
+		
+		// Checking if the folder where to upload exists or not
+		File applicationDocumentsFolder = new File(uploadPath.toString());
+		
+		//System.out.println(userDocumentsFolder.getParentFile());
+		
+		
+		// allow only pdf uploads
+		String fileContentType = file.getContentType();
+		try {
+			if (!fileContentType.equals("application/pdf")) {
+				throw new FileTypeException();
+			}
+		} catch (FileTypeException e) {
+			return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(e.getMessage());
+		}
+		boolean folderCreated = false;
+		// if it doesn't exist , create that folder
+
+		if (!applicationDocumentsFolder.exists()) {
+			if (applicationDocumentsFolder.mkdir()) {
+				System.out.println("created directory for storing application documents");
+				folderCreated = true;
+			} else {
+				System.out.println("Failed to create directory for application documents");
 			}
 		}
 
