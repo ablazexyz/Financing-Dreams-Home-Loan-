@@ -56,9 +56,10 @@ export class UserDashboardHomeComponent implements OnInit {
       else {
         this.isFirstTimeUser = false;
 
-        
-
-
+        this.service.getApplicationsbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
+          this.applications = data;
+          console.log("Applications", this.applications);
+        });
 
         this.service.getAccountbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
 
@@ -79,11 +80,6 @@ export class UserDashboardHomeComponent implements OnInit {
           console.log("First Time User Value:", this.isFirstTimeUser);
           console.log("Account Exists Boolean:", this.accountExists);
           console.log("IsLoaded Boolean Value: ", this.isLoaded);
-
-          this.service.getApplicationsbyEmail(sessionStorage.getItem('username')).subscribe((data) => {
-            this.applications = data;
-            console.log("Applications", this.applications);
-          });
 
           this.isLoaded = true;
 
