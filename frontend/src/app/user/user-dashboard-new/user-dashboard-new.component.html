@@ -1,24 +1,14 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <a href="#" class="navbar-brand">
-    <img
-      src="../../../assets/images/logo2.png"
-      alt=""
-      width="50"
-      height="50"
-      loading="lazy"
-    />FINANCING DREAMS</a>
+    <img src="../../../assets/images/logo2.png" alt="" width="50" height="50" loading="lazy" />FINANCING DREAMS</a>
 
-  <button
-    class="navbar-toggler"
-    data-toggle="collapse"
-    data-target="#navbarMenu"
-  >
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarMenu">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a routerLink="/userDashboard" routerLinkActive="text-primary" class="nav-link">Profile</a>
+        <a data-toggle="modal" data-target="#profile" routerLinkActive="text-primary" class="nav-link">Profile</a>
       </li>
       <li class="nav-item">
         <a routerLink="/userDashboard/userHome" routerLinkActive="text-primary" class="nav-link">Applications</a>
@@ -35,4 +25,40 @@
   <main>
     <router-outlet></router-outlet>
   </main>
+</div>
+
+<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <div></div>
+        <div>
+        <h4 class="modal-title mx-auto" id="myModalLabel">PROFILE</h4>
+      </div>
+      <div>
+        <button type="button" class="close text-danger ml-0 " data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center">
+        <div class="">
+        <h3><i class="fa fa-user fa-4x text-dark py-0 my-0"></i></h3><br>
+        </div>
+        <div>
+          <h3 class="media-heading">{{registrationDetails.firstName}} {{registrationDetails.lastName}} <small>{{registrationDetails.nationality}}</small></h3>
+        </div>
+        <div class="py-2">
+          <div><i class="fa fa-at pr-2 text-primary"></i> {{registrationDetails.emailId}} </div>
+        </div>
+        <div>
+          <div><i class="fa fa-phone pr-2 text-primary"></i> {{registrationDetails.phoneNumber}} </div>
+        </div>
+        <div class="py-2">
+          <div><i class="fa fa-birthday-cake pr-2 text-primary"></i> {{registrationDetails.dob}} </div>
+        </div>
+        <div class="pb-4">
+          <div><i class="fa fa-venus-mars pr-2 text-primary"></i> {{registrationDetails.gender}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
