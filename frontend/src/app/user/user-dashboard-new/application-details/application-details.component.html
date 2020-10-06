@@ -139,6 +139,8 @@
     </div>
   </form>
 
+
+
   <div *ngIf=emibool class="card" id="info_card1" style="margin: auto;">
     <div class="card-body">
        <h4 style="text-align: center;">Monthly EMI Amount </h4>
@@ -163,19 +165,26 @@
           class="close"
           data-dismiss="modal"
           aria-label="Close"
-          routerLink="/userDashboard/applicationDetails"
+          routerLink="/userDashboard/uploadDocuments"
         >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-success">
+      <div *ngIf="!appId" class="modal-body text-success">
+        <div class="spinner-border text-success spinner-border-sm" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        Processing
+      </div>
+      <div *ngIf="appId" class="modal-body text-success">
         Application Details Saved Successfully
       </div>
-      <div class="modal-footer">
+      <div *ngIf="appId" class="modal-footer">
         <button
           type="button"
           class="btn btn-success"
           routerLink="/userDashboard/uploadDocuments"
+          [queryParams]="{ 'applicationId': applicationdetails.applicationId }"
           data-dismiss="modal"
         >
           Continue...
