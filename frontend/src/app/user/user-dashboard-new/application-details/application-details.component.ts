@@ -29,6 +29,7 @@ export class ApplicationDetailsComponent implements OnInit {
   loanlimit: number;
   interest: number;
   userDetail: CustomerDetails;
+  appId = false;
 
   applicationDetailsForm: FormGroup;
 
@@ -108,7 +109,7 @@ export class ApplicationDetailsComponent implements OnInit {
 
   checkEmi(): void {
 
-    this.emibool = true;
+
 
     if (this.applicationDetailsForm.controls.loan_amount.value<=1000000){
       this.interest = 6.5;
@@ -131,7 +132,9 @@ export class ApplicationDetailsComponent implements OnInit {
     this.aroi = this.interest / (12 * 100);
 
     this.emi = (this.principal * this.aroi) * Math.pow(1 + this.aroi, this.tenure * 12) / (Math.pow(1 + this.aroi, this.tenure * 12) - 1);
-    console.log("roi", this.interest);
+    console.log('roi', this.interest);
+
+    this.emibool = true;
 
   }
 
@@ -145,6 +148,7 @@ export class ApplicationDetailsComponent implements OnInit {
       this.applicationDetailsForm.controls.tenure.value
     );
 
+
     this.service
       .addApplication(
         sessionStorage.getItem('username'),
@@ -153,14 +157,15 @@ export class ApplicationDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.applicationdetails = data;
         console.log(this.applicationdetails);
-        this.router.navigate(['userDashboard/uploadDocuments']
+        // this.router.navigate(['userDashboard/uploadDocuments']
         // ,
         // {
-          // queryParams: {
-          //   applicationId: this.applicationdetails.applicationId,
-          // },
+        //   queryParams: {
+        //     applicationId: this.applicationdetails.applicationId,
+        //   },
         // }
-        );
+        // );
       });
+    this.appId = true;
   }
 }
