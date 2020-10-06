@@ -11,7 +11,7 @@ public interface adminService {
 	
 	public List<Application> findAllApplication();
 
-	public void verifyAppl(int applId, String string);
+	public Application verifyAppl(int applId, String string);
 
 	public Application rejectAppl(int applId, String loanRemarks);
 
