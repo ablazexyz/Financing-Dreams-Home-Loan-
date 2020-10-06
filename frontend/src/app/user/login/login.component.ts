@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
   regdetails: Register;
 
   logindetails: Login;
+  notregisterbool: boolean;
 
 
-  constructor(private fb: FormBuilder, private service: LoginService,private router: Router) {
+  constructor(private fb: FormBuilder, private service: LoginService, private uservice:UserService, private router: Router) {
     sessionStorage.removeItem('username');
   }
 
@@ -54,12 +55,19 @@ export class LoginComponent implements OnInit {
 
   otpgen():void {
 
-    this.forgotbool = false;
-    this.otpbool = true;
-
-    this.service.forgotpass(this.email).subscribe(data=>{
-      this.otp = data;
+    this.uservice.getRegDetails(this.email).subscribe(data=>{
+      if (data==null){
+        this.notregisterbool = true;
+      }
+      else{
+        this.forgotbool = false;
+        this.otpbool = true;
+        this.service.forgotpass(this.email).subscribe(data=>{
+          this.otp = data;
+        })
+      }
     })
+   
 
   }
 
