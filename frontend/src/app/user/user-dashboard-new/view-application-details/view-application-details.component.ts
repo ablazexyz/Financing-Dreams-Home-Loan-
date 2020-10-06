@@ -15,6 +15,7 @@ export class ViewApplicationDetailsComponent implements OnInit {
   applicationDetailToDisplay: Application;
 
   loadCompleted: boolean = false;
+  status = false;
 
   constructor(
     private router: Router,
@@ -34,6 +35,9 @@ export class ViewApplicationDetailsComponent implements OnInit {
     this.service.getApplicationDetailById(this.applicationId).subscribe(
       (data) => {
         this.applicationDetailToDisplay = data;
+        if(data.loanStatus == 'Approved'){
+          this.status = true;
+        }
         console.log(this.applicationDetailToDisplay);
         console.log(
           'Customer Details:',

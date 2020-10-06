@@ -43,11 +43,11 @@ export class UserDashboardHomeComponent implements OnInit {
       this.service.getRegDetails(sessionStorage.getItem('username')).subscribe(data => {
 
         this.registrationDetails = data;
-        console.log(this.registrationDetails);
+        // console.log(this.registrationDetails);
 
         this.name = (data.firstName + ' ' + data.lastName);
 
-        console.log("Registration Details :", data)
+        // console.log("Registration Details :", data);
       });
 
       if (data == null) {

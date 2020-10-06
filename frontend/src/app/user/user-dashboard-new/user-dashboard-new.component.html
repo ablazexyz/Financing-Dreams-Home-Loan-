@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarMenu">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a data-toggle="modal" data-target="#profile" routerLinkActive="text-primary" class="nav-link">Profile</a>
+        <a data-toggle="modal" data-target="#profile" routerLinkActive="text-primary" (click)="profile=true;" class="nav-link">Profile</a>
       </li>
       <li class="nav-item">
         <a routerLink="/userDashboard/userHome" routerLinkActive="text-primary" class="nav-link">Applications</a>
@@ -27,7 +27,7 @@
   </main>
 </div>
 
-<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div *ngIf="profile" class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-between">
@@ -44,7 +44,7 @@
         <h3><i class="fa fa-user fa-4x text-dark py-0 my-0"></i></h3><br>
         </div>
         <div>
-          <h3 class="media-heading">{{registrationDetails.firstName}} {{registrationDetails.lastName}} <small>{{registrationDetails.nationality}}</small></h3>
+          <h3 class="media-heading">{{registrationDetails.firstName}} {{registrationDetails.lastName}}</h3>
         </div>
         <div class="py-2">
           <div><i class="fa fa-at pr-2 text-primary"></i> {{registrationDetails.emailId}} </div>
@@ -53,9 +53,12 @@
           <div><i class="fa fa-phone pr-2 text-primary"></i> {{registrationDetails.phoneNumber}} </div>
         </div>
         <div class="py-2">
-          <div><i class="fa fa-birthday-cake pr-2 text-primary"></i> {{registrationDetails.dob}} </div>
+          <div><i class="fa fa-birthday-cake pr-2 text-primary"></i> {{registrationDetails.dob | date}} </div>
         </div>
-        <div class="pb-4">
+        <div>
+          <div><i class="fa fa-flag pr-2 text-primary"></i> {{registrationDetails.nationality}} </div>
+        </div>
+        <div class="pt-2 pb-4">
           <div><i class="fa fa-venus-mars pr-2 text-primary"></i> {{registrationDetails.gender}} </div>
         </div>
       </div>
