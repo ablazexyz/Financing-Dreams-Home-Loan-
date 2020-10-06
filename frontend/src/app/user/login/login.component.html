@@ -94,6 +94,14 @@
                   <div *ngIf=forgotbool class="form-group mt-3">
                     <button class="btn btn-lg btn-block btn-primary" (click)="otpgen()">Reset Password</button>
                   </div>
+
+                  <div *ngIf=notregisterbool class="form-group mt-3">
+                    <div class="text-success">
+                      You Are Not Registered With us 
+                    </div>
+                    <button class="btn btn-lg btn-block btn-danger" routerLink="/userRegister" routerLinkActive="router-link-active">Register Here</button>
+                  </div>
+
                   <div *ngIf=otpbool class="form-group mt-3">
                     <button class="btn btn-lg btn-block btn-primary" (click)="otpsubmit()">Submit</button>
                   </div>
