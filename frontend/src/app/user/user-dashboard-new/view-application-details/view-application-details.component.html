@@ -1,4 +1,4 @@
-<div class="container-fluid my-4">
+<div class="container-fluid my-4 bg-light rounded p-4">
   <table class="table table-hover justify-content-center" *ngIf="loadCompleted">
     <thead class="thead-dark text-center">
       <th colspan="2">APPLICATION ID : {{ applicationId }}</th>
@@ -99,12 +99,10 @@
     <th>Employer Name</th>
     <td>LTI</td>
   </tr> -->
-  <tr>
-    <td colspan="2"  class="text-center py-4">
-    <button class="btn btn-success btn-large" routerLink="/userDashboard/userHome">Back</button>
-  </td>
-  </tr>
 </tbody>
   </table>
+  <div class="text-center mt-4">
+    <button class="btn btn-success btn-large" style="width: 150px;" routerLink="/userDashboard/userHome">Back</button>
+  </div>
 
 </div>
