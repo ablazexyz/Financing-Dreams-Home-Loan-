@@ -90,9 +90,10 @@
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-6 col-6">
         <label for="interest_rate">Interest Rate</label>
-        <input type="text" name="interest_rate" id="interest_rate" placeholder="Enter the interest rate"
+       <input type="text" name="interest_rate" id="interest_rate"
           class="form-control" formControlName="interest_rate" />
 
+           <!--
         <div *ngIf="
             applicationDetailsForm.controls.interest_rate.invalid &&
             (applicationDetailsForm.controls.interest_rate.touched ||
@@ -107,7 +108,7 @@
           <div *ngIf="applicationDetailsForm.controls.interest_rate.errors.pattern">
             Only digits(Upto 2 decimal)
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="form-group col-md-6 col-sm-6 col-6">
         <label for="tenure">Tenure</label>
@@ -130,12 +131,20 @@
       </div>
     </div>
     <div class="form-group text-center mt-4">
+      <button class="btn btn-primary btn-lg" [disabled]="applicationDetailsForm.invalid" (click)="checkEmi()">Check EMI</button>
+      <span class="col-sm-2"></span>
       <button class="btn btn-success btn-lg" [disabled]="applicationDetailsForm.invalid" (click)="addApplicationDetails()"
       data-toggle="modal" data-target="#saved"
       >Submit</button>
     </div>
   </form>
 
+  <div *ngIf=emibool class="card" id="info_card1" style="margin: auto;">
+    <div class="card-body">
+       <h4 style="text-align: center;">Monthly EMI Amount </h4>
+       <h3 style="text-align: center;"> &#x20b9; {{emi.toFixed(0)}} </h3>
+    </div>
+ </div>
 
   <div
   class="modal fade"

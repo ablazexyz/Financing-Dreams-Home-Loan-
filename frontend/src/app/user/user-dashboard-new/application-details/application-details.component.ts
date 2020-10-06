@@ -27,13 +27,19 @@ const LoanAmtValidator: ValidatorFn = (fg: FormGroup) => {
 })
 export class ApplicationDetailsComponent implements OnInit {
   loanlimit: number;
-
+  interest: number;
   userDetail: CustomerDetails;
 
   applicationDetailsForm: FormGroup;
 
   applicationdetails: Application;
   isloaded: boolean;
+
+  aroi: number;
+  emi: number;
+  principal: number;
+  tenure: number;
+  emibool: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -69,12 +75,14 @@ export class ApplicationDetailsComponent implements OnInit {
                 Validators.max(this.loanlimit),
               ],
             ],
-            interest_rate: [
-              '',
-              [
-                Validators.required,
-                Validators.pattern(new RegExp(/^\d*(?:[.,]\d{1,2})?$/)),
-              ],
+            interest_rate: [{
+              value: '', disabled: true
+            },
+            [
+
+              Validators.required,
+              Validators.pattern(new RegExp(/^\d*(?:[.,]\d{1,2})?$/)),
+            ],
             ],
             tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
           },
@@ -85,6 +93,9 @@ export class ApplicationDetailsComponent implements OnInit {
 
         this.isloaded = true;
       });
+
+
+
   }
   /*
   validateAmount: ValidatorFn = (fg: FormGroup) => {
@@ -94,6 +105,36 @@ export class ApplicationDetailsComponent implements OnInit {
      ? null : { range: true };
   }
   */
+
+  checkEmi(): void {
+
+    this.emibool = true;
+
+    if (this.applicationDetailsForm.controls.loan_amount.value<=1000000){
+      this.interest = 6.5;
+    }
+    else if(this.applicationDetailsForm.controls.loan_amount.value<=2500000){
+      this.interest = 7.0;
+    }
+    else if(this.applicationDetailsForm.controls.loan_amount.value<=5000000){
+      this.interest = 7.5;
+    }
+    else{
+      this.interest = 8.0;
+    }
+
+    this.applicationDetailsForm.controls.interest_rate.setValue(this.interest)
+
+    this.principal = this.applicationDetailsForm.controls.loan_amount.value
+    this.tenure = this.applicationDetailsForm.controls.tenure.value
+
+    this.aroi = this.interest / (12 * 100);
+
+    this.emi = (this.principal * this.aroi) * Math.pow(1 + this.aroi, this.tenure * 12) / (Math.pow(1 + this.aroi, this.tenure * 12) - 1);
+    console.log("roi", this.interest);
+
+  }
+
   addApplicationDetails(): void {
     this.applicationdetails = new Application(
       this.applicationDetailsForm.controls.property_location.value,
