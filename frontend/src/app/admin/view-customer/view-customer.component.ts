@@ -70,6 +70,23 @@ export class ViewCustomerComponent implements OnInit {
         window.open(file);
       });
   }
+
+  viewApplicationDocuments(
+    username: string,
+    applicationId: number,
+    documentType: string
+  ) {
+    this.service
+      .fetchApplicationFilesFromStorage(
+        username,
+        applicationId.toString(),
+        documentType
+      )
+      .subscribe((data) => {
+        let file = URL.createObjectURL(data);
+        window.open(file);
+      });
+  }
   routeToApplication(): void {
     this.router.navigate(['/adminDashboard/adminApplications']);
   }

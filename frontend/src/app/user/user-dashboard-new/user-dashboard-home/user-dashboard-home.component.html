@@ -10,7 +10,7 @@
   </header>
 
   <table class="table table-bordered table-hover">
-    <thead>
+    <thead class="thead-dark">
       <tr class="d-flex">
         <th style="border-bottom: 0" class="col-8">Account Number</th>
         <th style="border-bottom: 0" class="col-4">Balance</th>
@@ -33,7 +33,7 @@
   </header>
 
   <table class="table table-bordered table-hover">
-    <thead>
+    <thead class="thead-dark">
       <tr class="d-flex">
         <th style="border-bottom: 0" class="col-8">Account Number</th>
         <th style="border-bottom: 0" class="col-4">Balance</th>
@@ -53,25 +53,48 @@
   </header>
 
   <table class="table table-bordered table-hover">
-    <thead>
+   <thead class="thead-dark">
       <tr class="d-flex">
-        <th class="col-8">Application Id</th>
-        <th class="col-4">Status</th>
+        <th class="col-sm-2">Application Id</th>
+
+        <th class="col-2">Property Location</th>
+
+        <th class="col-2">Loan Amount</th>
+
+        <th class="col-2">Application Date</th>
+
+        <th class="col-2">Status</th>
+
+        <th class="col-2">Application Details</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="d-flex" *ngFor="let application of applications">
-        <td class="col-8">
-          <a
-            style="text-decoration: underline"
-            [routerLink]="['../viewApplicationDetails']"
-            [queryParams]="{ application_id: application.applicationId }"
-            >{{ application.applicationId }}</a
-          >
-        </td>
-        <td class="col-4">{{ application.loanStatus }}</td>
+      <tr class="d-flex" *ngFor="let application of applications" 
+      [ngClass]="{'table-warning': (application.loanStatus == 'Pending') ? true : false,
+                  'table-danger':  (application.loanStatus == 'Rejected') ? true : false ,
+                  'table-success':  (application.loanStatus == 'Approved') ? true : false }">
+      
+          <td class="col-2">{{ application.applicationId }}</td>
+
+          <td class="col-2">{{ application.propertyLocation }}</td>
+
+          <td class="col-2">{{ application.loanAmt }}</td>
+
+          <td class="col-2">{{ application.applDate | date: "dd/MM/yyyy" }}</td>
+
+          <td class="col-2">{{ application.loanStatus }}</td>
+
+          <td class="col-2">
+            <button class="btn btn-primary" [routerLink]="['../viewApplicationDetails']"
+            [queryParams]="{ application_id: application.applicationId }"> 
+              View Application Details
+            </button> 
+          </td>
+          
       </tr>
+
     </tbody>
+
   </table>
 </section>
 <div id="apply-loan-button" class="text-center" *ngIf="!isFirstTimeUser">
