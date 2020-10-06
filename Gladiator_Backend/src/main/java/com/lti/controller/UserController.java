@@ -48,7 +48,7 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 
-	private final Path rootLocation = Paths.get("C:\\Gladiator\\Files Upload");
+	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
