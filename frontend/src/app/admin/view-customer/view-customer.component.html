@@ -211,17 +211,56 @@
         <tr>
           <td>LOA</td>
           <td>:</td>
-          <td>{{ customer.loaURL }}</td>
+          <!-- <td>{{ customer.loaURL }}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewApplicationDocuments(
+                  customer.cdetails2.registration.emailId,
+                  customer.applicationId,
+                  'LOA'
+                )
+              "
+              >View LOA</a
+            >
+          </td>
         </tr>
         <tr>
           <td>NOC From Builder</td>
           <td>:</td>
-          <td>{{ customer.nocURL }}</td>
+          <!-- <td>{{ customer.nocURL }}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewApplicationDocuments(
+                  customer.cdetails2.registration.emailId,
+                  customer.applicationId,
+                  'NOC'
+                )
+              "
+              >View NOC</a
+            >
+          </td>
         </tr>
         <tr>
           <td>Agreement To Sale</td>
           <td>:</td>
-          <td>{{ customer.agreementURL }}</td>
+          <!-- <td>{{ customer.agreementURL }}</td> -->
+          <td>
+            <a
+              [routerLink]=""
+              (click)="
+                viewApplicationDocuments(
+                  customer.cdetails2.registration.emailId,
+                  customer.applicationId,
+                  'agreementToSale'
+                )
+              "
+              >View agreement to sale</a
+            >
+          </td>
         </tr>
       </tbody>
     </table>
