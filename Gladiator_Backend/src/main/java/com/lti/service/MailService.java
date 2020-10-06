@@ -62,7 +62,7 @@ public class MailService {
 			message.setSubject(sub);
 
 			message.setContent("<h3>Dear " + name + ",</h3> <br>" + "<p>Your Loan Application with <b> ID : " + applId
-					+ "</b> for amount <b> &#x20b9; " + loanamt + "</b> has been approved. "
+					+ "</b> for amount <b> &#x20b9; " + (int)loanamt + "</b> has been approved. "
 					+ "Please Check Your Account for futher details", "text/html");
 
 
@@ -96,7 +96,7 @@ public class MailService {
 			message.setSubject(sub);
 
 			message.setContent("<h3>Dear " + name + ",</h3> <br>" + "<p>Your Loan Application with <b> ID : " + applId
-					+ "</b> for amount <b> &#x20b9; " + loanamt + " </b> has been rejected for the following reasons: <br>"
+					+ "</b> for amount <b> &#x20b9; " + (int)loanamt + " </b> has been rejected for the following reasons: <br>"
 							+ "<b>"+remarks+"</b><br>"
 					+ "Please Check Your Account for futher details", "text/html");
 
