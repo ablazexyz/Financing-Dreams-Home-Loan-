@@ -70,7 +70,7 @@
                   <div class="form-group form-input mb-1">
                     <span><i class="fa fa-envelope"></i></span>
                     <input type="email" id="email" name="email" [(ngModel)]="email"
-                      placeholder="Enter regsitered Email">
+                      placeholder="Enter regsitered Email" [disabled]="otpbool">
                   </div>
                   <div *ngIf=otpbool class="text-success">
                     An OTP is sent to your Email
@@ -97,7 +97,7 @@
 
                   <div *ngIf=notregisterbool class="form-group mt-3">
                     <div class="text-success">
-                      You Are Not Registered With us 
+                      You Are Not Registered With us
                     </div>
                     <button class="btn btn-lg btn-block btn-danger" routerLink="/userRegister" routerLinkActive="router-link-active">Register Here</button>
                   </div>
@@ -106,9 +106,57 @@
                     <button class="btn btn-lg btn-block btn-primary" (click)="otpsubmit()">Submit</button>
                   </div>
                   <div *ngIf=passbool class="form-group mt-3">
-                    <button class="btn btn-lg btn-block btn-primary" (click)="passsubmit()">Submit</button>
+                    <button class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#saved" (click)="passsubmit()">Submit</button>
                   </div>
                 </form>
+
+
+                <div
+                class="modal fade"
+                id="saved"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="savedDetails"
+                aria-hidden="true"
+                >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="appDetails">Password Reset Status</h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        routerLink="/userDashboard/uploadDocuments"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div *ngIf="!passchanged" class="modal-body text-success">
+                      <div class="spinner-border text-success spinner-border-sm" role="status">
+                        <span  class="sr-only">Loading...</span>
+                      </div>
+                      Processing
+                    </div>
+                    <div *ngIf="passchanged" class="modal-body text-success">
+                      <h3>Password changed Successfully</h3><br>
+                      <small class="text-dark">Please Login with New Credentials</small>
+                    </div>
+                    <div  class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="view = 'login'"
+                        data-dismiss="modal"
+                      >
+                        Login
+                      </button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
 
               </div>
             </div>

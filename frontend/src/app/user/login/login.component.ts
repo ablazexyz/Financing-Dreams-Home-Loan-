@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   otpenter:string;
   pass:string;
   regdetails: Register;
+  passchanged = false;
 
   logindetails: Login;
   notregisterbool: boolean;
@@ -67,7 +68,7 @@ export class LoginComponent implements OnInit {
         })
       }
     })
-   
+
 
   }
 
@@ -92,7 +93,9 @@ export class LoginComponent implements OnInit {
 
       this.regdetails = data;
       sessionStorage.setItem('username', this.email);
-      this.router.navigate(['/userDashboard']);
+      // this.router.navigate(['/userDashboard']);
+      this.passchanged = true;
+      // this.view = 'login';
 
     })
   }
