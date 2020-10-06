@@ -129,7 +129,7 @@ export class ApplicationDocsComponent implements OnInit {
       });
   }
 
-  onUploadComplete(): void {
-    this.router.navigate(['../userHome'], { relativeTo: this.route });
-  }
+  // onUploadComplete(): void {
+  //   this.router.navigate(['../userHome'], { relativeTo: this.route });
+  // }
 }

@@ -76,10 +76,7 @@ export class ApplicationDetailsComponent implements OnInit {
                 Validators.pattern(new RegExp(/^\d*(?:[.,]\d{1,2})?$/)),
               ],
             ],
-            tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-            LOA: [],
-            NOC: [],
-            agreement_to_sale: [],
+            tenure: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
           },
           {
             validator: LoanAmtValidator,
