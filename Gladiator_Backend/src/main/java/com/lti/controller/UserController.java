@@ -142,7 +142,14 @@ public class UserController {
 	@GetMapping(path = "isFirstTimeUser/{emailId}")
 	public Registration getRegistrationDetails(@PathVariable("emailId") String email) {
 
-		return service.findRegistrationDetailsbyEmail(email);
+		try {
+			return service.findRegistrationDetailsbyEmail(email);
+		}
+		catch(Exception e) {
+			
+			return null;
+		}
+		
 	}
 
 	@PostMapping(path = "customerdetails/{emailId}")
