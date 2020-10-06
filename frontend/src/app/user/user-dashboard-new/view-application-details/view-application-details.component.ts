@@ -21,7 +21,7 @@ export class ViewApplicationDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private service: UserService
   ) {
-    if (!sessionStorage.getItem('username')){
+    if (!sessionStorage.getItem('username')) {
       this.router.navigate(['/userLogin']);
     }
   }
@@ -35,10 +35,26 @@ export class ViewApplicationDetailsComponent implements OnInit {
       (data) => {
         this.applicationDetailToDisplay = data;
         console.log(this.applicationDetailToDisplay);
-        console.log("Customer Details:", this.applicationDetailToDisplay.cdetails2);
+        console.log(
+          'Customer Details:',
+          this.applicationDetailToDisplay.cdetails2
+        );
       },
       (error) => console.log(error),
       () => (this.loadCompleted = true)
     );
+  }
+
+  viewUploadedDocument(documentType: string) {
+    this.service
+      .downloadApplicationFilesFromStorage(
+        sessionStorage.getItem('username'),
+        this.applicationDetailToDisplay.applicationId.toString(),
+        documentType
+      )
+      .subscribe((data) => {
+        let file = URL.createObjectURL(data);
+        window.open(file);
+      });
   }
 }

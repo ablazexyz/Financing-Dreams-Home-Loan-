@@ -3,22 +3,13 @@
   <form [formGroup]="customerDetailsForm">
     <div class="form-group">
       <label for="aadhaar">Aadhaar Number</label>
-      <input
-        type="text"
-        id="aadhaar"
-        name="aadhaar"
-        placeholder="Enter your Aadhaar Number"
-        class="form-control"
-        formControlName="aadhaar"
-      />
-      <div
-        *ngIf="
+      <input type="text" id="aadhaar" name="aadhaar" placeholder="Enter your Aadhaar Number" class="form-control"
+        formControlName="aadhaar" />
+      <div *ngIf="
           customerDetailsForm.controls.aadhaar.invalid &&
           (customerDetailsForm.controls.aadhaar.touched ||
             customerDetailsForm.controls.aadhaar.dirty)
-        "
-        class="text-danger mt-1"
-      >
+        " class="text-danger mt-1">
         <div *ngIf="customerDetailsForm.controls.aadhaar.errors.required">
           Aadhaar is required
         </div>
@@ -35,22 +26,13 @@
     </div>
     <div class="form-group">
       <label for="PAN">PAN</label>
-      <input
-        type="text"
-        id="PAN"
-        name="PAN"
-        placeholder="Enter your PAN number"
-        class="form-control"
-        formControlName="PAN"
-      />
-      <div
-        *ngIf="
+      <input type="text" id="PAN" name="PAN" placeholder="Enter your PAN number" class="form-control"
+        formControlName="PAN" />
+      <div *ngIf="
           customerDetailsForm.controls.PAN.invalid &&
           (customerDetailsForm.controls.PAN.touched ||
             customerDetailsForm.controls.PAN.dirty)
-        "
-        class="text-danger mt-1"
-      >
+        " class="text-danger mt-1">
         <div *ngIf="customerDetailsForm.controls.PAN.errors.required">
           PAN Information is required
         </div>
@@ -67,22 +49,13 @@
     </div>
     <div class="form-group">
       <label for="monthly_sal">Monthly Salary</label>
-      <input
-        type="text"
-        id="monthly_sal"
-        name="monthly_sal"
-        placeholder="Enter your monthly salary"
-        class="form-control"
-        formControlName="monthly_sal"
-      />
-      <div
-        *ngIf="
+      <input type="text" id="monthly_sal" name="monthly_sal" placeholder="Enter your monthly salary"
+        class="form-control" formControlName="monthly_sal" />
+      <div *ngIf="
           customerDetailsForm.controls.monthly_sal.invalid &&
           (customerDetailsForm.controls.monthly_sal.touched ||
             customerDetailsForm.controls.monthly_sal.dirty)
-        "
-        class="text-danger mt-1"
-      >
+        " class="text-danger mt-1">
         <div *ngIf="customerDetailsForm.controls.monthly_sal.errors.required">
           Salary Information is required
         </div>
@@ -94,55 +67,37 @@
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-12">
         <label for="type_of_employment">Type of Employment</label>
-        <input
-          type="text"
-          id="type_of_employment"
-          name="type_of_employment"
-          placeholder="Enter Employment type for eg, private/ govt"
-          class="form-control"
-          formControlName="type_of_employment"
-        />
-        <div
-          *ngIf="
+        <select id="type_of_employment" name="type_of_employment"
+          placeholder="Enter Employment type for eg, private/ govt" class="form-control"
+          formControlName="type_of_employment">
+
+          <option value="Government">Government</option>
+          <option value="Self-Employed">Self-Employed</option>
+          <option value="Private">Private</option>
+        </select>
+        <div *ngIf="
             customerDetailsForm.controls.type_of_employment.invalid &&
             (customerDetailsForm.controls.type_of_employment.touched ||
               customerDetailsForm.controls.type_of_employment.dirty)
-          "
-          class="text-danger mt-1"
-        >
-          <div
-            *ngIf="
+          " class="text-danger mt-1">
+          <div *ngIf="
               customerDetailsForm.controls.type_of_employment.errors.required
-            "
-          >
+            ">
             Employment Information required
           </div>
         </div>
       </div>
       <div class="form-group col-md-6 col-sm-12">
         <label for="retirement_age">Retirement Age</label>
-        <input
-          type="number"
-          min="0"
-          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-          title="Whole numbers only"
-          id="retirement_age"
-          name="retirement_age"
-          placeholder="Enter your retirement age"
-          class="form-control"
-          formControlName="retirement_age"
-        />
-        <div
-          *ngIf="
+        <input type="number" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+          title="Whole numbers only" id="retirement_age" name="retirement_age" placeholder="Enter your retirement age"
+          class="form-control" formControlName="retirement_age" />
+        <div *ngIf="
             customerDetailsForm.controls.retirement_age.invalid &&
             (customerDetailsForm.controls.retirement_age.touched ||
               customerDetailsForm.controls.retirement_age.dirty)
-          "
-          class="text-danger mt-1"
-        >
-          <div
-            *ngIf="customerDetailsForm.controls.retirement_age.errors.required"
-          >
+          " class="text-danger mt-1">
+          <div *ngIf="customerDetailsForm.controls.retirement_age.errors.required">
             Retirement Age required
           </div>
         </div>
@@ -151,22 +106,13 @@
     <div class="form-row">
       <div class="form-group col-md-6 col-sm-12">
         <label for="org_type">Organisation Type</label>
-        <input
-          type="text"
-          id="org_type"
-          name="org_type"
-          placeholder="IT/Education/Financial"
-          class="form-control"
-          formControlName="org_type"
-        />
-        <div
-          *ngIf="
+        <input type="text" id="org_type" name="org_type" placeholder="IT/Education/Financial" class="form-control"
+          formControlName="org_type" />
+        <div *ngIf="
             customerDetailsForm.controls.org_type.invalid &&
             (customerDetailsForm.controls.org_type.touched ||
               customerDetailsForm.controls.org_type.dirty)
-          "
-          class="text-danger mt-1"
-        >
+          " class="text-danger mt-1">
           <div *ngIf="customerDetailsForm.controls.org_type.errors.required">
             Organisation Type required
           </div>
@@ -174,26 +120,15 @@
       </div>
       <div class="form-group col-md-6 col-sm-12">
         <label for="employer_name">Employer Name</label>
-        <input
-          type="text"
-          id="employer_name"
-          name="employer_name"
-          placeholder="Enter the name of your Employer"
-          class="form-control"
-          formControlName="employer_name"
-        />
+        <input type="text" id="employer_name" name="employer_name" placeholder="Enter the name of your Employer"
+          class="form-control" formControlName="employer_name" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             customerDetailsForm.controls.employer_name.invalid &&
             (customerDetailsForm.controls.employer_name.touched ||
               customerDetailsForm.controls.employer_name.dirty)
-          "
-          class="text-danger mt-1"
-        >
-          <div
-            *ngIf="customerDetailsForm.controls.employer_name.errors.required"
-          >
+          " class="text-danger mt-1">
+          <div *ngIf="customerDetailsForm.controls.employer_name.errors.required">
             Employer Name required
           </div>
         </div>
@@ -203,39 +138,20 @@
     <!-- **********************PAN Card Form Control START************************************** -->
     <div class="form-group">
       <label for="pan_card">Upload PAN</label>
-      <div
-        style="
+      <div style="
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
           margin-top: -20px;
-        "
-      >
-        <input
-          type="file"
-          id="pan_card"
-          name="pan_card"
-          (change)="selectFile($event, 'pan')"
-          formControlName="pan_card"
-          style="margin-top: 20px"
-        />
-        <button
-          type="button"
-          class="btn btn-primary"
-          style="margin-top: 20px"
-          (click)="upload('pan')"
-          [disabled]="!isPanSelected"
-        >
+        ">
+        <input type="file" id="pan_card" name="pan_card" (change)="selectFile($event, 'pan')" formControlName="pan_card"
+          style="margin-top: 20px" />
+        <button type="button" class="btn btn-primary" style="margin-top: 20px" (click)="upload('pan')"
+          [disabled]="!isPanSelected">
           Upload
         </button>
-        <span
-          *ngIf="isPanUploaded"
-          class="ml-2 text-center"
-          style="flex-grow: 1; margin-top: 20px"
-          ><a [routerLink]="" (click)="viewUploadedDocument('pan')"
-            >View uploaded PAN</a
-          ></span
-        >
+        <span *ngIf="isPanUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
+            (click)="viewUploadedDocument('pan')">View uploaded PAN</a></span>
       </div>
     </div>
 
@@ -245,39 +161,20 @@
 
     <div class="form-group">
       <label for="voter_id">Upload Voter id</label>
-      <div
-        style="
+      <div style="
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
           margin-top: -20px;
-        "
-      >
-        <input
-          type="file"
-          id="voter_id"
-          name="voter_id"
-          (change)="selectFile($event, 'voter_id')"
-          formControlName="voter_id"
-          style="margin-top: 20px"
-        />
-        <button
-          type="button"
-          class="btn btn-primary"
-          style="margin-top: 20px"
-          (click)="upload('voter_id')"
-          [disabled]="!isVoterIdSelected"
-        >
+        ">
+        <input type="file" id="voter_id" name="voter_id" (change)="selectFile($event, 'voter_id')"
+          formControlName="voter_id" style="margin-top: 20px" />
+        <button type="button" class="btn btn-primary" style="margin-top: 20px" (click)="upload('voter_id')"
+          [disabled]="!isVoterIdSelected">
           Upload
         </button>
-        <span
-          *ngIf="isVoterIdUploaded"
-          class="ml-2 text-center"
-          style="flex-grow: 1; margin-top: 20px"
-          ><a [routerLink]="" (click)="viewUploadedDocument('voter_id')"
-            >View Uploaded Voter ID</a
-          ></span
-        >
+        <span *ngIf="isVoterIdUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a
+            [routerLink]="" (click)="viewUploadedDocument('voter_id')">View Uploaded Voter ID</a></span>
       </div>
     </div>
 
@@ -287,56 +184,32 @@
 
     <div class="form-group">
       <label for="salary_slip">Upload Salary Slip</label>
-      <div
-        style="
+      <div style="
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
           margin-top: -20px;
-        "
-      >
-        <input
-          type="file"
-          id="salary_slip"
-          name="salary_slip"
-          (change)="selectFile($event, 'salary_slip')"
-          formControlName="salary_slip"
-          style="margin-top: 20px"
-        />
-        <button
-          type="button"
-          class="btn btn-primary"
-          style="margin-top: 20px"
-          (click)="upload('salary_slip')"
-          [disabled]="!isSalarySlipSelected"
-        >
+        ">
+        <input type="file" id="salary_slip" name="salary_slip" (change)="selectFile($event, 'salary_slip')"
+          formControlName="salary_slip" style="margin-top: 20px" />
+        <button type="button" class="btn btn-primary" style="margin-top: 20px" (click)="upload('salary_slip')"
+          [disabled]="!isSalarySlipSelected">
           Upload
         </button>
-        <span
-          *ngIf="isSalarySlipUploaded"
-          class="ml-2 text-center"
-          style="flex-grow: 1; margin-top: 20px"
-          ><a [routerLink]="" (click)="viewUploadedDocument('salary_slip')"
-            >View uploaded salary slip</a
-          ></span
-        >
+        <span *ngIf="isSalarySlipUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a
+            [routerLink]="" (click)="viewUploadedDocument('salary_slip')">View uploaded salary slip</a></span>
       </div>
     </div>
 
     <!-- ********************Salary Slip Form Control END***************************** -->
 
     <div class="form-group text-center mt-4">
-      <button
-        class="btn btn-success btn-lg "
-        [disabled]="
+      <button class="btn btn-success btn-lg " [disabled]="
           customerDetailsForm.invalid ||
           !isPanUploaded ||
           !isVoterIdUploaded ||
           !isSalarySlipUploaded
-        "
-        (click)="addCustomerDetails()"
-        data-toggle="modal" data-target="#saved"
-      >
+        " (click)="addCustomerDetails()" data-toggle="modal" data-target="#saved">
         <!-- routerLink="/userDashboard/applicationDetails"
       -->
 
@@ -345,25 +218,13 @@
     </div>
   </form>
 
-  <div
-    class="modal fade"
-    id="saved"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="savedDetails"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="saved" tabindex="-1" role="dialog" aria-labelledby="savedDetails" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="enterRemark">Remarks</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            routerLink="/userDashboard/applicationDetails"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            routerLink="/userDashboard/applicationDetails">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -377,15 +238,11 @@
           Details Saved Successfully
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-success"
-            routerLink="/userDashboard/applicationDetails"
-            data-dismiss="modal"
-          >
+          <button type="button" class="btn btn-success" routerLink="/userDashboard/applicationDetails"
+            data-dismiss="modal">
             Continue...
           </button>
-          </div>
+        </div>
       </div>
     </div>
   </div>

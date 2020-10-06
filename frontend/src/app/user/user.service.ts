@@ -157,4 +157,22 @@ export class UserService {
       { headers: headers, responseType: 'blob' as 'json' }
     );
   }
+
+  downloadApplicationFilesFromStorage(
+    userFolderName: string,
+    applicationId: string,
+    documentType: string
+  ): Observable<Blob> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get<Blob>(
+      'http://localhost:9091/HomeApp/users/fileDownload/' +
+        userFolderName +
+        '/' +
+        applicationId +
+        '/' +
+        documentType,
+      { headers: headers, responseType: 'blob' as 'json' }
+    );
+  }
 }
