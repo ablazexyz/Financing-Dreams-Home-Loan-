@@ -140,5 +140,12 @@ public class CustomerDaoImpl implements CustomerDao{
 		
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY)
+	public Customer_Details updateCustomerDetails(Customer_Details cd) {
+		
+		return entityManager.merge(cd);
+	}
+
 	
 }

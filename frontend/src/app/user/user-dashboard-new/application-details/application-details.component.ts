@@ -139,6 +139,9 @@ export class ApplicationDetailsComponent implements OnInit {
   }
 
   addApplicationDetails(): void {
+
+    this.checkEmi();
+
     this.applicationdetails = new Application(
       this.applicationDetailsForm.controls.property_location.value,
       this.applicationDetailsForm.controls.property_name.value,

@@ -92,7 +92,6 @@ export class LoginComponent implements OnInit {
     this.service.updatepass(this.logindetails).subscribe(data=>{
 
       this.regdetails = data;
-      sessionStorage.setItem('username', this.email);
       // this.router.navigate(['/userDashboard']);
       this.passchanged = true;
       // this.view = 'login';

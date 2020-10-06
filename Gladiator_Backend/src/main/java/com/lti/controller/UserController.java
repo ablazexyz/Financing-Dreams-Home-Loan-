@@ -48,7 +48,9 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 	// private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
+	
+	//private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
 	// private final Path rootLocation = Paths.get(tanuj_path);
 
 	// http://localhost:9091/HomeApp/users/adlogin
@@ -125,9 +127,27 @@ public class UserController {
 	public void updatePassword(@RequestBody Login login) {
 		
 		List<Application> applst = service.findAllApplicationsbyEmail(login.getAdemail());
-		for(Application appl: applst) {
-			appl.getCdetails2().getRegistration().setPassword(login.getAdpass());
-			service.modifyApplication(appl);
+		
+		if (applst.isEmpty()) {
+			
+			try {
+				Customer_Details cd = service.findCustomerDetailsbyEmail(login.getAdemail());
+				cd.getRegistration().setPassword(login.getAdpass());
+				System.out.println(service.modifyCustomerDetails(cd));
+			}
+			catch(Exception e) {
+				Registration reg = service.findRegistrationDetailsbyEmail(login.getAdemail());
+				reg.setPassword(login.getAdpass());
+				service.modifyRegistration(reg);
+			}
+			
+		}
+		else {
+			for(Application appl: applst) {
+				appl.getCdetails2().getRegistration().setPassword(login.getAdpass());
+				service.modifyApplication(appl);
+			}
+			
 		}
 		
 		

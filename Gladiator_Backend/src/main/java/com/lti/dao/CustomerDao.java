@@ -39,4 +39,6 @@ public interface CustomerDao {
 	public Account getAccountByEmail(String email);
 
 	public void updateApplication(Application appl);
+
+	public Customer_Details updateCustomerDetails(Customer_Details cd);
 }

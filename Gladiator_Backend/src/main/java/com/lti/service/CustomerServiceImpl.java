@@ -142,5 +142,12 @@ public class CustomerServiceImpl implements CustomerService{
 		
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Customer_Details modifyCustomerDetails(Customer_Details cd) {
+		
+		return dao.updateCustomerDetails(cd);
+	}
+
 	
 }

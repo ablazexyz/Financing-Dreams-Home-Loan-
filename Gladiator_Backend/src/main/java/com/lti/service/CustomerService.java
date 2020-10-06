@@ -42,4 +42,6 @@ public interface CustomerService {
 	public Account findAccountByEmail(String email);
 	
 	public void modifyApplication(Application appl);
+
+	public Customer_Details modifyCustomerDetails(Customer_Details cd);
 }
