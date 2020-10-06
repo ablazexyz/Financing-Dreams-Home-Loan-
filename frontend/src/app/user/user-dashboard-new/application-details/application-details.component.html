@@ -134,10 +134,12 @@
       <button class="btn btn-primary btn-lg" [disabled]="applicationDetailsForm.invalid" (click)="checkEmi()">Check EMI</button>
       <span class="col-sm-2"></span>
       <button class="btn btn-success btn-lg" [disabled]="applicationDetailsForm.invalid" (click)="addApplicationDetails()"
-      data-toggle="modal" data-target="#saved"
+
       >Submit</button>
     </div>
   </form>
+
+<!-- data-toggle="modal" data-target="#saved" -->
 
   <div *ngIf=emibool class="card" id="info_card1" style="margin: auto;">
     <div class="card-body">
@@ -163,7 +165,7 @@
           class="close"
           data-dismiss="modal"
           aria-label="Close"
-          routerLink="/userDashboard/applicationDetails"
+          routerLink="/userDashboard/uploadDocuments"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -176,6 +178,7 @@
           type="button"
           class="btn btn-success"
           routerLink="/userDashboard/uploadDocuments"
+          [queryParams]="{ applicationId: applicationdetails.applicationId }"
           data-dismiss="modal"
         >
           Continue...

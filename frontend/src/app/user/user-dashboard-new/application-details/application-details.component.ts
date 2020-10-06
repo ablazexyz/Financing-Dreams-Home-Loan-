@@ -153,11 +153,14 @@ export class ApplicationDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.applicationdetails = data;
         console.log(this.applicationdetails);
-        this.router.navigate(['userDashboard/uploadDocuments'], {
-          queryParams: {
-            applicationId: this.applicationdetails.applicationId,
-          },
-        });
+        this.router.navigate(['userDashboard/uploadDocuments']
+        // ,
+        // {
+          // queryParams: {
+          //   applicationId: this.applicationdetails.applicationId,
+          // },
+        // }
+        );
       });
   }
 }
