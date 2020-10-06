@@ -4,12 +4,15 @@
       <th colspan="2">APPLICATION ID : {{ applicationId }}</th>
     </thead>
     <tbody>
-    <tr *ngIf="!status">
+    <tr *ngIf="status == 'Pending'">
       <td colspan="2" class="text-center"><i class="fa fa-refresh fa-spin fa-lg fa-fw text-warning"></i>
         <span class="sr-only">Loading...</span><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
     </tr>
-    <tr *ngIf="status">
+    <tr *ngIf="status == 'Approved'">
       <td colspan="2" class="text-center"><i class="fa fa-check fa-lg text-success"></i><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
+    </tr>
+    <tr *ngIf="status == 'Rejected'">
+      <td colspan="2" class="text-center"><i class="fa fa-times-circle fa-lg text-danger"></i><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
     </tr>
     <tr>
       <th>Property Location</th>

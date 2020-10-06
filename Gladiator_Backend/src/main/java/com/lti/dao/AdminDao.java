@@ -11,7 +11,7 @@ public interface AdminDao {
 	
 	public List<Application> getAllApplications();
 
-	public void approveAppl(int applId, String loanRemarks);
+	public Application approveAppl(int applId, String loanRemarks);
 
 	public Application rejectAppl(int applId, String loanRemarks);
 

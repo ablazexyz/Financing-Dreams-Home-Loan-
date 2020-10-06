@@ -15,7 +15,7 @@ export class ViewApplicationDetailsComponent implements OnInit {
   applicationDetailToDisplay: Application;
 
   loadCompleted: boolean = false;
-  status = false;
+  status = 'Pending';
 
   constructor(
     private router: Router,
@@ -36,7 +36,10 @@ export class ViewApplicationDetailsComponent implements OnInit {
       (data) => {
         this.applicationDetailToDisplay = data;
         if(data.loanStatus == 'Approved'){
-          this.status = true;
+          this.status = 'Approved';
+        }
+        else if(data.loanStatus == 'Rejected'){
+          this.status = 'Rejected';
         }
         console.log(this.applicationDetailToDisplay);
         console.log(

@@ -21,11 +21,14 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="container mb-4">
   <main>
     <router-outlet></router-outlet>
   </main>
 </div>
+<footer class="container mx-auto bg-light">
+  <p>&copy; Financing Dreams Home Loan &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
 
 <div *ngIf="profile" class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -47,7 +50,7 @@
           <h3 class="media-heading">{{registrationDetails.firstName}} {{registrationDetails.lastName}}</h3>
         </div>
         <div class="py-2">
-          <div><i class="fa fa-at pr-2 text-primary"></i> {{registrationDetails.emailId}} </div>
+          <div><i class="fa fa-envelope pr-2 text-primary"></i> {{registrationDetails.emailId}} </div>
         </div>
         <div>
           <div><i class="fa fa-phone pr-2 text-primary"></i> {{registrationDetails.phoneNumber}} </div>
@@ -66,7 +69,4 @@
   </div>
 </div>
 
-<footer class="container">
-  <p class="float-right"><a href="#">Back to top</a></p>
-  <p>&copy; Financing Dreams Home Loan &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
+
