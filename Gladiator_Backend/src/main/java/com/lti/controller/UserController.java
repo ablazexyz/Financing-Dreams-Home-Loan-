@@ -348,6 +348,29 @@ public class UserController {
 				.headers(headers)
 				.body(resource);
 	}
+	
+	
+	@GetMapping(path = "/fileDownload/{userFolderName}/{applicationId}/{documentType}")
+	public ResponseEntity<Resource> downloadApplicationFiles(@PathVariable(name = "userFolderName") String userFolderName,@PathVariable(name = "applicationId") String applicationId, @PathVariable(name = "documentType") String documentType) {
+		//Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+		Path downloadPath = Paths.get(rootLocation.toString(), userFolderName, applicationId, documentType + ".pdf");
+		Resource resource = null;
+		try {
+			resource = new UrlResource(downloadPath.toUri());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_PDF);
+		
+		//to open the document in a new tab instead of downloading it
+		headers.add("content-disposition", "inline; filename=" + resource.getFilename());
+	
+		return ResponseEntity.ok()
+				.headers(headers)
+				.body(resource);
+	}
 
 	// Function to handle large file upload requests
 	@ExceptionHandler(MaxUploadSizeExceededException.class)

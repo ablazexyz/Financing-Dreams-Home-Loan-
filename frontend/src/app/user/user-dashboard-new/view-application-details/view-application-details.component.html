@@ -32,28 +32,42 @@
 
   <tr>
     <th>Application Date</th>
-    <td>{{ applicationDetailToDisplay.applDate | date:"dd/MM/yyyy"}}</td>
+    <td>{{ applicationDetailToDisplay.applDate | date: "dd/MM/yyyy" }}</td>
   </tr>
 
   <tr>
     <th>Approval Date</th>
-    <td>{{ applicationDetailToDisplay.apprDate | date:"dd/MM/yyyy" }}</td>
+    <td>{{ applicationDetailToDisplay.apprDate | date: "dd/MM/yyyy" }}</td>
   </tr>
-
 
   <tr>
     <th>LOA</th>
-    <td>{{ applicationDetailToDisplay.loaURL }}</td>
+    <!-- <td>{{ applicationDetailToDisplay.loaURL }}</td> -->
+    <td>
+      <a [routerLink]="" (click)="viewUploadedDocument('LOA')"
+        >View uploaded document</a
+      >
+    </td>
   </tr>
 
   <tr>
     <th>NOC</th>
-    <td>{{ applicationDetailToDisplay.nocURL }}</td>
+    <!-- <td>{{ applicationDetailToDisplay.nocURL }}</td> -->
+    <td>
+      <a [routerLink]="" (click)="viewUploadedDocument('NOC')"
+        >View uploaded document</a
+      >
+    </td>
   </tr>
 
   <tr>
     <th>Agreement to Sale</th>
-    <td>{{ applicationDetailToDisplay.agreementURL }}</td>
+    <!-- <td>{{ applicationDetailToDisplay.agreementURL }}</td> -->
+    <td>
+      <a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')"
+        >View uploaded document</a
+      >
+    </td>
   </tr>
 
   <tr>
