@@ -52,7 +52,7 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	@Transactional(propagation = Propagation.MANDATORY)
-	public void approveAppl(int applId, String loanRemarks) {
+	public Application approveAppl(int applId, String loanRemarks) {
 		
 		Query query = entityManager.createQuery("Select a From Application a Where a.applicationId = :id");
 		query.setParameter("id", applId);
@@ -101,6 +101,8 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		entityManager.persist(loan);
+		
+		return appl;
 		
 	}
 

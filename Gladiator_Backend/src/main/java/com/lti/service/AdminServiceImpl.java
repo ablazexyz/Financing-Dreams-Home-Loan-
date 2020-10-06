@@ -28,9 +28,9 @@ public class AdminServiceImpl implements adminService{
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void verifyAppl(int applId, String loanRemarks) {
+	public Application verifyAppl(int applId, String loanRemarks) {
 		
-		dao.approveAppl(applId, loanRemarks);
+		return dao.approveAppl(applId, loanRemarks);
 		
 	}
 
