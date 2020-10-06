@@ -12,13 +12,12 @@ export class UserDashboardNewComponent implements OnInit {
 
   user: string;
   registrationDetails: Register;
+  profile = false;
 
   constructor(private router: Router, private service: UserService) {
-    console.log('constructor');
     this.service.getRegDetails(sessionStorage.getItem('username')).subscribe(data => {
 
       this.registrationDetails = data;
-      console.log(this.registrationDetails);
       // console.log('Registration Details :', data);
     });
   }
