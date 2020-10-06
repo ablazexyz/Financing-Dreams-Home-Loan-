@@ -119,8 +119,9 @@ export class ApplicationDocsComponent implements OnInit {
 
   viewUploadedDocument(documentType: string) {
     this.service
-      .downloadCustomerFilesFromStorage(
+      .downloadApplicationFilesFromStorage(
         sessionStorage.getItem('username'),
+        this.applicationId,
         documentType
       )
       .subscribe((data) => {
