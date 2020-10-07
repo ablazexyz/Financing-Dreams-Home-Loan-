@@ -6,6 +6,13 @@ body {
   padding-top: 3rem;
   padding-bottom: 3rem;
   color: #5a5a5a;
+  overflow-x: hidden;
+}
+.navbar-brand :hover{
+  box-shadow: 1px 2px #888888;
+}
+li :hover{
+  box-shadow: 3px 3px 3px 3px #888888;
 }
 
 

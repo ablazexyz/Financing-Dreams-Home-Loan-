@@ -111,7 +111,7 @@
         </div> -->
       </div>
       <div class="form-group col-md-6 col-sm-6 col-6">
-        <label for="tenure">Tenure</label>
+        <label for="tenure">Tenure (in Yrs)</label>
         <input type="text" name="tenure" id="tenure" placeholder="Enter the loan tenure" class="form-control"
           formControlName="tenure" />
 
@@ -155,20 +155,12 @@
   role="dialog"
   aria-labelledby="savedDetails"
   aria-hidden="true"
+  data-backdrop="static" data-keyboard="false"
 >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="appDetails">Application Details</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          routerLink="/userDashboard/uploadDocuments"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div *ngIf="!appId" class="modal-body text-success">
         <div class="spinner-border text-success spinner-border-sm" role="status">

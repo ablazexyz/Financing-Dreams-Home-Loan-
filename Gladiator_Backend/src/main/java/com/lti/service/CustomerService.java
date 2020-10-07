@@ -1,7 +1,9 @@
 package com.lti.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import com.lti.dto.EmiDto;
 import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
@@ -44,4 +46,6 @@ public interface CustomerService {
 	public void modifyApplication(Application appl);
 
 	public Customer_Details modifyCustomerDetails(Customer_Details cd);
+
+	public List<EmiDto> calculateEmi(double loanAmt, int tenure, double roi, LocalDate applDate);
 }

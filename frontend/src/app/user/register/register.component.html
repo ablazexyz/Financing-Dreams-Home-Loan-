@@ -224,12 +224,6 @@
       </div>
     </div>
 
-    <div *ngIf="status" class="alert alert-danger">
-      <div class="text-danger">
-        You are already registered with us, Please Login with your user details
-      </div>
-    </div>
-
     <div class="row">
       <div class="form-group mt-4 col-lg-12" id="register-button">
         <button
@@ -265,6 +259,8 @@
     role="dialog"
     aria-labelledby="enterRemark"
     aria-hidden="true"
+    data-backdrop="static"
+    data-keyboard="false"
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -280,7 +276,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <div *ngIf="!registrationbool" class="alert alert-primary">
+          <div *ngIf="creatingbool" class="alert alert-primary">
             <div
               class="spinner-border text-success spinner-border-sm"
               role="status"
@@ -288,6 +284,13 @@
               <span class="sr-only">Loading...</span>
             </div>
             <span class="pl-2"> Please wait your Account is being created</span>
+          </div>
+
+          <div *ngIf="status" class="alert alert-danger">
+            <div class="text-danger">
+              You are already registered with us, Please Login with your user
+              details
+            </div>
           </div>
 
           <div *ngIf="registrationbool" class="alert alert-success">

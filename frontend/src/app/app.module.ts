@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { UserService } from './user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { DocumentsRequiredComponent } from './documents-required/documents-required.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DatePipe } from '@angular/common';
     AboutUsComponent,
     CarouselComponent,
     HomeComponent,
+    DocumentsRequiredComponent,
   ],
   imports: [
     BrowserModule,

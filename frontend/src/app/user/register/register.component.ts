@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   status: boolean = false;
 
   registrationbool: boolean = false;
+  creatingbool: boolean = true;
   loginbool: boolean = false;
   today: string;
   constructor(
@@ -158,6 +159,7 @@ export class RegisterComponent implements OnInit {
           this.status = false;
           console.log('SUCCESS', res.status);
           this.registrationbool = true;
+          this.creatingbool = false;
         }
       },
       (err) => {
@@ -165,8 +167,10 @@ export class RegisterComponent implements OnInit {
           this.status = false;
           console.log('error false', err.status);
           this.registrationbool = true;
+          this.creatingbool = false;
         } else {
           this.status = true;
+          this.creatingbool = false;
         }
       }
     );

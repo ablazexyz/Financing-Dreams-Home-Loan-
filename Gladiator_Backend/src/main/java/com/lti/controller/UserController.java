@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lti.customExceptions.FileTypeException;
+import com.lti.dto.EmiDto;
 import com.lti.model.Account;
 import com.lti.model.Application;
 import com.lti.model.Customer_Details;
@@ -48,9 +49,9 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 	//private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
-	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
+//	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
 	
-	//private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
 	// private final Path rootLocation = Paths.get(tanuj_path);
 
 	// http://localhost:9091/HomeApp/users/adlogin
@@ -239,6 +240,14 @@ public class UserController {
 			return null;
 		}
 
+	}
+	
+	// http://localhost:9091/HomeApp/users/application/EMIList/{applId}
+	@GetMapping("application/EMIList/{applId}")
+	public List<EmiDto> getEMIList(@PathVariable int applId) {
+		Application appl = service.findApplicationById(applId);
+		return service.calculateEmi(appl.getLoanAmt(), appl.getTenure(),
+				appl.getRoi(), appl.getApplDate());
 	}
 
 	@PostMapping("/fileUpload/{id}/{documentType}")

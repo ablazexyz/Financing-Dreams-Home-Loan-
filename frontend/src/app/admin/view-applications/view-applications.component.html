@@ -9,6 +9,7 @@
         <th scope="col">ROI</th>
         <th scope="col">Tenure</th>
         <th scope="col">Employee Type</th>
+        <th scope="col">Application Date</th>
         <th scope="col">Verification</th>
       </tr>
     </thead>
@@ -21,6 +22,7 @@
         <td>{{app.roi}}%</td>
         <td>{{app.tenure}}</td>
         <td>{{app.cdetails2.emptype}}</td>
+        <td>{{app.applDate |  date: "dd-MMM-yyyy"}}</td>
         <td><button class="btn btn-primary btn-sm my-1" routerLink="/adminDashboard/viewCustomer" [queryParams]="{ view: 'pending' }"
             (click)="viewCustomer(app)">View Details</button></td>
       </tr>
