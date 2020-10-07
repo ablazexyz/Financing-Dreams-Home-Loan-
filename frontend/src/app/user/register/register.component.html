@@ -110,22 +110,41 @@
         <div
           *ngIf="
             userRegisterDetails.controls.password.invalid &&
-            userRegisterDetails.controls.password.touched
+            (userRegisterDetails.controls.password.touched ||
+              userRegisterDetails.controls.password.dirty)
           "
           class="text-danger mb-2"
         >
-          Doesn't match the required pattern.
+          Should be at least 8 characters and should contain a
+          lowercase,uppercase,digit and a special character
         </div>
       </div>
       <div class="form-group col-lg-6">
-        <label for="password">Confirm Password</label>
+        <label for="cpassword">Confirm Password</label>
         <input
           type="password"
           name="cpassword"
           id="cpassword"
           class="form-control"
+          formControlName="cpassword"
           placeholder="Confirm your Password"
         />
+
+        <div
+          *ngIf="
+            userRegisterDetails.controls.cpassword.invalid &&
+            (userRegisterDetails.controls.cpassword.touched ||
+              userRegisterDetails.controls.cpassword.dirty)
+          "
+          class="text-danger mb-2"
+        >
+          <div *ngIf="userRegisterDetails.controls.cpassword.errors.required">
+            Can't be empty
+          </div>
+          <div *ngIf="userRegisterDetails.controls.cpassword.errors.notSame">
+            Passwords do not match
+          </div>
+        </div>
       </div>
     </div>
 
@@ -183,6 +202,7 @@
           name="dateOfBirth"
           id="dateOfBirth"
           class="form-control"
+          [max]="today"
           formControlName="dateOfBirth"
           placeholder="Choose your date of birth"
         />
@@ -194,7 +214,12 @@
           "
           class="text-danger mb-2"
         >
-          Required Field
+          <div *ngIf="userRegisterDetails.controls.dateOfBirth.errors.underAge">
+            You have to be over 18 years to register
+          </div>
+          <div *ngIf="userRegisterDetails.controls.dateOfBirth.errors.required">
+            Required field
+          </div>
         </div>
       </div>
     </div>
