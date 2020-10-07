@@ -1,3 +1,4 @@
+import { EmiDto } from './EmiDto';
 import { Account } from './Account';
 import { ApplicationDetails } from './../applicationDetails';
 import { CustomerDetails } from './customerDetails';
@@ -45,6 +46,11 @@ export class UserService {
     return this.http.get<CustomerDetails>(
       'http://localhost:9091/HomeApp/users/customerdetails/' + email
     );
+  }
+
+  getEmiDetails(applicationId: number): Observable<EmiDto[]> {
+
+    return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/application/EMIList/'+applicationId);
   }
 
   setUserDetails(

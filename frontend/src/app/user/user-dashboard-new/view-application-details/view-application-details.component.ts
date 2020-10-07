@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ApplicationDetails } from 'src/app/applicationDetails';
 import { Application } from '../../application';
+import { EmiDto } from '../../EmiDto';
 
 @Component({
   selector: 'view-application-details',
@@ -16,6 +17,8 @@ export class ViewApplicationDetailsComponent implements OnInit {
 
   loadCompleted: boolean = false;
   status = 'Pending';
+  
+  emidetails: EmiDto[] = [] ;
 
   constructor(
     private router: Router,
@@ -35,8 +38,18 @@ export class ViewApplicationDetailsComponent implements OnInit {
     this.service.getApplicationDetailById(this.applicationId).subscribe(
       (data) => {
         this.applicationDetailToDisplay = data;
+        
+       
+        
         if(data.loanStatus == 'Approved'){
           this.status = 'Approved';
+
+          this.service.getEmiDetails(this.applicationId).subscribe((data)=>{
+
+            this.emidetails =  data;
+            console.log("EMI Details",this.emidetails);
+           
+          })
         }
         else if(data.loanStatus == 'Rejected'){
           this.status = 'Rejected';
@@ -46,9 +59,11 @@ export class ViewApplicationDetailsComponent implements OnInit {
           'Customer Details:',
           this.applicationDetailToDisplay.cdetails2
         );
+        
       },
       (error) => console.log(error),
-      () => (this.loadCompleted = true)
+      ()=> this.loadCompleted = true
+    
     );
   }
 

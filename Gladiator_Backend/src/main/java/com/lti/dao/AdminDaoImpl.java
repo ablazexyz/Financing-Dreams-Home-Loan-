@@ -31,7 +31,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public List<Application> getAllApplications() {
 
-		Query query = entityManager.createQuery("Select a From Application a Where a.loanStatus = :status ");
+		Query query = entityManager.createQuery("Select a From Application a Where a.loanStatus = :status Order By a.applDate");
 		query.setParameter("status", "Pending");
 		return query.getResultList();
 	}

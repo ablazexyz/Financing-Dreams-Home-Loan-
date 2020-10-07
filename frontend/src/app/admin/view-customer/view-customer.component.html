@@ -7,24 +7,19 @@
   </div>
   <div class="d-flex flex-row justify-content-around mt-2 text-primary">
     <div>
-      <i class="fa fa-envelope pr-2"></i
-      >{{ customer.cdetails2.registration.emailId }}
+      <i class="fa fa-envelope pr-2"></i>{{ customer.cdetails2.registration.emailId }}
     </div>
     <div>
-      <i class="fa fa-phone pr-2"></i
-      >{{ customer.cdetails2.registration.phoneNumber }}
+      <i class="fa fa-phone pr-2"></i>{{ customer.cdetails2.registration.phoneNumber }}
     </div>
     <div>
-      <i class="fa fa-birthday-cake pr-2"></i
-      >{{ customer.cdetails2.registration.dob }}
+      <i class="fa fa-birthday-cake pr-2"></i>{{ customer.cdetails2.registration.dob }}
     </div>
     <div>
-      <i class="fa fa-user pr-2"></i
-      >{{ customer.cdetails2.registration.gender }}
+      <i class="fa fa-user pr-2"></i>{{ customer.cdetails2.registration.gender }}
     </div>
     <div>
-      <i class="fa fa-map-marker pr-2"></i
-      >{{ customer.cdetails2.registration.nationality }}
+      <i class="fa fa-map-marker pr-2"></i>{{ customer.cdetails2.registration.nationality }}
     </div>
   </div>
 
@@ -162,16 +157,13 @@
           <td>:</td>
           <!-- <td>{{customer.cdetails2.panURL}}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewCustomerDocuments(
                   customer.cdetails2.registration.emailId,
                   'pan'
                 )
-              "
-              >View PAN Card</a
-            >
+              ">View PAN Card</a>
           </td>
         </tr>
         <tr>
@@ -179,16 +171,13 @@
           <td>:</td>
           <!-- <td>{{ customer.cdetails2.voterURL }}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewCustomerDocuments(
                   customer.cdetails2.registration.emailId,
                   'voter_id'
                 )
-              "
-              >View Voter ID Card</a
-            >
+              ">View Voter ID Card</a>
           </td>
         </tr>
         <tr>
@@ -196,16 +185,13 @@
           <td>:</td>
           <!-- <td>{{ customer.cdetails2.salaryURL }}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewCustomerDocuments(
                   customer.cdetails2.registration.emailId,
                   'salary_slip'
                 )
-              "
-              >View Salary Slip</a
-            >
+              ">View Salary Slip</a>
           </td>
         </tr>
         <tr>
@@ -213,17 +199,14 @@
           <td>:</td>
           <!-- <td>{{ customer.loaURL }}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewApplicationDocuments(
                   customer.cdetails2.registration.emailId,
                   customer.applicationId,
                   'LOA'
                 )
-              "
-              >View LOA</a
-            >
+              ">View LOA</a>
           </td>
         </tr>
         <tr>
@@ -231,17 +214,14 @@
           <td>:</td>
           <!-- <td>{{ customer.nocURL }}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewApplicationDocuments(
                   customer.cdetails2.registration.emailId,
                   customer.applicationId,
                   'NOC'
                 )
-              "
-              >View NOC</a
-            >
+              ">View NOC</a>
           </td>
         </tr>
         <tr>
@@ -249,67 +229,41 @@
           <td>:</td>
           <!-- <td>{{ customer.agreementURL }}</td> -->
           <td>
-            <a
-              [routerLink]=""
-              (click)="
+            <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+            <a [routerLink]="" (click)="
                 viewApplicationDocuments(
                   customer.cdetails2.registration.emailId,
                   customer.applicationId,
                   'agreementToSale'
                 )
-              "
-              >View agreement to sale</a
-            >
+              ">View agreement to sale</a>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div
-    *ngIf="viewType == 'pending'"
-    class="d-flex flex-row justify-content-center my-4"
-  >
+  <div *ngIf="viewType == 'pending'" class="d-flex flex-row justify-content-center my-4">
     <div class="w-25">
-      <button
-        class="btn btn-success btn-lg btn-block mr-3"
-        data-toggle="modal"
-        data-target="#remark"
-        (click)="approve()"
-      >
+      <button class="btn btn-success btn-lg btn-block mr-3" data-toggle="modal" data-target="#remark"
+        (click)="approve()">
         Approve
       </button>
     </div>
     <div class="w-25">
-      <button
-        class="btn btn-danger btn-lg btn-block ml-3"
-        data-toggle="modal"
-        data-target="#remark"
-      >
+      <button class="btn btn-danger btn-lg btn-block ml-3" data-toggle="modal" data-target="#remark">
         Reject
       </button>
     </div>
   </div>
 
   <!-- Modal -->
-  <div
-    class="modal fade"
-    id="remark"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="enterRemark"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="remark" tabindex="-1" role="dialog" aria-labelledby="enterRemark" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="enterRemark">Remarks</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -320,14 +274,8 @@
           <button type="button" class="btn btn-danger" data-dismiss="modal">
             Close
           </button>
-          <button
-            type="button"
-            class="btn btn-success"
-            (click)="submit()"
-            data-dismiss="modal"
-            data-toggle="modal"
-            data-target="#status"
-          >
+          <button type="button" class="btn btn-success" (click)="submit()" data-dismiss="modal" data-toggle="modal"
+            data-target="#status">
             Submit
           </button>
           <!-- <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#status">Submit</button> -->
@@ -337,36 +285,19 @@
   </div>
 
   <!-- status Modal -->
-  <div
-    class="modal fade"
-    id="status"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="enterRemark"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="enterRemark" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="enterRemark">Remarks</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div *ngIf="approved" class="modal-body">Application APPROVED</div>
         <div *ngIf="!approved" class="modal-body">Application REJECTED</div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-danger"
-            data-dismiss="modal"
-            (click)="routeToApplication()"
-          >
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="routeToApplication()">
             OK
           </button>
         </div>
