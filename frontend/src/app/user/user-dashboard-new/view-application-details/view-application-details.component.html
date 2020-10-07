@@ -46,12 +46,12 @@
 
       <tr>
         <th>Application Date</th>
-        <td>{{ applicationDetailToDisplay.applDate | date: "dd/MM/yyyy" }}</td>
+        <td>{{ applicationDetailToDisplay.applDate | date: "dd-MMM-yyyy" }}</td>
       </tr>
 
       <tr *ngIf="(status.match('Approved'))">
         <th>Approval Date</th>
-        <td>{{ applicationDetailToDisplay.apprDate | date: "dd/MM/yyyy" }}</td>
+        <td>{{ applicationDetailToDisplay.apprDate |  date: "dd-MMM-yyyy" }}</td>
       </tr>
 
       <tr>

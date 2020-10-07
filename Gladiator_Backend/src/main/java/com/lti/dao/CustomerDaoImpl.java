@@ -88,7 +88,7 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	public List<Application> getAllApplicationsbyEmail(String email) {
 
-		Query query = entityManager.createQuery("Select a From Application a where a.cdetails2.registration.emailId = :email");
+		Query query = entityManager.createQuery("Select a From Application a where a.cdetails2.registration.emailId = :email Order By a.applicationId");
 		query.setParameter("email", email);
 		return query.getResultList();
 
