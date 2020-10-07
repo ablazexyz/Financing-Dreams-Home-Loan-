@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,11 +17,12 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "LOAN_TBL")
+@SequenceGenerator(name="loan_seq", initialValue=50310070, allocationSize=100)
 public class Loan {
 
 	@Id
 	@Column(name = "LOAN_ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_seq")
 	private int LoanId;
 
 	@JsonProperty(access = Access.WRITE_ONLY)

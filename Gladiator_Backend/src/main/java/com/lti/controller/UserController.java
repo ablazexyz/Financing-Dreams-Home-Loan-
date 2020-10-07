@@ -47,11 +47,11 @@ public class UserController {
 
 	@Autowired
 	private CustomerService service;
-	 private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
-	//private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
+	//private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
+	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
 	
 	//private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
-	 private final Path rootLocation = Paths.get(tanuj_path);
+	// private final Path rootLocation = Paths.get(tanuj_path);
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
