@@ -18,14 +18,14 @@ import { Application } from './application';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   loginUser(user): Observable<object> {
     return this.http.get(
       'http://localhost:3000/users?emailId=' +
-        user.emailId +
-        '&password=' +
-        user.password
+      user.emailId +
+      '&password=' +
+      user.password
     );
   }
 
@@ -50,7 +50,7 @@ export class UserService {
 
   getEmiDetails(applicationId: number): Observable<EmiDto[]> {
 
-    return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/application/EMIList/'+applicationId);
+    return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/application/EMIList/' + applicationId);
   }
 
   setUserDetails(
@@ -71,6 +71,10 @@ export class UserService {
     );
   }
 
+  sendEmail(id: string) {
+
+    return this.http.get('http://localhost:9091/HomeApp/users/sendapplication/' + id);
+  }
   updateUserDetails(reg: Register): Observable<Register> {
     return this.http.post<Register>(
       'http://localhost:9091/HomeApp/users/customerdetails',
@@ -112,9 +116,9 @@ export class UserService {
     const newRequest = new HttpRequest(
       'POST',
       'http://localhost:9091/HomeApp/users/fileUpload/' +
-        userName +
-        '/' +
-        documentType,
+      userName +
+      '/' +
+      documentType,
       data,
       {
         reportProgress: true,
@@ -135,11 +139,11 @@ export class UserService {
     const newRequest = new HttpRequest(
       'POST',
       'http://localhost:9091/HomeApp/users/fileUpload/' +
-        userName +
-        '/' +
-        applicationId +
-        '/' +
-        documentType,
+      userName +
+      '/' +
+      applicationId +
+      '/' +
+      documentType,
       data,
       {
         reportProgress: true,
@@ -157,9 +161,9 @@ export class UserService {
     headers = headers.set('Accept', 'application/pdf');
     return this.http.get<Blob>(
       'http://localhost:9091/HomeApp/users/fileDownload/' +
-        userFolderName +
-        '/' +
-        documentType,
+      userFolderName +
+      '/' +
+      documentType,
       { headers: headers, responseType: 'blob' as 'json' }
     );
   }
@@ -173,11 +177,11 @@ export class UserService {
     headers = headers.set('Accept', 'application/pdf');
     return this.http.get<Blob>(
       'http://localhost:9091/HomeApp/users/fileDownload/' +
-        userFolderName +
-        '/' +
-        applicationId +
-        '/' +
-        documentType,
+      userFolderName +
+      '/' +
+      applicationId +
+      '/' +
+      documentType,
       { headers: headers, responseType: 'blob' as 'json' }
     );
   }
