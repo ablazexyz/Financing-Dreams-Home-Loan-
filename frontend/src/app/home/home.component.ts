@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  islogged = false;
+  constructor() {
+    if (sessionStorage.getItem('username') != null){
+      this.islogged = true;
+    }
+   }
 
   ngOnInit(): void {
+  }
+  logout(): void {
+    sessionStorage.removeItem('username');
+    this.islogged = false;
   }
 
 }
