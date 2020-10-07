@@ -1,8 +1,8 @@
-<div class="row featurette" id="Eligibility">
+<div class="row featurette d-flex align-items-center justify-content-center p-4" id="Eligibility">
   <div class="col-md-1"></div>
-  <div class="col-md-3" id="Eligibility">
+  <div class="col-md-4" id="Eligibility">
     <div class="card text-white bg-info">
-      <div class="card-header" style="text-align: center;">Eligibility Calcuator</div>
+      <div class="card-header" style="text-align: center;"><h3>Eligibility Calcuator</h3></div>
 
       <div class="card-body">
 
@@ -11,7 +11,7 @@
 
           <!-- Monthly Income -->
           <div class="form-group">
-            <label for="monthly_income">Monthly Income</label>
+            <label for="monthly_income">Monthly Income (&#x20b9;)</label>
             <input type="number" class="form-control" id="loan_amount" [(ngModel)]="income"
               [ngModelOptions]="{standalone: true}" placeholder="Enter Monthly Income:">
           </div>
@@ -28,8 +28,11 @@
     <div class="card" id="info_card">
       <div class="card-body">
         <h4 style="text-align: center;">Eligible Loan Amount </h4>
-        <h3 style="text-align: center;"> &#x20b9; {{loan.toFixed(0)}} </h3>
+        <h3 style="text-align: center;"> &#x20b9; {{loan.toFixed(0) | number}} </h3>
       </div>
     </div>
   </div>
+  <div class="col-md-7 text-center">
+    <img src="../../assets/images/eligibility.png" height="400" width="600" style="box-shadow: 0 0 8px 8px white inset; border-radius: 80%;">
+</div>
 </div>

@@ -1,11 +1,11 @@
-<div class="row featurette" id="EMI_Div">
+<div class="row featurette mb-3" id="EMI_Div">
 
-   <div class="col-md-8">
+   <div class="col-md-7">
 
       <div class="card" id="info_card1" style="margin: auto;">
          <div class="card-body">
             <h4 style="text-align: center;">Monthly EMI Amount </h4>
-            <h3 style="text-align: center;"> &#x20b9; {{emi.toFixed(0)}} </h3>
+            <h3 style="text-align: center;"> &#x20b9; {{emi.toFixed(0) | number}} </h3>
          </div>
       </div>
 
@@ -17,7 +17,7 @@
       <div class="card" id="info_card" style="margin: auto;">
          <div class="card-body">
             <h4 style="text-align: center;">Total Payable Amount </h4>
-            <h3 style="text-align: center;"> &#x20b9; {{(this.principal+this.interest).toFixed(0)}} </h3>
+            <h3 style="text-align: center;"> &#x20b9; {{(this.principal+this.interest).toFixed(0) | number}} </h3>
          </div>
       </div>
 
@@ -27,21 +27,21 @@
 
 
 
-   <div class="col-md-3" id="emi_calc">
+   <div class="col-md-4 d-flex align-items-center justify-content-center " id="emi_calc">
 
-      <div class="card text-white bg-info">
+      <div class="card text-white bg-info text-center" style="width: 450px;">
          <form>
-            <div class="card-header" style="text-align: center;">EMI Calcuator</div>
+            <div class="card-header " style="text-align: center;"><h3> EMI Calcuator</h3></div>
 
             <div class="card-body">
                <div class="form-group">
-                  <label for="loan_amount">Loan Amount</label>
+                  <label for="loan_amount">Loan Amount (&#x20b9;)</label>
                   <input type="number" class="form-control" id="loan_amount" [(ngModel)]="principal"
                      [ngModelOptions]="{standalone: true}" placeholder="Enter loan amount:">
                </div>
 
                <div class="form-group">
-                  <label for="tenure">Enter Rate of Interest </label>
+                  <label for="tenure">Rate of Interest (% p.a.) </label>
                   <input type="number" class="form-control" id="interest" [(ngModel)]="roi"
                      [ngModelOptions]="{standalone: true}" placeholder="Enter Interest:">
                </div>
