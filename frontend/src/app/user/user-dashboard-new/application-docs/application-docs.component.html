@@ -1,149 +1,118 @@
-<h2>Upload Loan documents</h2>
-<div class="form-group">
-  <label for="LOA">Upload LOA</label>
-  <div
-    style="
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-top: -20px;
-    "
-  >
-    <input
-      type="file"
-      id="LOA"
-      (change)="selectFile($event, 'LOA')"
-      style="margin-top: 20px"
-    />
+<h2 class="text-center text-capitalize font-weight-normal font-italic mt-2">
+  Upload Loan documents
+</h2>
+<div class="form-group mt-4">
+  <h5 class="font-weight-normal">Upload LOA</h5>
+  <div class="upload-control">
+    <input type="file" id="LOA" (change)="selectFile($event, 'LOA')" />
     <button
       type="button"
       class="btn btn-primary"
-      style="margin-top: 20px"
       (click)="upload('LOA')"
       [disabled]="!isLOASelected"
     >
       Upload
     </button>
-    <span
-      *ngIf="isLOAUploaded"
-      class="ml-2 text-center"
-      style="flex-grow: 1; margin-top: 20px"
-      ><a [routerLink]="" (click)="viewUploadedDocument('LOA')"
-        >View uploaded LOA</a
-      ></span
+  </div>
+  <div *ngIf="isLOAUploaded" class="text-center alert alert-success mt-2">
+    <a
+      [routerLink]=""
+      (click)="viewUploadedDocument('LOA')"
+      style="color: green"
+      >View uploaded LOA</a
     >
   </div>
 </div>
 
-<div class="form-group">
-  <label for="NOC">Upload NOC</label>
-  <div
-    style="
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-top: -20px;
-    "
-  >
-    <input
-      type="file"
-      id="NOC"
-      (change)="selectFile($event, 'NOC')"
-      style="margin-top: 20px"
-    />
+<div class="form-group mt-4">
+  <h5 class="font-weight-normal">Upload NOC</h5>
+  <div class="upload-control">
+    <input type="file" id="NOC" (change)="selectFile($event, 'NOC')" />
     <button
       type="button"
       class="btn btn-primary"
-      style="margin-top: 20px"
       (click)="upload('NOC')"
       [disabled]="!isNOCSelected"
     >
       Upload
     </button>
-    <span
-      *ngIf="isNOCUploaded"
-      class="ml-2 text-center"
-      style="flex-grow: 1; margin-top: 20px"
-      ><a [routerLink]="" (click)="viewUploadedDocument('NOC')"
-        >View uploaded NOC</a
-      ></span
+  </div>
+  <div *ngIf="isNOCUploaded" class="text-center alert alert-success mt-2">
+    <a
+      [routerLink]=""
+      (click)="viewUploadedDocument('NOC')"
+      style="color: green"
+      >View uploaded NOC</a
     >
   </div>
 </div>
 
-<div class="form-group">
-  <label for="agreementToSale">Upload Agreement To Sale</label>
-  <div
-    style="
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      margin-top: -20px;
-    "
-  >
+<div class="form-group mt-4">
+  <h5 class="font-weight-normal">Upload Agreement To Sale</h5>
+  <div class="upload-control">
     <input
       type="file"
       id="agreementToSale"
       (change)="selectFile($event, 'agreementToSale')"
-      style="margin-top: 20px"
     />
     <button
       type="button"
       class="btn btn-primary"
-      style="margin-top: 20px"
       (click)="upload('agreementToSale')"
       [disabled]="!isAgreementToSaleSelected"
     >
       Upload
     </button>
-    <span
-      *ngIf="isAgreementToSaleUploaded"
-      class="ml-2 text-center"
-      style="flex-grow: 1; margin-top: 20px"
-      ><a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')"
-        >View uploaded Agreement To Sale document</a
-      ></span
+  </div>
+  <div
+    *ngIf="isAgreementToSaleUploaded"
+    class="text-center alert alert-success mt-2"
+  >
+    <a
+      [routerLink]=""
+      (click)="viewUploadedDocument('agreementToSale')"
+      style="color: green"
+      >View uploaded Agreement To Sale document</a
     >
   </div>
 </div>
 
-<div>
+<div class="form-group mt-4 text-center">
   <button
     type="button"
     class="btn btn-primary"
     [disabled]="!isLOAUploaded || !isNOCUploaded || !isAgreementToSaleUploaded"
-    data-toggle="modal" data-target="#sent"
+    data-toggle="modal"
+    data-target="#sent"
   >
-    Finsh
+    Finish
   </button>
 </div>
 
 <div
-    class="modal fade p-4 text-center"
-    id="sent"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="sentDetails"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content align-items-center py-3">
-        <div class="spinner-grow text-success" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <div class="modal-body text-success">
-          Application Sent for Approval
-        </div>
-        <div class="modal-footer d-block">
-          <button
-            type="button"
-            class="btn btn-success"
-            routerLink="/userDashboard/userHome"
-            data-dismiss="modal"
-          >
-            View Application
-          </button>
-          </div>
+  class="modal fade p-4 text-center"
+  id="sent"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="sentDetails"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content align-items-center py-3">
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="modal-body text-success">Application Sent for Approval</div>
+      <div class="modal-footer d-block">
+        <button
+          type="button"
+          class="btn btn-success"
+          routerLink="/userDashboard/userHome"
+          data-dismiss="modal"
+        >
+          View Application
+        </button>
       </div>
     </div>
   </div>
+</div>

@@ -27,3 +27,10 @@
     display: none;
   }
 }
+
+footer {
+  position: fixed;
+  height: 30px;
+  bottom: 0;
+  width: 100%;
+}

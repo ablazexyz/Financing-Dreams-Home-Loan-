@@ -11,17 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "APPLICATION_TBL")
+@SequenceGenerator(name="appl_seq", initialValue=606107001, allocationSize=100)
 public class Application {
 	
 	@Id
 	@Column(name = "APPLICATION_ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appl_seq")
 	private int applicationId;
 
 	@Column(name = "PROPERTY_LOCATION")
