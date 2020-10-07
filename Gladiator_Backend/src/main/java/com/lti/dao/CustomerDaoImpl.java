@@ -43,6 +43,21 @@ public class CustomerDaoImpl implements CustomerDao{
 		entityManager.persist(appl);
 		
 	}
+	
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void updateApplication(Application appl) {
+		
+		entityManager.merge(appl);
+		
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY)
+	public Customer_Details updateCustomerDetails(Customer_Details cd) {
+		
+		return entityManager.merge(cd);
+	}
 
 	public Registration getRegistrationDetailsbyEmail(String email) {
 
@@ -130,21 +145,6 @@ public class CustomerDaoImpl implements CustomerDao{
 		query.setParameter("email", email);
 		
 		return (Account) query.getSingleResult();
-	}
-
-	@Override
-	@Transactional(propagation = Propagation.MANDATORY)
-	public void updateApplication(Application appl) {
-		
-		entityManager.merge(appl);
-		
-	}
-
-	@Override
-	@Transactional(propagation = Propagation.MANDATORY)
-	public Customer_Details updateCustomerDetails(Customer_Details cd) {
-		
-		return entityManager.merge(cd);
 	}
 
 	
