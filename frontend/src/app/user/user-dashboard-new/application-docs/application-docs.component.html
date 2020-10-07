@@ -65,19 +65,31 @@
     </button>
   </div>
 
-  <div class="modal fade p-4 text-center" id="sent" tabindex="-1" role="dialog" aria-labelledby="sentDetails"
-    aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content align-items-center py-3">
-        <div class="spinner-grow text-success" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <div class="modal-body text-success">Application Sent for Approval</div>
-        <div class="modal-footer d-block">
-          <button type="button" class="btn btn-success" routerLink="/userDashboard/userHome" data-dismiss="modal">
-            View Application
-          </button>
-        </div>
+<div
+  class="modal fade p-4 text-center"
+  id="sent"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="sentDetails"
+  aria-hidden="true"
+  data-backdrop="static" data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content align-items-center py-3">
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="modal-body text-success">Application Sent for Approval</div>
+      <div class="modal-footer d-block">
+        <button
+          type="button"
+          class="btn btn-success"
+          routerLink="/userDashboard/userHome"
+          data-dismiss="modal"
+          (click)="sendApplicationEmail()"
+        >
+          View Application
+        </button>
       </div>
     </div>
   </div>

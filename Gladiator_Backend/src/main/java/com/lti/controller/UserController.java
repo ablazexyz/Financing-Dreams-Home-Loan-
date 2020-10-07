@@ -49,11 +49,11 @@ public class UserController {
 
 	@Autowired
 	private CustomerService service;
-	//private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
+	private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
 //	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
 	
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
-	// private final Path rootLocation = Paths.get(tanuj_path);
+//	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	 private final Path rootLocation = Paths.get(tanuj_path);
 
 	// http://localhost:9091/HomeApp/users/adlogin
 	@PostMapping(path = "adlogin")
@@ -213,13 +213,19 @@ public class UserController {
 
 		service.createApplication(appl);
 		
-		System.out.println(appl.showApplication());
+		return appl;
+	}
+	
+	// http://localhost:9091/HomeApp/users/sendapplication/{id}
+	@GetMapping(path = "sendapplication/{id}")
+	public void sendApplicationEmail(@PathVariable("id") int applId) {
+		
+		Application appl = service.findApplicationById(applId);
 		PDFService.create(appl);
 
 		String name =  appl.getCdetails2().getRegistration().getFirstName() + " " + appl.getCdetails2().getRegistration().getLastName();
-		MailService.send(email, "Loan Application Submitted", name, appl.getApplicationId());
+		MailService.send(appl.getCdetails2().getRegistration().getEmailId(), "Loan Application Submitted", name, appl.getApplicationId());
 		
-		return appl;
 	}
 
 	// http://localhost:9091/HomeApp/users/applicationdetails/{emailId}
@@ -262,7 +268,7 @@ public class UserController {
 			@PathVariable(name = "id") String id, @PathVariable(name = "documentType") String documentType) {
 
 		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
-//		Path uploadPath = Path.of(rootLocation.toString(), id);
+		// Path uploadPath = Path.of(rootLocation.toString(), id);
 		Path uploadPath = Paths.get(rootLocation.toString(), id);
 
 		// Checking if the folder where to upload exists or not

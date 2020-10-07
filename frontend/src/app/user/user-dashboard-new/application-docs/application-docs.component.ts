@@ -162,6 +162,11 @@ export class ApplicationDocsComponent implements OnInit {
       });
   }
 
+  sendApplicationEmail():void{
+
+    this.service.sendEmail(this.applicationId).subscribe();
+  }
+
   // onUploadComplete(): void {
   //   this.router.navigate(['../userHome'], { relativeTo: this.route });
   // }
