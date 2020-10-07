@@ -13,7 +13,7 @@
         <div class="heading mb-4">
           <h3>User Login</h3>
         </div>
-        <form [formGroup]="userLoginDetails" (submit)=authenticateUser()>
+        <form [formGroup]="userLoginDetails">
           <div class="form-input form-group mb-3">
             <span><i class="fa fa-user fa-lg"></i></span>
             <input type="text" id="username" name="emailId" formControlName="emailId" placeholder="Email">
@@ -32,8 +32,8 @@
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn btn-success mx-2 float-sm-left"
-              [disabled]="userLoginDetails.invalid">Login</button>
+            <button class="btn btn-success mx-2 float-sm-left" style="width: 150px;"
+              [disabled]="userLoginDetails.invalid" (click)="authenticateUser()">Login</button>
 
             <button class="btn btn-dark mx-2 float-sm-right" routerLink="/adminLogin"
               routerLinkActive="router-link-active">Login as Admin</button>

@@ -3,6 +3,14 @@
   /* margin-top: 10px; */
   font-style: italic;
 }
+.brand-logo :hover{
+  border-radius: 10px;
+  background-color: rgb(245, 233, 217);
+}
+.nav-item :hover{
+  border-radius: 5px;
+  background-color: rgb(234, 243, 193);
+}
 
 @media screen and (max-width: 600px) {
   #account-details {
