@@ -27,6 +27,13 @@ export class ApplicationDocsComponent implements OnInit {
   isNOCSelected: boolean = false;
   isAgreementToSaleUploaded: boolean = false;
   isAgreementToSaleSelected: boolean = false;
+
+  isError: boolean[] = [false, false, false];
+  errorMsg = '';
+  errorMsg1 = '';
+  errorMsg2 = '';
+  errorMsg3 = '';
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -61,13 +68,18 @@ export class ApplicationDocsComponent implements OnInit {
             // }
             if (documentType == 'LOA') {
               this.isLOAUploaded = true;
+              this.isError[0] = false;
             } else if (documentType == 'NOC') {
               this.isNOCUploaded = true;
+              this.isError[1] = false;
+
             } else if (documentType == 'agreementToSale') {
               this.isAgreementToSaleUploaded = true;
+              this.isError[2] = false;
+
             }
 
-            alert('File successfully uploaded');
+            // alert('File successfully uploaded');
             //this.selectedFiles = undefined;
           }
           //this.selectedFiles = undefined;
@@ -75,15 +87,35 @@ export class ApplicationDocsComponent implements OnInit {
         (error) => {
           if (error instanceof HttpErrorResponse) {
             if (error.status == 415) {
-              alert('Please upload the file in pdf format');
+              // alert('Please upload the file in pdf format');
+              this.errorMsg = 'Please upload the file in pdf format';
               //this.selectedFiles = undefined;
             } else if (error.status == 417) {
-              alert('File size should be less than 5 MB');
+              // alert('File size should be less than 5 MB');
+              this.errorMsg = 'File size should be less than 1 MB';
+
               //this.selectedFiles = undefined;
             } else {
-              alert('File not uploaded, Please try again..');
+              // alert('File not uploaded, Please try again..');
+              this.errorMsg = 'File not uploaded, Please try again..';
+
               //this.selectedFiles = undefined;
             }
+          }
+          if (documentType == 'LOA') {
+            this.isLOAUploaded = false;
+            this.isError[0] = true;
+            this.errorMsg1 = this.errorMsg;
+          } else if (documentType == 'NOC') {
+            this.isNOCUploaded = false;
+            this.isError[1] = true;
+            this.errorMsg2 = this.errorMsg;
+
+          } else if (documentType == 'agreementToSale') {
+            this.isAgreementToSaleUploaded = false;
+            this.isError[2] = true;
+            this.errorMsg3 = this.errorMsg;
+
           }
         }
       );
