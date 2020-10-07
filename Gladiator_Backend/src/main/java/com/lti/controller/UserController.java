@@ -39,6 +39,7 @@ import com.lti.model.Login;
 import com.lti.model.Registration;
 import com.lti.service.CustomerService;
 import com.lti.service.MailService;
+import com.lti.service.PDFService;
 
 @RestController
 @CrossOrigin
@@ -211,7 +212,13 @@ public class UserController {
 		cd.addApplications(appl);
 
 		service.createApplication(appl);
+		
+		System.out.println(appl.showApplication());
+		PDFService.create(appl);
 
+		String name =  appl.getCdetails2().getRegistration().getFirstName() + " " + appl.getCdetails2().getRegistration().getLastName();
+		MailService.send(email, "Loan Application Submitted", name, appl.getApplicationId());
+		
 		return appl;
 	}
 

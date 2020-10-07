@@ -160,6 +160,7 @@ export class ApplicationDetailsComponent implements OnInit {
       .subscribe((data) => {
         this.applicationdetails = data;
         console.log(this.applicationdetails);
+        this.appId = true;
         // this.router.navigate(['userDashboard/uploadDocuments']
         // ,
         // {
@@ -169,6 +170,6 @@ export class ApplicationDetailsComponent implements OnInit {
         // }
         // );
       });
-    this.appId = true;
+    
   }
 }
