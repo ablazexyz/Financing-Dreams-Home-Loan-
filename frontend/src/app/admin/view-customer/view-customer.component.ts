@@ -24,6 +24,8 @@ export class ViewCustomerComponent implements OnInit {
 
   viewType: string;
 
+  status: boolean;
+
   constructor(
     private service: AdminService,
     private route: ActivatedRoute,
@@ -39,6 +41,7 @@ export class ViewCustomerComponent implements OnInit {
       this.approvedCustomer = this.service.getApprovedCustomer();
       console.log(this.approvedCustomer);
       this.customer = this.approvedCustomer.application;
+      this.status = true;
     }
     // console.log(this.approvedCustomer);
 
