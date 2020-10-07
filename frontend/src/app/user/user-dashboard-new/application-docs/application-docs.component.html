@@ -1,119 +1,87 @@
-<h2 class="text-center text-capitalize font-weight-normal font-italic mt-2">
-  Upload Loan documents
-</h2>
-<div class="form-group mt-4">
-  <h5 class="font-weight-normal">Upload LOA</h5>
-  <div class="upload-control">
-    <input type="file" id="LOA" (change)="selectFile($event, 'LOA')" />
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="upload('LOA')"
-      [disabled]="!isLOASelected"
-    >
-      Upload
+<div class="container-fluid d-flex align-items-center justify-content-center mt-4 p-4 bg-light">
+  <div class="col-lg-6">
+    <div class="mb-4 text-center">
+  <h2 class="text-center text-capitalize font-weight-normal font-italic mt-2 ">
+    Upload Loan documents
+  </h2>
+  <small>(File size should be <1Mb)</small>
+</div>
+  <div class="form-group mt-4 py-2">
+    <h5 class="font-weight-normal text-left"><strong> Upload LOA</strong></h5>
+
+    <div class="upload-control">
+      <input type="file" id="LOA" (change)="selectFile($event, 'LOA')" />
+      <button type="button" class="btn btn-primary" (click)="upload('LOA')" [disabled]="!isLOASelected">
+        Upload
+      </button>
+    </div>
+    <div *ngIf="isLOAUploaded" class="text-center alert alert-success mt-2">
+      <a [routerLink]="" (click)="viewUploadedDocument('LOA')" style="color: green"><i class="fa fa-check fa-lg text-success"></i> View uploaded LOA</a>
+    </div>
+    <div *ngIf="isError[0]" class="text-center alert alert-danger mt-2">
+      <span ><i class="fa fa-times fa-lg text-danger mr-1" style="color: rgb(212, 7, 0)"></i>{{errorMsg1}}</span>
+    </div>
+  </div>
+
+  <div class="form-group mt-2 py-2">
+    <h5 class="font-weight-normal text-left"><strong>Upload NOC</strong> </h5>
+    <div class="upload-control">
+      <input type="file" id="NOC" (change)="selectFile($event, 'NOC')" />
+      <button type="button" class="btn btn-primary" (click)="upload('NOC')" [disabled]="!isNOCSelected">
+        Upload
+      </button>
+    </div>
+    <div *ngIf="isNOCUploaded" class="text-center alert alert-success mt-2">
+      <a [routerLink]="" (click)="viewUploadedDocument('NOC')" style="color: green"><i class="fa fa-check fa-lg text-success"></i>View uploaded NOC</a>
+    </div>
+    <div *ngIf="isError[1]" class="text-center alert alert-danger mt-2">
+      <span ><i class="fa fa-times fa-lg text-danger mr-1" style="color: rgb(212, 7, 0)"></i>{{errorMsg2}}</span>
+    </div>
+  </div>
+
+  <div class="form-group mt-2 py-2">
+    <h5 class="font-weight-normal text-left"><strong> Upload Agreement To Sale</strong></h5>
+    <div class="upload-control">
+      <input type="file" id="agreementToSale" (change)="selectFile($event, 'agreementToSale')" />
+      <button type="button" class="btn btn-primary" (click)="upload('agreementToSale')"
+        [disabled]="!isAgreementToSaleSelected">
+        Upload
+      </button>
+    </div>
+    <div *ngIf="isAgreementToSaleUploaded" class="text-center alert alert-success mt-2">
+      <a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')" style="color: green"><i class="fa fa-check fa-lg text-success"></i>View uploaded Agreement
+        To Sale</a>
+    </div>
+    <div *ngIf="isError[2]" class="text-center alert alert-danger mt-2">
+      <span ><i class="fa fa-times fa-lg text-danger mr-1" style="color: rgb(212, 7, 0)"></i>{{errorMsg3}}</span>
+    </div>
+  </div>
+
+  <div class="form-group mt-4 text-center">
+    <button type="button" class="btn btn-success btn-lg"
+      [disabled]="!isLOAUploaded || !isNOCUploaded || !isAgreementToSaleUploaded" data-toggle="modal"
+      data-target="#sent">
+      Finish
     </button>
   </div>
-  <div *ngIf="isLOAUploaded" class="text-center alert alert-success mt-2">
-    <a
-      [routerLink]=""
-      (click)="viewUploadedDocument('LOA')"
-      style="color: green"
-      >View uploaded LOA</a
-    >
-  </div>
-</div>
 
-<div class="form-group mt-4">
-  <h5 class="font-weight-normal">Upload NOC</h5>
-  <div class="upload-control">
-    <input type="file" id="NOC" (change)="selectFile($event, 'NOC')" />
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="upload('NOC')"
-      [disabled]="!isNOCSelected"
-    >
-      Upload
-    </button>
-  </div>
-  <div *ngIf="isNOCUploaded" class="text-center alert alert-success mt-2">
-    <a
-      [routerLink]=""
-      (click)="viewUploadedDocument('NOC')"
-      style="color: green"
-      >View uploaded NOC</a
-    >
-  </div>
-</div>
-
-<div class="form-group mt-4">
-  <h5 class="font-weight-normal">Upload Agreement To Sale</h5>
-  <div class="upload-control">
-    <input
-      type="file"
-      id="agreementToSale"
-      (change)="selectFile($event, 'agreementToSale')"
-    />
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="upload('agreementToSale')"
-      [disabled]="!isAgreementToSaleSelected"
-    >
-      Upload
-    </button>
-  </div>
-  <div
-    *ngIf="isAgreementToSaleUploaded"
-    class="text-center alert alert-success mt-2"
-  >
-    <a
-      [routerLink]=""
-      (click)="viewUploadedDocument('agreementToSale')"
-      style="color: green"
-      >View uploaded Agreement To Sale document</a
-    >
-  </div>
-</div>
-
-<div class="form-group mt-4 text-center">
-  <button
-    type="button"
-    class="btn btn-primary"
-    [disabled]="!isLOAUploaded || !isNOCUploaded || !isAgreementToSaleUploaded"
-    data-toggle="modal"
-    data-target="#sent"
-  >
-    Finish
-  </button>
-</div>
-
-<div
-  class="modal fade p-4 text-center"
-  id="sent"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="sentDetails"
-  aria-hidden="true"
-  data-backdrop="static" data-keyboard="false"
->
-  <div class="modal-dialog modal-dialog-centered" role="document" >
-    <div class="modal-content align-items-center py-3">
-      <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <div class="modal-body text-success">Application Sent for Approval</div>
-      <div class="modal-footer d-block">
-        <button
-          type="button"
-          class="btn btn-success"
-          routerLink="/userDashboard/userHome"
-          data-dismiss="modal"
-        >
-          View Application
-        </button>
+  <div class="modal fade p-4 text-center" id="sent" tabindex="-1" role="dialog" aria-labelledby="sentDetails"
+    aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content align-items-center py-3">
+        <div class="spinner-grow text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="modal-body text-success">Application Sent for Approval</div>
+        <div class="modal-footer d-block">
+          <button type="button" class="btn btn-success" routerLink="/userDashboard/userHome" data-dismiss="modal">
+            View Application
+          </button>
+        </div>
       </div>
     </div>
   </div>
+
+</div>
+
 </div>

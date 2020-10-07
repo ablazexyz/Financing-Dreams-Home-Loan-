@@ -150,8 +150,10 @@
           [disabled]="!isPanSelected">
           Upload
         </button>
-        <span *ngIf="isPanUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
-            (click)="viewUploadedDocument('pan')">View uploaded PAN</a></span>
+        <span *ngIf="isPanUploaded" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
+            (click)="viewUploadedDocument('pan')"><i class="fa fa-check fa-lg text-success"></i> PAN</a></span>
+        <span *ngIf="isError[0]" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
+            (click)="viewUploadedDocument('pan')"><i class="fa fa-times fa-lg text-danger"></i> {{errorMsg1}}</a></span>
       </div>
     </div>
 
@@ -173,8 +175,10 @@
           [disabled]="!isVoterIdSelected">
           Upload
         </button>
-        <span *ngIf="isVoterIdUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a
-            [routerLink]="" (click)="viewUploadedDocument('voter_id')">View Uploaded Voter ID</a></span>
+        <span *ngIf="isVoterIdUploaded" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a
+            [routerLink]="" (click)="viewUploadedDocument('voter_id')"><i class="fa fa-check fa-lg text-success"></i> Voter ID</a></span>
+        <span *ngIf="isError[1]" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
+              (click)="viewUploadedDocument('pan')"><i class="fa fa-times fa-lg text-danger"></i> {{errorMsg2}}</a></span>
       </div>
     </div>
 
@@ -196,8 +200,10 @@
           [disabled]="!isSalarySlipSelected">
           Upload
         </button>
-        <span *ngIf="isSalarySlipUploaded" class="ml-2 text-center" style="flex-grow: 1; margin-top: 20px"><a
-            [routerLink]="" (click)="viewUploadedDocument('salary_slip')">View uploaded salary slip</a></span>
+        <span *ngIf="isSalarySlipUploaded" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a
+            [routerLink]="" (click)="viewUploadedDocument('salary_slip')"><i class="fa fa-check fa-lg text-success"></i> Salary Slip</a></span>
+            <span *ngIf="isError[2]" class="ml-2 text-left pt-2" style="flex-grow: 1; margin-top: 20px"><a [routerLink]=""
+              (click)="viewUploadedDocument('pan')"><i class="fa fa-times fa-lg text-danger"></i> {{errorMsg3}}</a></span>
       </div>
     </div>
 
@@ -218,7 +224,7 @@
     </div>
   </form>
 
-  <div class="modal fade" id="saved" tabindex="-1" role="dialog" aria-labelledby="savedDetails" aria-hidden="true" 
+  <div class="modal fade" id="saved" tabindex="-1" role="dialog" aria-labelledby="savedDetails" aria-hidden="true"
         data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

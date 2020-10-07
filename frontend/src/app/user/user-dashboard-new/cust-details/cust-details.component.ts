@@ -24,6 +24,11 @@ export class CustDetailsComponent implements OnInit {
   regdetails: Register;
 
   custDetails: CustomerDetails;
+  isError: boolean[] = [false, false, false];
+  errorMsg = '';
+  errorMsg1 = '';
+  errorMsg2 = '';
+  errorMsg3 = '';
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -130,13 +135,17 @@ export class CustDetailsComponent implements OnInit {
             // }
             if (documentType == 'pan') {
               this.isPanUploaded = true;
+              this.isError[0] = false;
             } else if (documentType == 'voter_id') {
               this.isVoterIdUploaded = true;
+              this.isError[1] = false;
             } else if (documentType == 'salary_slip') {
               this.isSalarySlipUploaded = true;
+              this.isError[2] = false;
             }
 
-            alert('File successfully uploaded');
+            // alert('File successfully uploaded');
+
             //this.selectedFiles = undefined;
           }
           //this.selectedFiles = undefined;
@@ -144,15 +153,31 @@ export class CustDetailsComponent implements OnInit {
         (error) => {
           if (error instanceof HttpErrorResponse) {
             if (error.status == 415) {
-              alert('Please upload the file in pdf format');
+              // alert('Please upload the file in pdf format');
+              this.errorMsg = 'Please upload the file in pdf format';
               //this.selectedFiles = undefined;
             } else if (error.status == 417) {
-              alert('File size should be less than 5 MB');
+              // alert('File size should be less than 5 MB');
+              this.errorMsg = 'File size should be less than 1 MB';
               //this.selectedFiles = undefined;
             } else {
-              alert('File not uploaded, Please try again..');
+              // alert('File not uploaded, Please try again..');
+              this.errorMsg = 'File not uploaded, Please try again..';
               //this.selectedFiles = undefined;
             }
+          }
+          if (documentType == 'pan') {
+            this.isPanUploaded = false;
+            this.isError[0] = true;
+            this.errorMsg1 = this.errorMsg;
+          } else if (documentType == 'voter_id') {
+            this.isVoterIdUploaded = false;
+            this.errorMsg2 = this.errorMsg;
+            this.isError[1] = true;
+          } else if (documentType == 'salary_slip') {
+            this.isSalarySlipUploaded = false;
+            this.errorMsg3 = this.errorMsg;
+            this.isError[2] = true;
           }
         }
       );
