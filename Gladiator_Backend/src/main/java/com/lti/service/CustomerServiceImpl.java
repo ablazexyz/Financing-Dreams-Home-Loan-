@@ -1,5 +1,11 @@
 package com.lti.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.dao.CustomerDao;
+import com.lti.dto.EmiDto;
 import com.lti.model.Account;
 import com.lti.model.Admin;
 import com.lti.model.Application;
@@ -148,6 +155,42 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		return dao.updateCustomerDetails(cd);
 	}
+	
+	public double EMICalculate(double loanAmount, int termInYears, double interestRate) {
+		interestRate /= 100.0;
+		double monthlyRate = interestRate / 12.0;
+		int termInMonths = termInYears * 12;
+		double monthlyPayment = (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -termInMonths));
+		return BigDecimal.valueOf(monthlyPayment).setScale(2, RoundingMode.HALF_UP).doubleValue();
+	}
 
+	public List<EmiDto> calculateEmi(double loanAmount, int termInYears, double interestRate,LocalDate appdate)
+	{
+		
+		double monthlyPayment = EMICalculate(loanAmount, termInYears, interestRate);
+		DecimalFormat d = new DecimalFormat("#");
+		
+		List<EmiDto> emi = new ArrayList<>();
+		LocalDate approvedDate = appdate;
+	      int paymentNo = 1;
+	      String status="PENDING";
+	      double beginningbalance = loanAmount;
+	      while(paymentNo<=termInYears*12)
+	      {
+	    	  if(LocalDate.now().compareTo(approvedDate.plusMonths(paymentNo))>=0)
+	    		  status = "PAID";
+	    	  else
+	    		  status="PENDING";
+	    	  
+	    	  double interest = beginningbalance*interestRate/1200;
+	    	  double principal = monthlyPayment-interest;
+	    	  double endingbalance = beginningbalance - principal;
+	    	  EmiDto e = new EmiDto(approvedDate.plusMonths(paymentNo),d.format(beginningbalance),d.format(monthlyPayment),d.format(principal),d.format(interest),d.format(Math.abs(endingbalance)),status);
+	    	  emi.add(e);
+	    	  paymentNo++;
+	    	  beginningbalance = endingbalance;
+	      }
+		return emi;
+	}
 	
 }

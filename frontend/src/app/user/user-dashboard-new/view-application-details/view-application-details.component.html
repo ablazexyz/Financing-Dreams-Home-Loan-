@@ -4,86 +4,95 @@
       <th colspan="2">APPLICATION ID : {{ applicationId }}</th>
     </thead>
     <tbody>
-    <tr *ngIf="status == 'Pending'">
-      <td colspan="2" class="text-center"><i class="fa fa-refresh fa-spin fa-lg fa-fw text-warning"></i>
-        <span class="sr-only">Loading...</span><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
-    </tr>
-    <tr *ngIf="status == 'Approved'">
-      <td colspan="2" class="text-center"><i class="fa fa-check fa-lg text-success"></i><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
-    </tr>
-    <tr *ngIf="status == 'Rejected'">
-      <td colspan="2" class="text-center"><i class="fa fa-times-circle fa-lg text-danger"></i><span class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
-    </tr>
-    <tr>
-      <th>Property Location</th>
-      <td>{{ applicationDetailToDisplay.propertyLocation }}</td>
-    </tr>
-    <tr>
-      <th>Property Name</th>
-      <td>{{ applicationDetailToDisplay.propertyName }}</td>
-    </tr>
-    <tr>
-      <th>Estimated Property Amount</th>
-      <td>&#x20b9; {{ applicationDetailToDisplay.propertyAmt }}</td>
-    </tr>
-    <tr>
-      <th>Loan Amount</th>
-      <td><strong> &#x20b9; {{ applicationDetailToDisplay.loanAmt}}</strong></td>
-    </tr>
+      <tr *ngIf="status == 'Pending'">
+        <td colspan="2" class="text-center"><i class="fa fa-refresh fa-spin fa-lg fa-fw text-warning"></i>
+          <span class="sr-only">Loading...</span><span
+            class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
+      </tr>
+      <tr *ngIf="status == 'Approved'">
+        <td colspan="2" class="text-center"><i class="fa fa-check fa-lg text-success"></i><span
+            class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
+      </tr>
+      <tr *ngIf="status == 'Rejected'">
+        <td colspan="2" class="text-center"><i class="fa fa-times-circle fa-lg text-danger"></i><span
+            class="pl-2">{{applicationDetailToDisplay.loanStatus | uppercase}}</span></td>
+      </tr>
+      <tr>
+        <th>Property Location</th>
+        <td>{{ applicationDetailToDisplay.propertyLocation }}</td>
+      </tr>
+      <tr>
+        <th>Property Name</th>
+        <td>{{ applicationDetailToDisplay.propertyName }}</td>
+      </tr>
+      <tr>
+        <th>Estimated Property Amount</th>
+        <td>&#x20b9; {{ applicationDetailToDisplay.propertyAmt }}</td>
+      </tr>
+      <tr>
+        <th>Loan Amount</th>
+        <td><strong> &#x20b9; {{ applicationDetailToDisplay.loanAmt}}</strong></td>
+      </tr>
 
-    <tr>
-      <th>Interest rate</th>
-      <td>{{ applicationDetailToDisplay.roi}} % p.a.</td>
-    </tr>
+      <tr>
+        <th>Interest rate</th>
+        <td>{{ applicationDetailToDisplay.roi}} % p.a.</td>
+      </tr>
 
-    <tr>
-      <th>Tenure</th>
-      <td>{{ applicationDetailToDisplay.tenure }} years</td>
-    </tr>
+      <tr>
+        <th>Tenure</th>
+        <td>{{ applicationDetailToDisplay.tenure }} years</td>
+      </tr>
 
-    <tr>
-      <th>Application Date</th>
-      <td>{{ applicationDetailToDisplay.applDate | date: "dd/MM/yyyy" }}</td>
-    </tr>
+      <tr>
+        <th>Application Date</th>
+        <td>{{ applicationDetailToDisplay.applDate | date: "dd/MM/yyyy" }}</td>
+      </tr>
 
-    <tr *ngIf="status">
-      <th>Approval Date</th>
-      <td>{{ applicationDetailToDisplay.apprDate | date: "dd/MM/yyyy" }}</td>
-    </tr>
+      <tr *ngIf="(status.match('Approved'))">
+        <th>Approval Date</th>
+        <td>{{ applicationDetailToDisplay.apprDate | date: "dd/MM/yyyy" }}</td>
+      </tr>
 
-    <tr>
-      <th>LOA</th>
-      <!-- <td>{{ applicationDetailToDisplay.loaURL }}</td> -->
-      <td>
-        <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
-        <a [routerLink]="" (click)="viewUploadedDocument('LOA')">LOA.pdf</a>
-      </td>
-    </tr>
+      <tr>
+        <th>LOA</th>
+        <!-- <td>{{ applicationDetailToDisplay.loaURL }}</td> -->
+        <td>
+          <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+          <a [routerLink]="" (click)="viewUploadedDocument('LOA')">LOA.pdf</a>
+        </td>
+      </tr>
 
-    <tr>
-      <th>NOC</th>
-      <!-- <td>{{ applicationDetailToDisplay.nocURL }}</td> -->
-      <td>
-        <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
-        <a [routerLink]="" (click)="viewUploadedDocument('NOC')">NOC.pdf</a>
-      </td>
-    </tr>
+      <tr>
+        <th>NOC</th>
+        <!-- <td>{{ applicationDetailToDisplay.nocURL }}</td> -->
+        <td>
+          <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+          <a [routerLink]="" (click)="viewUploadedDocument('NOC')">NOC.pdf</a>
+        </td>
+      </tr>
 
-    <tr>
-      <th>Agreement to Sale</th>
-      <!-- <td>{{ applicationDetailToDisplay.agreementURL }}</td> -->
-      <td>
-        <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
-        <a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')">AgreementToSale.pdf</a>
-      </td>
-    </tr>
+      <tr>
+        <th>Agreement to Sale</th>
+        <!-- <td>{{ applicationDetailToDisplay.agreementURL }}</td> -->
+        <td>
+          <i class="fa fa-file-pdf-o fa-lg text-danger pr-2"></i>
+          <a [routerLink]="" (click)="viewUploadedDocument('agreementToSale')">AgreementToSale.pdf</a>
+        </td>
+      </tr>
 
-    <tr *ngIf="status">
-      <th>Application Remarks</th>
-      <td>{{ applicationDetailToDisplay.loanRemarks }}</td>
-    </tr>
+      <tr *ngIf="!(status.match('Pending'))">
+        <th>Application Remarks</th>
+        <td>{{ applicationDetailToDisplay.loanRemarks }}</td>
+      </tr>
 
-    <!-- <tr>
+      <tr *ngIf="(status.match('Approved'))">
+        <th>View EMI Details</th>
+        <td>
+          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#saved">EMI Details</button>
+        </td>
+      </tr>
+      <!-- <tr>
     <th>Type of employment</th>
     <td>Private</td>
   </tr>
@@ -102,14 +111,69 @@
     <th>Employer Name</th>
     <td>LTI</td>
   </tr> -->
-</tbody>
+    </tbody>
   </table>
+
+  <div class="modal fade" id="saved" tabindex="-1" role="dialog" aria-labelledby="savedDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="appDetails">Emi Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-success">
+          <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr class="d-flex">
+                <th class="col-2">Opening Balance</th>
+
+                <th class="col-2">Payment Date</th>
+
+                <th class="col-2">Principal</th>
+
+                <th class="col-2">Interest</th>
+
+                <th class="col-2">EMI Amount</th>
+
+                <th class="col-2">Closing Balance</th>
+
+                <th class="col-2">Status</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="d-flex" *ngFor="let emi of emidetails" >
+
+                
+                <td class="col-2">&#x20b9; {{ emi.beginningBalance }}</td>
+
+                <td class="col-2">{{ emi.date | date: "dd/MM/yyyy" }}</td>
+
+                <td class="col-2">&#x20b9; {{ emi.principal }}</td>
+
+                <td class="col-2">&#x20b9; {{ emi.interest }}</td>
+
+                <td class="col-2">&#x20b9;{{ emi.emi }}</td>
+
+                <td class="col-2">&#x20b9; {{ emi.endingBalance }}</td>
+
+                <td class="col-2">{{ emi.status }}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="text-center mt-4">
     <button class="btn btn-success btn-large" style="width: 150px;" routerLink="/userDashboard/userHome">Back</button>
   </div>
 
 </div>
-
-
-
-
