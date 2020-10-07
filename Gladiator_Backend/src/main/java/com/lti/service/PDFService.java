@@ -13,7 +13,8 @@ public class PDFService {
 	
 	 public static void create(Application appl) {
 	        try {
-	            PDDocument pDDocument = PDDocument.load(new File("D:\\Document Filling Test\\pdf-java.pdf"));
+	            //PDDocument pDDocument = PDDocument.load(new File("D:\\Document Filling Test\\pdf-java.pdf"));
+	        	PDDocument pDDocument = PDDocument.load(new File("D:\\LTI_TRAINING\\gladiator\\DocumentFillingTest\\pdf-java.pdf"));
 	            PDAcroForm pDAcroForm = pDDocument.getDocumentCatalog().getAcroForm();
 	            
 	            PDField field = pDAcroForm.getField("aid");
@@ -76,7 +77,8 @@ public class PDFService {
 	            field = pDAcroForm.getField("tenure");
 	            field.setValue(" "+appl.getTenure());
 
-	            pDDocument.save("D:\\Project_Gladiator\\Registration Form\\"+appl.getApplicationId()+"_Reg.pdf");
+//	            pDDocument.save("D:\\Project_Gladiator\\Registration Form\\"+appl.getApplicationId()+"_Reg.pdf");
+	            pDDocument.save("D:\\LTI_TRAINING\\gladiator\\RegistrationForm"+appl.getApplicationId()+"_Reg.pdf");
 	            pDDocument.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();

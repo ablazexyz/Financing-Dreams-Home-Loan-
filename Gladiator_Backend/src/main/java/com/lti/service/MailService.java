@@ -83,7 +83,8 @@ public class MailService {
 
 	         // Part two is attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "D:\\Project_Gladiator\\Registration Form\\"+applId+"_Reg.pdf";
+	         //String filename = "D:\\Project_Gladiator\\Registration Form\\"+applId+"_Reg.pdf";
+	         String filename = "D:\\LTI_TRAINING\\gladiator\\RegistrationForm"+applId+"_Reg.pdf";
 	         DataSource source = new FileDataSource(filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
