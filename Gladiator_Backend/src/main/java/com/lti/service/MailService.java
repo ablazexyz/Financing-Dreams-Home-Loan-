@@ -164,7 +164,7 @@ public class MailService {
 
 			messageBodyPart.setContent("<h3>Dear " + name + ",</h3> <br>" + "<p>Your Loan Application with <b> ID : "
 					+ applId + "</b> for amount <b> &#x20b9; " + (int) loanamt + "</b> has been approved. "
-					+ "Please Check Your Account for futher details" + "Warm Regards,<br>"
+					+ "Please Check Your Account for futher details<br>" + "Warm Regards,<br>"
 					+ "Financing Dreams Home Loans<br>" + "<img src=\"cid:image\" width=\"120\" height=\"100\">",
 					"text/html");
 
