@@ -1,3 +1,4 @@
+import { AdminService } from './../admin.service';
 import { Router, RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Session } from 'protractor';
@@ -13,19 +14,24 @@ export class AdminDashboardComponent implements OnInit {
   highlightProfile = false;
   highlightApp = false;
   navTitle = 'dashboard';
+  username: string;
 
   constructor( private router: Router) {
 
-    if (sessionStorage.getItem("adminEmail")==null){
-      this.router.navigate(['/adminLogin'])
+
+    if (sessionStorage.getItem('adminEmail') == null){
+      this.router.navigate(['/adminLogin']);
     }
   }
 
   ngOnInit(): void {
+    // this.navTitle = this.service.getNavTitle();
+    // console.log(this.navTitle);
+    this.username = sessionStorage.getItem('adminEmail');
   }
 
-  signout(){
+  signout(): void{
 
-    sessionStorage.removeItem("adminEmail");
+    sessionStorage.removeItem('adminEmail');
   }
 }

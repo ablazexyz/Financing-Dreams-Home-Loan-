@@ -31,7 +31,9 @@
 
       <div class="card text-white bg-info text-center" style="width: 450px;">
          <form>
-            <div class="card-header " style="text-align: center;"><h3> EMI Calcuator</h3></div>
+            <div class="card-header " style="text-align: center;">
+               <h3> EMI Calcuator</h3>
+            </div>
 
             <div class="card-body">
                <div class="form-group">
@@ -52,6 +54,9 @@
                      [ngModelOptions]="{standalone: true}" placeholder="Enter Interest:">
                </div>
                <button type="submit" class="btn btn-primary" (click)="updateChart()">Calculate EMI</button>
+               <span></span>
+               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#viewEmi"
+                  (click)="updateEmi()">View EMI Details</button>
             </div>
          </form>
 
@@ -59,6 +64,62 @@
 
    </div>
 
-   <div class="col-md-1"></div>
+   <div class="modal fade" id="viewEmi" tabindex="-1" role="dialog" aria-labelledby="savedDetails" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="appDetails">Emi Details</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body text-success">
 
-</div>
+               <div *ngIf="emibool">
+                  <div class="table-responsive">
+                     <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                           <tr class="d-flex">
+                              <th class="col-2">Opening Balance</th>
+
+                              <th class="col-2">Payment Date</th>
+
+                              <th class="col-2">Principal</th>
+
+                              <th class="col-2">Interest</th>
+
+                              <th class="col-2">EMI Amount</th>
+
+                              <th class="col-2">Closing Balance</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="d-flex" *ngFor="let emi of emidetails">
+
+
+                              <td class="col-2">&#x20b9; {{ emi.beginningBalance }}</td>
+
+                              <td class="col-2">{{ emi.date | date: "dd-MMM-yyyy" }}</td>
+
+                              <td class="col-2">&#x20b9; {{ emi.principal }}</td>
+
+                              <td class="col-2">&#x20b9; {{ emi.interest }}</td>
+
+                              <td class="col-2">&#x20b9;{{ emi.emi }}</td>
+
+                              <td class="col-2">&#x20b9; {{ emi.endingBalance }}</td>
+
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+      <div class="col-md-1"></div>
+
+   </div>

@@ -1,5 +1,5 @@
 import { AdminService } from './../admin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-home-view',
@@ -21,5 +21,8 @@ export class HomeViewComponent implements OnInit {
         this.approvedLoans = data.length;
     });
   }
+  // setNav(): void{
+  //   this.service.setNavTitle('application');
+  // }
 
 }

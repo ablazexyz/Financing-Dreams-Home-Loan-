@@ -1,5 +1,7 @@
+import { UserService } from './../../user/user.service';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { EmiDto } from 'src/app/user/EmiDto';
 
 @Component({
   selector: 'app-emi-calc',
@@ -7,6 +9,8 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./emi-calc.component.css']
 })
 export class EmiCalcComponent implements OnInit {
+
+  emidetails: EmiDto[] = [] ;
 
   principal: number = 2500000;
   roi: number = 6.5;
@@ -68,8 +72,9 @@ export class EmiCalcComponent implements OnInit {
       }
     }
   };
+  emibool: boolean;
 
-  constructor() {
+  constructor(private service :UserService) {
     const self = this;
 
     this.chartCallback = chart => {
@@ -78,7 +83,20 @@ export class EmiCalcComponent implements OnInit {
     };
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
+
+  updateEmi() {
+
+    this.service.viewEmiDetails(this.principal,this.roi,this.tenure).subscribe((data)=>{
+
+      this.emidetails =  data;
+      console.log("EMI Details",this.emidetails);
+      this.emibool = true;
+     
+    })
+
+  }
 
   updateChart() {
 

@@ -15,6 +15,7 @@ import { Loan } from '../user/Loan';
 export class AdminService {
   customer: Application;
   approvedCustomer: LoanDto;
+  // navTitle = 'dashboard';
 
   constructor(private http: HttpClient) {}
 
@@ -67,6 +68,12 @@ export class AdminService {
   getApprovedCustomer(): LoanDto {
     return this.approvedCustomer;
   }
+  // getNavTitle(): string{
+  //   return this.navTitle;
+  // }
+  // setNavTitle(title: string): void{
+  //   this.navTitle = title;
+  // }
 
   fetchCustomerFilesFromStorage(
     userFolderName: string,

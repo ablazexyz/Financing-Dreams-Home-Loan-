@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('adminEmail');
   }
 
 }
