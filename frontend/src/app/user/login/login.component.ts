@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   invalid = false;
   view = 'login';
   otpStatus = '';
+  disableEmail = false;
 
 
   forgotbool: boolean = false;
@@ -63,6 +64,8 @@ export class LoginComponent implements OnInit {
       else{
         this.forgotbool = false;
         this.otpbool = true;
+        this.disableEmail = true;
+        this.notregisterbool = false;
         this.service.forgotpass(this.email).subscribe(data=>{
           this.otp = data;
         })
