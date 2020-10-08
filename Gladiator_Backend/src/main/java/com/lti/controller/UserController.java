@@ -90,10 +90,12 @@ public class UserController {
 			service.createRegistration(reg);
 
 			String msg = "";
-			msg += ("Welcome to Financing Dreams Home Loans, " + reg.getFirstName() + " " + reg.getLastName()
+			msg += ("Welcome to Financing Dreams Home Loans, " 
 					+ ".Thank You For Registering with us. " + "Please login to apply for your first Loan Today");
 
-			MailService.send(reg.getEmailId(), "Registration Successful", msg);
+			String name = reg.getFirstName() + " " + reg.getLastName();
+			
+			MailService.send(reg.getEmailId(), "Registration Successful", name);
 		}
 		return null;
 	}

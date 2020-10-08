@@ -58,6 +58,17 @@
           <td>:</td>
           <td>{{ customer.applicationId }}</td>
         </tr>
+        <tr>
+          <td>Application Date</td>
+          <td>:</td>
+          <td>{{ customer.applDate |  date: "dd-MMM-yyyy" }}</td>
+        </tr>
+
+        <tr *ngIf="status">
+          <td>Approval Date</td>
+          <td>:</td>
+          <td>{{ customer.apprDate |  date: "dd-MMM-yyyy" }}</td>
+        </tr>
         <tr class="table-info">
           <td>Loan Amount</td>
           <td>:</td>
@@ -66,17 +77,17 @@
         <tr>
           <td>ROI</td>
           <td>:</td>
-          <td>{{ customer.roi }}</td>
+          <td>{{ customer.roi }}% p.a</td>
         </tr>
         <tr>
           <td>Tenure</td>
           <td>:</td>
-          <td>{{ customer.tenure }}</td>
+          <td>{{ customer.tenure }} years</td>
         </tr>
         <tr>
           <td>Property Location</td>
           <td>:</td>
-          <td>{{ customer.propertyLocation }}</td>
+          <td>{{ customer.propertyLocation | uppercase}}</td>
         </tr>
         <tr>
           <td>Property Amount</td>
@@ -86,7 +97,7 @@
         <tr>
           <td>Property Name</td>
           <td>:</td>
-          <td>{{ customer.propertyName }}</td>
+          <td>{{ customer.propertyName | uppercase}}</td>
         </tr>
       </tbody>
     </table>
@@ -123,17 +134,17 @@
         <tr>
           <td>Type of Employment</td>
           <td>:</td>
-          <td>{{ customer.cdetails2.emptype }}</td>
+          <td>{{ customer.cdetails2.emptype | uppercase }}</td>
         </tr>
         <tr>
           <td>Employer Name</td>
           <td>:</td>
-          <td>{{ customer.cdetails2.empname }}</td>
+          <td>{{ customer.cdetails2.empname | uppercase}}</td>
         </tr>
         <tr>
           <td>Organization Type</td>
           <td>:</td>
-          <td>{{ customer.cdetails2.orgtype }}</td>
+          <td>{{ customer.cdetails2.orgtype | uppercase}}</td>
         </tr>
         <tr>
           <td>Retirement Age</td>
