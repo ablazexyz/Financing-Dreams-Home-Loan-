@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <div class="container-fluid">
     <div class="row">
@@ -14,7 +16,9 @@
       <div class="col-lg-6 col-md-6 form-container">
         <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
           <div class="logo">
-            <img src="../../../assets/images/logo2.png" alt="Logo">
+            <a href="/#">
+              <img src="../../../assets/images/logo2.png" alt="Logo">
+            </a>
           </div>
           <div class="heading mb-2">
             <h4>Admin Login</h4>
@@ -39,8 +43,9 @@
             </div>
 
             <div class="text-center">
-              <button class="btn float-left btn-primary" style="width: 150px;" [disabled]="adminLogin.invalid" (click)="authenticateAdmin()">Login</button>
-              <button class="btn btn-success float-right" routerLink="/userLogin" >Login as User</button>
+              <button class="btn float-left btn-primary" style="width: 150px;" [disabled]="adminLogin.invalid"
+                (click)="authenticateAdmin()">Login</button>
+              <button class="btn btn-success float-right" routerLink="/userLogin">Login as User</button>
             </div>
           </form>
         </div>

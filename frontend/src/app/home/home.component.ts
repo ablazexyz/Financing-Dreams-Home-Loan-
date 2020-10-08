@@ -15,10 +15,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  }
-  logout(): void {
     sessionStorage.removeItem('username');
-    this.islogged = false;
   }
 
 }

@@ -1,51 +1,34 @@
-<div class="reg-form">
-  <h2 id="reg-form-header" class="mb-4"><i>REGISTER</i></h2>
-  <form
-    class="text-center"
-    [formGroup]="userRegisterDetails"
-    (submit)="RegisterUser()"
-  >
+<div class="reg-form bg-light pt-0">
+  <div class="text-center">
+    <a href="/#">
+      <img src="../../../assets/images/logo2.png" style="width: 150px; height: 150px;" alt="Logo">
+    </a>
+  </div>
+  <h2 id="reg-form-header" class="mb-5 pb-4"><i><u> REGISTER</u></i></h2>
+  <form class="text-center" [formGroup]="userRegisterDetails" (submit)="RegisterUser()">
     <div class="row">
       <div class="form-group col-lg-6">
         <label for="firstName">First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          class="form-control"
-          formControlName="firstName"
-          placeholder="Enter your first name"
-        />
+        <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName"
+          placeholder="Enter your first name" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.firstName.invalid &&
             userRegisterDetails.controls.firstName.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           First Name can't be empty.
         </div>
       </div>
 
       <div class="form-group col-lg-6">
         <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          class="form-control"
-          formControlName="lastName"
-          placeholder="Enter your last name"
-        />
+        <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName"
+          placeholder="Enter your last name" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.lastName.invalid &&
             userRegisterDetails.controls.lastName.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Last Name can't be empty.
         </div>
       </div>
@@ -54,43 +37,25 @@
     <div class="row">
       <div class="form-group col-lg-6">
         <label for="email">Email</label><br />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Enter your Email"
-        />
+        <input type="email" name="email" id="email" class="form-control" formControlName="email"
+          placeholder="Enter your Email" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.email.invalid &&
             userRegisterDetails.controls.email.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Enter a valid Email
         </div>
       </div>
       <div class="form-group col-lg-6">
         <label for="phoneNumber">Phone Number</label>
-        <input
-          type="tel"
-          name="phoneNumber"
-          id="phoneNumber"
-          class="form-control"
-          formControlName="phoneNumber"
-          placeholder="Enter your phone number"
-        />
+        <input type="tel" name="phoneNumber" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+          placeholder="Enter your phone number" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.phoneNumber.invalid &&
             userRegisterDetails.controls.phoneNumber.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Enter a valid Phone Number
         </div>
       </div>
@@ -99,45 +64,27 @@
     <div class="row">
       <div class="form-group col-lg-6">
         <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Set your Password"
-        />
-        <div
-          *ngIf="
+        <input type="password" name="password" id="password" class="form-control" formControlName="password"
+          placeholder="Set your Password" />
+        <div *ngIf="
             userRegisterDetails.controls.password.invalid &&
             (userRegisterDetails.controls.password.touched ||
               userRegisterDetails.controls.password.dirty)
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Should be at least 8 characters and should contain a
           lowercase,uppercase,digit and a special character
         </div>
       </div>
       <div class="form-group col-lg-6">
         <label for="cpassword">Confirm Password</label>
-        <input
-          type="password"
-          name="cpassword"
-          id="cpassword"
-          class="form-control"
-          formControlName="cpassword"
-          placeholder="Confirm your Password"
-        />
+        <input type="password" name="cpassword" id="cpassword" class="form-control" formControlName="cpassword"
+          placeholder="Confirm your Password" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.cpassword.invalid &&
             (userRegisterDetails.controls.cpassword.touched ||
               userRegisterDetails.controls.cpassword.dirty)
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           <div *ngIf="userRegisterDetails.controls.cpassword.errors.required">
             Can't be empty
           </div>
@@ -151,69 +98,43 @@
     <div class="row">
       <div class="form-group col-lg-4">
         <label for="gender">Gender</label>
-        <select
-          name="gender"
-          id="gender"
-          class="form-control"
-          formControlName="gender"
-        >
+        <select name="gender" id="gender" class="form-control" formControlName="gender">
+          <option value="" disabled selected>--select--</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="others">Others</option>
         </select>
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.gender.invalid &&
             userRegisterDetails.controls.gender.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Required Field
         </div>
       </div>
 
       <div class="form-group col-lg-4">
         <label for="nationality">Nationality</label>
-        <input
-          type="text"
-          name="nationality"
-          id="nationality"
-          class="form-control"
-          formControlName="nationality"
-          placeholder="Enter your nationality"
-        />
+        <input type="text" name="nationality" id="nationality" class="form-control" formControlName="nationality"
+          placeholder="Enter your nationality" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.nationality.invalid &&
             userRegisterDetails.controls.nationality.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           Required Field
         </div>
       </div>
 
       <div class="form-group col-lg-4">
         <label for="dateOfBirth">Date of birth</label>
-        <input
-          type="date"
-          name="dateOfBirth"
-          id="dateOfBirth"
-          class="form-control"
-          [max]="today"
-          formControlName="dateOfBirth"
-          placeholder="Choose your date of birth"
-        />
+        <input type="date" name="dateOfBirth" id="dateOfBirth" class="form-control" [max]="today"
+          formControlName="dateOfBirth" placeholder="Choose your date of birth" />
 
-        <div
-          *ngIf="
+        <div *ngIf="
             userRegisterDetails.controls.dateOfBirth.invalid &&
             userRegisterDetails.controls.dateOfBirth.touched
-          "
-          class="text-danger mb-2"
-        >
+          " class="text-danger mb-2">
           <div *ngIf="userRegisterDetails.controls.dateOfBirth.errors.underAge">
             You have to be over 18 years to register
           </div>
@@ -226,25 +147,15 @@
 
     <div class="row">
       <div class="form-group mt-4 col-lg-12" id="register-button">
-        <button
-          type="submit"
-          class="btn btn-primary"
-          style="width: 150px"
-          data-toggle="modal"
-          data-target="#register"
-          [disabled]="userRegisterDetails.invalid"
-        >
+        <button type="submit" class="btn btn-primary" style="width: 150px" data-toggle="modal" data-target="#register"
+          [disabled]="userRegisterDetails.invalid">
           Register
         </button>
       </div>
 
       <div class="form-group col-lg-12" id="login-button">
         <div class="mb-2">Already have an account ?</div>
-        <button
-          class="btn btn-danger"
-          style="width: 150px"
-          routerLink="/userLogin"
-        >
+        <button class="btn btn-danger" style="width: 150px" routerLink="/userLogin">
           Login
         </button>
       </div>
@@ -252,35 +163,19 @@
   </form>
 
   <!-- Modal -->
-  <div
-    class="modal fade"
-    id="register"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="enterRemark"
-    aria-hidden="true"
-    data-backdrop="static"
-    data-keyboard="false"
-  >
+  <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="enterRemark" aria-hidden="true"
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="enterRemark">Remarks</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div *ngIf="creatingbool" class="alert alert-primary">
-            <div
-              class="spinner-border text-success spinner-border-sm"
-              role="status"
-            >
+            <div class="spinner-border text-success spinner-border-sm" role="status">
               <span class="sr-only">Loading...</span>
             </div>
             <span class="pl-2"> Please wait your Account is being created</span>
@@ -299,15 +194,8 @@
           </div>
 
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-success"
-              (click)="login()"
-              data-dismiss="modal"
-              data-toggle="modal"
-              data-target="#status"
-              [disabled]="loginbool"
-            >
+            <button type="button" class="btn btn-success" (click)="login()" data-dismiss="modal" data-toggle="modal"
+              data-target="#status" [disabled]="loginbool">
               Login
             </button>
             <!-- <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#status">Submit</button> -->
