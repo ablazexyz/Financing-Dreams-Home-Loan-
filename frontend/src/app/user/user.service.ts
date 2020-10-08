@@ -53,6 +53,11 @@ export class UserService {
     return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/application/EMIList/' + applicationId);
   }
 
+  viewEmiDetails(amt:number,roi:number,tenure:number){
+
+    return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/home/' + amt + '/' + roi + '/' + tenure);
+  }
+
   setUserDetails(
     email: String,
     custdetails: CustomerDetails

@@ -50,9 +50,9 @@ public class UserController {
 	@Autowired
 	private CustomerService service;
 //	private final String tanuj_path = "D:\\LTI_TRAINING\\gladiator\\MyBackendExperiments\\Fileupload-Example\\storedFiles";
-//	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
-	
-	private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
+	private final Path rootLocation = Paths.get("D:\\Project_Gladiator\\Files Upload");
+
+	// private final Path rootLocation = Paths.get("G:/Angular/Document Uploads");
 //	 private final Path rootLocation = Paths.get(tanuj_path);
 
 	// http://localhost:9091/HomeApp/users/adlogin
@@ -90,17 +90,16 @@ public class UserController {
 			service.createRegistration(reg);
 
 			String msg = "";
-			msg += ("Welcome to Financing Dreams Home Loans, " 
-					+ ".Thank You For Registering with us. " + "Please login to apply for your first Loan Today");
+			msg += ("Welcome to Financing Dreams Home Loans, " + ".Thank You For Registering with us. "
+					+ "Please login to apply for your first Loan Today");
 
 			String name = reg.getFirstName() + " " + reg.getLastName();
-			
+
 			MailService.send(reg.getEmailId(), "Registration Successful", name);
 		}
 		return null;
 	}
 
-	
 	// http://localhost:9091/HomeApp/users/forgot/{emailId}
 	@GetMapping(path = "forgot/{emailId}")
 	public String forgotPassword(@PathVariable("emailId") String email) {
@@ -115,46 +114,41 @@ public class UserController {
 
 			otp[i] = numbers.charAt(rndm_method.nextInt(numbers.length()));
 		}
-		
+
 		String pass = String.valueOf(otp);
 
 		String msg = "";
-		msg += ("Your OTP for Password Reset is: "+pass);
+		msg += ("Your OTP for Password Reset is: " + pass);
 
 		MailService.send(email, "OTP For Password Reset", msg);
 		return pass;
 	}
-	
-	
-	
-	@PostMapping(path="updatePass")
+
+	@PostMapping(path = "updatePass")
 	public void updatePassword(@RequestBody Login login) {
-		
+
 		List<Application> applst = service.findAllApplicationsbyEmail(login.getAdemail());
-		
+
 		if (applst.isEmpty()) {
-			
+
 			try {
 				Customer_Details cd = service.findCustomerDetailsbyEmail(login.getAdemail());
 				cd.getRegistration().setPassword(login.getAdpass());
 				System.out.println(service.modifyCustomerDetails(cd));
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				Registration reg = service.findRegistrationDetailsbyEmail(login.getAdemail());
 				reg.setPassword(login.getAdpass());
 				service.modifyRegistration(reg);
 			}
-			
-		}
-		else {
-			for(Application appl: applst) {
+
+		} else {
+			for (Application appl : applst) {
 				appl.getCdetails2().getRegistration().setPassword(login.getAdpass());
 				service.modifyApplication(appl);
 			}
-			
+
 		}
-		
-		
+
 	}
 
 	@GetMapping(path = "/")
@@ -169,12 +163,11 @@ public class UserController {
 
 		try {
 			return service.findRegistrationDetailsbyEmail(email);
-		}
-		catch(Exception e) {
-			
+		} catch (Exception e) {
+
 			return null;
 		}
-		
+
 	}
 
 	@PostMapping(path = "customerdetails/{emailId}")
@@ -214,20 +207,22 @@ public class UserController {
 		cd.addApplications(appl);
 
 		service.createApplication(appl);
-		
+
 		return appl;
 	}
-	
+
 	// http://localhost:9091/HomeApp/users/sendapplication/{id}
 	@GetMapping(path = "sendapplication/{id}")
 	public void sendApplicationEmail(@PathVariable("id") int applId) {
-		
+
 		Application appl = service.findApplicationById(applId);
 		PDFService.create(appl);
 
-		String name =  appl.getCdetails2().getRegistration().getFirstName() + " " + appl.getCdetails2().getRegistration().getLastName();
-		MailService.send(appl.getCdetails2().getRegistration().getEmailId(), "Loan Application Submitted", name, appl.getApplicationId());
-		
+		String name = appl.getCdetails2().getRegistration().getFirstName() + " "
+				+ appl.getCdetails2().getRegistration().getLastName();
+		MailService.send(appl.getCdetails2().getRegistration().getEmailId(), "Loan Application Submitted", name,
+				appl.getApplicationId());
+
 	}
 
 	// http://localhost:9091/HomeApp/users/applicationdetails/{emailId}
@@ -256,20 +251,27 @@ public class UserController {
 		}
 
 	}
-	
+
 	// http://localhost:9091/HomeApp/users/application/EMIList/{applId}
 	@GetMapping("application/EMIList/{applId}")
 	public List<EmiDto> getEMIList(@PathVariable int applId) {
 		Application appl = service.findApplicationById(applId);
-		return service.calculateEmi(appl.getLoanAmt(), appl.getTenure(),
-				appl.getRoi(), appl.getApplDate());
+		return service.calculateEmi(appl.getLoanAmt(), appl.getTenure(), appl.getRoi(), appl.getApplDate());
+	}
+
+	// http://localhost:9091/HomeApp/users/home/{amt}/{roi}/{ten}
+	@GetMapping("home/{amt}/{roi}/{ten}")
+	public List<EmiDto> getEMIListHome(@PathVariable int amt,@PathVariable double roi,@PathVariable int ten) {
+		
+		return service.calculateEmi(amt, ten, roi, LocalDate.now());
 	}
 
 	@PostMapping("/fileUpload/{id}/{documentType}")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,
 			@PathVariable(name = "id") String id, @PathVariable(name = "documentType") String documentType) {
 
-		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
+		// Path where the file will be stored(will create a directory named with
+		// whatever is passed to 'id')
 		// Path uploadPath = Path.of(rootLocation.toString(), id);
 		Path uploadPath = Paths.get(rootLocation.toString(), id);
 
@@ -318,23 +320,23 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
 	}
-	
-	
+
 	@PostMapping("/fileUpload/{username}/{applicationId}/{documentType}")
 	public ResponseEntity<String> uploadApplicationDocuments(@RequestParam("file") MultipartFile file,
-			@PathVariable(name = "username") String username,@PathVariable(name = "applicationId") String applicationId, @PathVariable(name = "documentType") String documentType) {
+			@PathVariable(name = "username") String username,
+			@PathVariable(name = "applicationId") String applicationId,
+			@PathVariable(name = "documentType") String documentType) {
 
-		// Path where the file will be stored(will create a directory named with whatever is passed to 'id')
+		// Path where the file will be stored(will create a directory named with
+		// whatever is passed to 'id')
 //		Path uploadPath = Path.of(rootLocation.toString(), id);
 		Path uploadPath = Paths.get(rootLocation.toString(), username, applicationId);
-		
-		
+
 		// Checking if the folder where to upload exists or not
 		File applicationDocumentsFolder = new File(uploadPath.toString());
-		
-		//System.out.println(userDocumentsFolder.getParentFile());
-		
-		
+
+		// System.out.println(userDocumentsFolder.getParentFile());
+
 		// allow only pdf uploads
 		String fileContentType = file.getContentType();
 		try {
@@ -377,11 +379,12 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
 	}
-	
-	
+
 	@GetMapping(path = "/fileDownload/{userFolderName}/{documentType}")
-	public ResponseEntity<Resource> downloadFile(@PathVariable(name = "userFolderName") String userFolderName, @PathVariable(name = "documentType") String documentType) {
-		//Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+	public ResponseEntity<Resource> downloadFile(@PathVariable(name = "userFolderName") String userFolderName,
+			@PathVariable(name = "documentType") String documentType) {
+		// Path downloadPath = Path.of(rootLocation.toString(), userFolderName,
+		// documentType + ".pdf");
 		Path downloadPath = Paths.get(rootLocation.toString(), userFolderName, documentType + ".pdf");
 		Resource resource = null;
 		try {
@@ -389,22 +392,23 @@ public class UserController {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_PDF);
-		
-		//to open the document in a new tab instead of downloading it
+
+		// to open the document in a new tab instead of downloading it
 		headers.add("content-disposition", "inline; filename=" + resource.getFilename());
-	
-		return ResponseEntity.ok()
-				.headers(headers)
-				.body(resource);
+
+		return ResponseEntity.ok().headers(headers).body(resource);
 	}
-	
-	
+
 	@GetMapping(path = "/fileDownload/{userFolderName}/{applicationId}/{documentType}")
-	public ResponseEntity<Resource> downloadApplicationFiles(@PathVariable(name = "userFolderName") String userFolderName,@PathVariable(name = "applicationId") String applicationId, @PathVariable(name = "documentType") String documentType) {
-		//Path downloadPath = Path.of(rootLocation.toString(), userFolderName, documentType + ".pdf");
+	public ResponseEntity<Resource> downloadApplicationFiles(
+			@PathVariable(name = "userFolderName") String userFolderName,
+			@PathVariable(name = "applicationId") String applicationId,
+			@PathVariable(name = "documentType") String documentType) {
+		// Path downloadPath = Path.of(rootLocation.toString(), userFolderName,
+		// documentType + ".pdf");
 		Path downloadPath = Paths.get(rootLocation.toString(), userFolderName, applicationId, documentType + ".pdf");
 		Resource resource = null;
 		try {
@@ -412,16 +416,14 @@ public class UserController {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_PDF);
-		
-		//to open the document in a new tab instead of downloading it
+
+		// to open the document in a new tab instead of downloading it
 		headers.add("content-disposition", "inline; filename=" + resource.getFilename());
-	
-		return ResponseEntity.ok()
-				.headers(headers)
-				.body(resource);
+
+		return ResponseEntity.ok().headers(headers).body(resource);
 	}
 
 	// Function to handle large file upload requests
