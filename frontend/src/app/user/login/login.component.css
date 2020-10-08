@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
 }
+
 .form-box{
   display: flex;
   flex-direction: column;

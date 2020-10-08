@@ -1,4 +1,9 @@
 <div class="reg-form bg-light pt-0">
+
+  <div class="p-3">
+    <a type="button" data-toggle="modal" data-target="#back"><i class="fa fa-reply fa-lg text-danger pr-1"></i><span class="text-danger"><b>Home</b></span></a>
+  </div>
+
   <div class="text-center">
     <a href="/#">
       <img src="../../../assets/images/logo2.png" style="width: 150px; height: 150px;" alt="Logo">
@@ -201,6 +206,36 @@
             <!-- <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#status">Submit</button> -->
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="back" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <div></div>
+        <div>
+        <h4 class="modal-title mx-auto" id="myModalLabel" style="offset: 10px 10px;">Back to Homepage ?</h4>
+      </div>
+      <div>
+        <button type="button" class="close text-danger ml-0 " data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center">
+
+        <div class="text-center">
+          <span class="text-danger">Your changes will be discarded.</span><br>
+          <small>Do you want to continue ? </small>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal">No</button>
+
+          <button class="btn btn-danger" data-dismiss="modal" routerLink="/#">Yes</button>
+
       </div>
     </div>
   </div>
