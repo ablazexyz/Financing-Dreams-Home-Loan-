@@ -55,8 +55,8 @@ public class MailService {
 
 			// second part (the image)
 			messageBodyPart = new MimeBodyPart();
-//			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
-			DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
+			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
+			//DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
 
 			messageBodyPart.setDataHandler(new DataHandler(fds));
 			messageBodyPart.setHeader("Content-ID", "<image>");
@@ -168,8 +168,9 @@ public class MailService {
 
 			// second part (the image)
 			messageBodyPart = new MimeBodyPart();
-//			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
-			DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
+			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
+			
+			//DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
 
 			messageBodyPart.setDataHandler(new DataHandler(fds));
 			messageBodyPart.setHeader("Content-ID", "<image>");
@@ -179,8 +180,8 @@ public class MailService {
 
 			// Part two is attachment
 			messageBodyPart = new MimeBodyPart();
-//			String filename = "D:\\Project_Gladiator\\Registration Form\\" + applId + "_Reg.pdf";
-			String filename = "G:\\Angular\\load-pdf\\" + applId + "_Reg.pdf";
+			String filename = "D:\\Project_Gladiator\\Registration Form\\" + applId + "_Reg.pdf";
+			//String filename = "G:\\Angular\\load-pdf\\" + applId + "_Reg.pdf";
 			DataSource source = new FileDataSource(filename);
 			messageBodyPart.setDataHandler(new DataHandler(source));
 			messageBodyPart.setFileName(filename);
@@ -236,8 +237,8 @@ public class MailService {
 
 			// second part (the image)
 			messageBodyPart = new MimeBodyPart();
-//			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
-			DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
+			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
+		//	DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
 
 			messageBodyPart.setDataHandler(new DataHandler(fds));
 			messageBodyPart.setHeader("Content-ID", "<image>");
@@ -297,8 +298,8 @@ public class MailService {
 
 			// second part (the image)
 			messageBodyPart = new MimeBodyPart();
-//			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
-			DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
+			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
+			//DataSource fds = new FileDataSource("G:\\Angular\\load-pdf\\logo2.png");
 
 			messageBodyPart.setDataHandler(new DataHandler(fds));
 			messageBodyPart.setHeader("Content-ID", "<image>");

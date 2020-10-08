@@ -20,15 +20,6 @@ import { Application } from './application';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  loginUser(user): Observable<object> {
-    return this.http.get(
-      'http://localhost:3000/users?emailId=' +
-      user.emailId +
-      '&password=' +
-      user.password
-    );
-  }
-
   getRegDetails(email: String): Observable<Register> {
     return this.http.get<Register>(
       'http://localhost:9091/HomeApp/users/isFirstTimeUser/' + email
@@ -58,6 +49,11 @@ export class UserService {
     return this.http.get<EmiDto[]>('http://localhost:9091/HomeApp/users/home/' + amt + '/' + roi + '/' + tenure);
   }
 
+  getApplicationStatusbyId(id:number):Observable<Application>{
+
+    return this.http.get<Application>('http://localhost:9091/HomeApp/users/applStatus/'+id);
+  }
+  
   setUserDetails(
     email: String,
     custdetails: CustomerDetails
