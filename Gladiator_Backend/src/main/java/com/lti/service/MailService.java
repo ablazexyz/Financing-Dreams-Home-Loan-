@@ -19,6 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class MailService {
 
+	// Registration Email
 	public static void send(String to, String sub, String name) {
 		// Get properties object
 		Properties props = new Properties();
@@ -72,7 +73,62 @@ public class MailService {
 		}
 
 	}
+	
+	//OTP 
+	public static void send(String to, String sub, String otp,String name) {
+		// Get properties object
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+		// get Session
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("financingdreams2020@gmail.com", "ProjG@123");
+			}
+		});
+		// compose message
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject(sub);
 
+			// This mail has 2 part, the BODY and the embedded image
+			MimeMultipart multipart = new MimeMultipart("related");
+
+			// first part (the html)
+			BodyPart messageBodyPart = new MimeBodyPart();
+			String htmlText = "<h3>Dear " + name + ",</h3> <br>" + "<p>Your OTP for Password Reset is: <b>"+otp
+					+"</b> <br><br>" + "Financing Dreams Home Loans<br>"
+					+ "<img src=\"cid:image\" width=\"120\" height=\"100\">";
+			messageBodyPart.setContent(htmlText, "text/html");
+			// add it
+			multipart.addBodyPart(messageBodyPart);
+
+			// second part (the image)
+			messageBodyPart = new MimeBodyPart();
+			DataSource fds = new FileDataSource("D:\\Project_Gladiator\\logo2.png");
+
+			messageBodyPart.setDataHandler(new DataHandler(fds));
+			messageBodyPart.setHeader("Content-ID", "<image>");
+
+			// add image to the multipart
+			multipart.addBodyPart(messageBodyPart);
+
+			// put everything together
+			message.setContent(multipart);
+			// send message1
+			Transport.send(message);
+			System.out.println("message sent successfully");
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	// Application Form Send
 	public static void send(String to, String sub, String name, int applId) {
 		// Get properties object
 		Properties props = new Properties();
@@ -139,6 +195,7 @@ public class MailService {
 
 	}
 
+	// Approval
 	public static void send(String to, String sub, String name, int applId, double loanamt) {
 		// Get properties object
 		Properties props = new Properties();
@@ -197,6 +254,7 @@ public class MailService {
 
 	}
 
+	// Rejection
 	public static void send(String to, String sub, String name, int applId, double loanamt, String remarks) {
 		// Get properties object
 		Properties props = new Properties();

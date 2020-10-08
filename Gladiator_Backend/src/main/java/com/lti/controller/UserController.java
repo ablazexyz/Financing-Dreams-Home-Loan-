@@ -117,10 +117,11 @@ public class UserController {
 
 		String pass = String.valueOf(otp);
 
-		String msg = "";
-		msg += ("Your OTP for Password Reset is: " + pass);
+		Registration reg = service.findRegistrationDetailsbyEmail(email);
+		
+		String name = reg.getFirstName()+" "+reg.getLastName();
 
-		MailService.send(email, "OTP For Password Reset", msg);
+		MailService.send(email, "OTP For Password Reset", pass,name);
 		return pass;
 	}
 
