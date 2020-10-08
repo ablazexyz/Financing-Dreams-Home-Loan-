@@ -92,7 +92,7 @@ export class ApplicationDocsComponent implements OnInit {
               //this.selectedFiles = undefined;
             } else if (error.status == 417) {
               // alert('File size should be less than 5 MB');
-              this.errorMsg = 'File size should be less than 1 MB';
+              this.errorMsg = 'File size should be less than 5 MB';
 
               //this.selectedFiles = undefined;
             } else {
