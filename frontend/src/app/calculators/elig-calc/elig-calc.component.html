@@ -1,8 +1,10 @@
 <div class="row featurette d-flex align-items-center justify-content-center p-4" id="Eligibility">
-  <div class="col-md-1"></div>
-  <div class="col-md-4 text-center" id="Eligibility">
+
+  <div class="col-md-3 text-center" id="Eligibility">
     <div class="card text-white bg-info">
-      <div class="card-header" style="text-align: center;"><h3>Eligibility Calcuator</h3></div>
+      <div class="card-header" style="text-align: center;">
+        <h3>Eligibility Calcuator</h3>
+      </div>
 
       <div class="card-body">
 
@@ -32,7 +34,62 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 text-center">
-    <img src="../../assets/images/eligibility.png" height="400" width="600" style="box-shadow: 0 0 8px 8px white inset; border-radius: 80%;">
-</div>
+  <div class="col-md-4 text-center">
+
+    <img src="../../assets/images/eligibility.png" height="300" width="450"
+      style="box-shadow: 0 0 8px 8px white inset; border-radius: 80%;">
+
+  </div>
+
+  <div class="col-md-3 text-center">
+    <div class="card text-white bg-info">
+      <div class="card-header" style="text-align: center;">
+        <h3>Loan Application Tracker</h3>
+      </div>
+
+      <div class="card-body">
+
+
+        <form action="#!">
+
+          <!-- Monthly Income -->
+          <div class="form-group">
+            <label for="monthly_income">Application ID</label>
+            <input type="number" class="form-control" id="loan_amount" [(ngModel)]="applId"
+              [ngModelOptions]="{standalone: true}" placeholder="Enter Application ID:">
+          </div>
+
+          <div class="form-group">
+            <label for="monthly_income">Date Of Birth</label>
+            <input type="date" name="dateOfBirth" id="dateOfBirth" [(ngModel)]="dob" [max]="today"
+              placeholder="Choose your date of birth" />
+
+          </div>
+
+          <!-- Calculate button -->
+          <button class="btn btn-primary pb-2 mb-2" type="submit" (click)="status()">Track Status</button>
+
+          <div *ngIf="dispbool" class="card" id="info_card1">
+            <div class="card-body">
+              <div *ngIf="appnull">
+                <h4 style="text-align: center;">Incorrect Application ID</h4>
+              </div>
+              <div *ngIf="appload && !dobbool">
+                <h4 style="text-align: center;">Incorrect Date Of Birth</h4>
+              </div>
+              <div *ngIf="appload && dobbool">
+                <h4 style="text-align: center;">Loan Status </h4>
+                <h3 style="text-align: center;"> {{application.loanStatus}} </h3>
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
 </div>

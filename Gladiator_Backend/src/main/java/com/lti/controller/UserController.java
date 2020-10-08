@@ -170,6 +170,17 @@ public class UserController {
 		}
 
 	}
+	
+	@GetMapping(path = "applStatus/{id}")
+	public Application getApplicationStatusbyID(@PathVariable("id") int applId) {
+		
+		try {
+			return service.findApplicationById(applId);
+		}
+		catch(Exception e) {
+			return null;
+		}
+	}
 
 	@PostMapping(path = "customerdetails/{emailId}")
 	public Registration setCustomerDetails(@PathVariable("emailId") String email, @RequestBody Customer_Details cd) {
